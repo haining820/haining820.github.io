@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/spring/spring/spring/image-20210403155612854.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/spring/spring/spring/Snipaste_2022-03-20_15-50-41.png">
 <meta property="article:published_time" content="2022-08-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-13T18:54:48.238Z">
+<meta property="article:modified_time" content="2022-08-13T19:19:47.129Z">
 <meta property="article:author" content="haining">
 <meta property="article:tag" content="spring">
 <meta property="article:tag" content="ioc">
@@ -1098,6 +1098,30 @@
 
 <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+    </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81Spring-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">1、Spring 概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81IoC-%E7%90%86%E8%AE%BA%E6%8E%A8%E5%AF%BC"><span class="toc-number">2.</span> <span class="toc-text">2、IoC 理论推导</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E3%80%81%E9%97%AE%E9%A2%98%E5%AF%BC%E5%85%A5"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、问题导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E3%80%81IoC-%E6%9C%AC%E8%B4%A8"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、IoC 本质</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81Hello-Spring"><span class="toc-number">3.</span> <span class="toc-text">3、Hello Spring !</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E3%80%81%E7%94%A8-Spring-%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E5%AF%BC%E5%85%A5"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、用 Spring 解决问题导入</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81IoC-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">4、IoC 创建对象的方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"><span class="toc-number">5.</span> <span class="toc-text">5、依赖注入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1%E3%80%81%E6%9E%84%E9%80%A0%E5%99%A8%E6%B3%A8%E5%85%A5"><span class="toc-number">5.1.</span> <span class="toc-text">5.1、构造器注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2%E3%80%81set-%E6%B3%A8%E5%85%A5"><span class="toc-number">5.2.</span> <span class="toc-text">5.2、set 注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3%E3%80%81%E6%8B%93%E5%B1%95%E6%96%B9%E5%BC%8F%E6%B3%A8%E5%85%A5"><span class="toc-number">5.3.</span> <span class="toc-text">5.3、拓展方式注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4%E3%80%81bean-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">5.4.</span> <span class="toc-text">5.4、bean 的作用域</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81Spring-%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">6.</span> <span class="toc-text">6、Spring 的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1%E3%80%81alias"><span class="toc-number">6.1.</span> <span class="toc-text">6.1、alias</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2%E3%80%81bean"><span class="toc-number">6.2.</span> <span class="toc-text">6.2、bean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3%E3%80%81import"><span class="toc-number">6.3.</span> <span class="toc-text">6.3、import</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81bean-%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E4%B8%8E%E6%B3%A8%E8%A7%A3"><span class="toc-number">7.</span> <span class="toc-text">7、bean 的自动装配与注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1%E3%80%81byName-byType-%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D"><span class="toc-number">7.1.</span> <span class="toc-text">7.1、byName&#x2F;byType 自动装配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2%E3%80%81%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D"><span class="toc-number">7.2.</span> <span class="toc-text">7.2、注解实现自动装配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3%E3%80%81%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91"><span class="toc-number">7.3.</span> <span class="toc-text">7.3、使用注解开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">7.4.</span> <span class="toc-text">7.4、总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81%E4%BD%BF%E7%94%A8-Java-%E7%9A%84%E6%96%B9%E5%BC%8F%E9%85%8D%E7%BD%AE-Spring"><span class="toc-number">8.</span> <span class="toc-text">8、使用 Java 的方式配置 Spring</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="toc-number">9.</span> <span class="toc-text">9、代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1%E3%80%81%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-number">9.1.</span> <span class="toc-text">10.1、静态代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2%E3%80%81%E5%8A%A0%E6%B7%B1%E7%90%86%E8%A7%A3"><span class="toc-number">9.2.</span> <span class="toc-text">10.2、加深理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3%E3%80%81%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-number">9.3.</span> <span class="toc-text">10.3、动态代理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10%E3%80%81AOP"><span class="toc-number">10.</span> <span class="toc-text">10、AOP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-AOP"><span class="toc-number">10.1.</span> <span class="toc-text">10.1、什么是 AOP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2%E3%80%81AOP-%E5%9C%A8-Spring-%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">10.2.</span> <span class="toc-text">10.2、AOP 在 Spring 中的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3%E3%80%81Spring-API-%E5%AE%9E%E7%8E%B0-AOP"><span class="toc-number">10.3.</span> <span class="toc-text">10.3、Spring API 实现 AOP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-4%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%AE%9E%E7%8E%B0AOP"><span class="toc-number">10.4.</span> <span class="toc-text">10.4、自定义类实现AOP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-5%E3%80%81%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0-AOP"><span class="toc-number">10.5.</span> <span class="toc-text">10.5、使用注解实现 AOP</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12%E3%80%81%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">11.</span> <span class="toc-text">12、声明式事务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#12-1%E3%80%81%E5%9B%9E%E9%A1%BE%E4%BA%8B%E5%8A%A1"><span class="toc-number">11.1.</span> <span class="toc-text">12.1、回顾事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-2%E3%80%81Spring-%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="toc-number">11.2.</span> <span class="toc-text">12.2、Spring 中的事务管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-3%E3%80%81-Transactional-%E6%B3%A8%E8%A7%A3"><span class="toc-number">11.3.</span> <span class="toc-text">12.3、@Transactional 注解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13%E3%80%81%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">12.</span> <span class="toc-text">13、编程式事务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-1%E3%80%81%E9%85%8D%E7%BD%AE"><span class="toc-number">12.1.</span> <span class="toc-text">13.1、配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-2%E3%80%81TransactionTemplate%E5%88%86%E6%9E%90"><span class="toc-number">12.2.</span> <span class="toc-text">13.2、TransactionTemplate分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-3%E3%80%81DataSource"><span class="toc-number">12.3.</span> <span class="toc-text">11.3、DataSource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-4%E3%80%81%E4%BA%8B%E7%89%A9%E7%9A%84%E4%BC%A0%E9%80%92%E6%80%A7"><span class="toc-number">12.4.</span> <span class="toc-text">11.4、事物的传递性</span></a></li></ol></li></ol>
+    </div>
+    <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+
 <!-- 目录内容结束 -->
           </div>
         </div>
@@ -1202,23 +1226,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">guava</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">guava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1230,7 +1246,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1238,11 +1258,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1266,18 +1290,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">异步</a>
               </li>
              
@@ -1286,11 +1298,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">

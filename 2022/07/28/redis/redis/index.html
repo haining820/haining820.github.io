@@ -53,7 +53,7 @@
 <meta property="og:image" content="https://haining820.github.io/2022/07/28/redis/redis/image-20220728105747593.png">
 <meta property="og:image" content="https://haining820.github.io/2022/07/28/redis/redis/image-20220728105845198.png">
 <meta property="article:published_time" content="2022-07-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-13T18:00:43.877Z">
+<meta property="article:modified_time" content="2022-08-13T19:19:38.119Z">
 <meta property="article:author" content="haining">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
@@ -1203,6 +1203,30 @@
 
 <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+    </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81NoSQL-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">1、NoSQL 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、发展历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-NoSQL%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、什么是 NoSQL？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81Redis-%E5%85%A5%E9%97%A8"><span class="toc-number">2.</span> <span class="toc-text">2、Redis 入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E3%80%81Redis-%E6%A6%82%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、Redis 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E3%80%81%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3%E3%80%81%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">2.3.</span> <span class="toc-text">2.3、性能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">2.4.</span> <span class="toc-text">2.4、基础知识</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81%E4%BA%94%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">3、五大基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-0%E3%80%81Redis-key"><span class="toc-number">3.1.</span> <span class="toc-text">3.0、Redis-key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E3%80%81String"><span class="toc-number">3.2.</span> <span class="toc-text">3.1、String</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2%E3%80%81List"><span class="toc-number">3.3.</span> <span class="toc-text">3.2、List</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3%E3%80%81Set"><span class="toc-number">3.4.</span> <span class="toc-text">3.3、Set</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4%E3%80%81Hash"><span class="toc-number">3.5.</span> <span class="toc-text">3.4、Hash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5%E3%80%81Zset"><span class="toc-number">3.6.</span> <span class="toc-text">3.5、Zset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6%E3%80%81BigKey"><span class="toc-number">3.7.</span> <span class="toc-text">3.6、BigKey</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">4、三种特殊的数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E3%80%81Geospatial"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、Geospatial</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E3%80%81Hyperloglog"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、Hyperloglog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E3%80%81Bitmaps"><span class="toc-number">4.3.</span> <span class="toc-text">4.3、Bitmaps</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E4%BA%8B%E5%8A%A1"><span class="toc-number">5.</span> <span class="toc-text">5、事务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1%E3%80%81%E6%89%A7%E8%A1%8C%E4%BA%8B%E5%8A%A1"><span class="toc-number">5.1.</span> <span class="toc-text">5.1、执行事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2%E3%80%81%E6%94%BE%E5%BC%83%E4%BA%8B%E5%8A%A1"><span class="toc-number">5.2.</span> <span class="toc-text">5.2、放弃事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3%E3%80%81%E7%BC%96%E8%AF%91%E5%9E%8B%E5%BC%82%E5%B8%B8"><span class="toc-number">5.3.</span> <span class="toc-text">5.3、编译型异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4%E3%80%81%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="toc-number">5.4.</span> <span class="toc-text">5.4、运行时异常</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81Redis-%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81"><span class="toc-number">6.</span> <span class="toc-text">6、Redis 实现乐观锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81Jedis"><span class="toc-number">7.</span> <span class="toc-text">7、Jedis</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81SpringBoot-%E6%95%B4%E5%90%88-Redis"><span class="toc-number">8.</span> <span class="toc-text">8、SpringBoot 整合 Redis</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E3%80%81Redis-conf-%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3"><span class="toc-number">9.</span> <span class="toc-text">9、Redis.conf 配置详解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10%E3%80%81Redis-%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">10.</span> <span class="toc-text">10、Redis 的持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1%E3%80%81RDB%EF%BC%88Redis-DataBase%EF%BC%89"><span class="toc-number">10.1.</span> <span class="toc-text">10.1、RDB（Redis DataBase）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2%E3%80%81AOF%EF%BC%88Append-Only-File%EF%BC%89"><span class="toc-number">10.2.</span> <span class="toc-text">10.2、AOF（Append Only File）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">10.3.</span> <span class="toc-text">10.3、总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11%E3%80%81Redis-%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85"><span class="toc-number">11.</span> <span class="toc-text">11、Redis 发布订阅</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13%E3%80%81Redis-%E7%9A%84%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6"><span class="toc-number">12.</span> <span class="toc-text">13、Redis 的主从复制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-1%E3%80%81%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">12.1.</span> <span class="toc-text">13.1、环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-2%E3%80%81%E5%AE%95%E6%9C%BA%E5%90%8E%E4%B8%BB%E6%9C%BA%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">12.2.</span> <span class="toc-text">13.2、宕机后主机的配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3%E3%80%81%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F"><span class="toc-number">12.3.</span> <span class="toc-text">13.3、哨兵模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14%E3%80%81%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98"><span class="toc-number">13.</span> <span class="toc-text">14、缓存问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#14-1%E3%80%81%E7%BC%93%E5%AD%98%E8%AF%BB%E5%86%99%E9%97%AE%E9%A2%98"><span class="toc-number">13.1.</span> <span class="toc-text">14.1、缓存读写问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-1%E3%80%81%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="toc-number">13.2.</span> <span class="toc-text">14.1、缓存穿透</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-2%E3%80%81%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF"><span class="toc-number">13.3.</span> <span class="toc-text">14.2、缓存击穿</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-3%E3%80%81%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="toc-number">13.4.</span> <span class="toc-text">14.3、缓存雪崩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-4%E3%80%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">13.5.</span> <span class="toc-text">14.4、解决方案</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#15%E3%80%81Redis-%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-number">14.</span> <span class="toc-text">15、Redis 的架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16%E3%80%81Redis-%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">15.</span> <span class="toc-text">16、Redis 面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#16-1%E3%80%81Redis%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E7%AE%80%E8%BF%B0%E5%AE%83%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%9F"><span class="toc-number">15.1.</span> <span class="toc-text">16.1、Redis是什么？简述它的优缺点？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-2%E3%80%81Redis-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB%EF%BC%9F"><span class="toc-number">15.2.</span> <span class="toc-text">16.2、Redis 为什么这么快？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-3%E3%80%81Redis-%E7%9B%B8%E6%AF%94-Memcached-%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BC%98%E5%8A%BF%EF%BC%9F"><span class="toc-number">15.3.</span> <span class="toc-text">16.3、Redis 相比 Memcached 有哪些优势？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-4%E3%80%81Redis%E7%9A%84%E5%B8%B8%E7%94%A8%E5%9C%BA%E6%99%AF%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-number">15.4.</span> <span class="toc-text">16.4、Redis的常用场景有哪些?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-5%E3%80%81-Redis-%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">15.5.</span> <span class="toc-text">16.5、 Redis 的数据类型有哪些？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-6%E3%80%81Redis-%E4%B8%BA%E4%BD%95%E9%80%89%E6%8B%A9%E5%8D%95%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-number">15.6.</span> <span class="toc-text">16.6、Redis 为何选择单线程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-7%E3%80%81Redis-%E7%9C%9F%E7%9A%84%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-number">15.7.</span> <span class="toc-text">16.7、Redis 真的是单线程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-8%E3%80%81Redis-v6-0-%E4%B8%BA%E4%BD%95%E5%BC%95%E5%85%A5%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-number">15.8.</span> <span class="toc-text">16.8、Redis v6.0 为何引入多线程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-9%E3%80%81Redis-%E8%BF%87%E6%9C%9F%E9%94%AE%E7%9A%84%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5%EF%BC%9F"><span class="toc-number">15.9.</span> <span class="toc-text">16.9、Redis 过期键的删除策略？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-10%E3%80%81Redis-%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-number">15.10.</span> <span class="toc-text">16.10、Redis 内存淘汰机制？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-11%E3%80%81Redis-%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-number">15.11.</span> <span class="toc-text">16.11、Redis 持久化机制？</span></a></li></ol></li></ol>
+    </div>
+    <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+
 <!-- 目录内容结束 -->
           </div>
         </div>
@@ -1307,23 +1331,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">guava</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">guava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1335,7 +1351,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1343,11 +1363,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1371,18 +1395,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">异步</a>
               </li>
              
@@ -1391,11 +1403,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">

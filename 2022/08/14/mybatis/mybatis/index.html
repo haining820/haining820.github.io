@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mybatis/mybatis/image-20220805113241327.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mybatis/mybatis/image-20220805183236268.png">
 <meta property="article:published_time" content="2022-08-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-13T18:52:31.923Z">
+<meta property="article:modified_time" content="2022-08-13T19:19:13.220Z">
 <meta property="article:author" content="haining">
 <meta property="article:tag" content="mybatis">
 <meta name="twitter:card" content="summary">
@@ -957,8 +957,8 @@
     </a>
   
   
-    <a href="/2022/08/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">设计模式</div>
+    <a href="/2022/08/14/mysql/mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mysql整理</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -995,6 +995,30 @@
 
 
 <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+    </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81Mybatis-%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">1、Mybatis 框架设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81Hello-MyBatis"><span class="toc-number">2.</span> <span class="toc-text">2、Hello MyBatis!</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E3%80%81%E6%96%B0%E5%BB%BA-maven-%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、新建 maven 项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E3%80%81%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E9%85%8D%E7%BD%AE-IDEA"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、新建数据库，配置 IDEA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3%E3%80%81%E5%AE%9E%E4%BD%93%E7%B1%BB%E4%B8%8E%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE-Dao-%E5%B1%82"><span class="toc-number">2.3.</span> <span class="toc-text">2.3、实体类与数据访问 Dao 层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4%E3%80%81UserMapper-mybatis-config-xml"><span class="toc-number">2.4.</span> <span class="toc-text">2.4、UserMapper&#x2F;mybatis-config.xml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5%E3%80%81MyBatisUtils-%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-number">2.5.</span> <span class="toc-text">2.5、MyBatisUtils 工具类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6%E3%80%81%E4%BD%BF%E7%94%A8-test-%E7%B1%BB%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="toc-number">2.6.</span> <span class="toc-text">2.6、使用 test 类进行测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7%E3%80%81%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-number">2.7.</span> <span class="toc-text">2.7、增删改查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8%E3%80%81ResultMap"><span class="toc-number">2.8.</span> <span class="toc-text">2.8、ResultMap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9%E3%80%81-%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.9.</span> <span class="toc-text">2.9、#{} 和 ${} 的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81mybatis-config-xml-%E8%A7%A3%E8%AF%BB"><span class="toc-number">3.</span> <span class="toc-text">3、mybatis-config.xml 解读</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E3%80%81properties"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、properties</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2%E3%80%81settings"><span class="toc-number">3.2.</span> <span class="toc-text">3.2、settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3%E3%80%81typeAliases"><span class="toc-number">3.3.</span> <span class="toc-text">3.3、typeAliases</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4%E3%80%81environments"><span class="toc-number">3.4.</span> <span class="toc-text">3.4、environments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5%E3%80%81mappers"><span class="toc-number">3.5.</span> <span class="toc-text">3.5、mappers</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E6%B3%A8%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">4、注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E3%80%81-Param"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、@Param</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E3%80%81%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B3%A8%E8%A7%A3"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、如何实现注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E3%80%81%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0-CRUD"><span class="toc-number">4.3.</span> <span class="toc-text">4.3、基于注解实现 CRUD</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%92%8C%E5%A4%9A%E5%AF%B9%E4%B8%80"><span class="toc-number">5.</span> <span class="toc-text">5、一对多和多对一</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%92%8C%E5%A4%9A%E5%AF%B9%E4%B8%80"><span class="toc-number">5.1.</span> <span class="toc-text">5.1、什么是一对多和多对一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2%E3%80%81%E4%B8%80%E5%AF%B9%E5%A4%9A%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.2.</span> <span class="toc-text">5.2、一对多的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3%E3%80%81%E5%A4%9A%E5%AF%B9%E4%B8%80%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.3.</span> <span class="toc-text">5.3、多对一的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">5.4.</span> <span class="toc-text">5.4、总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81%E5%8A%A8%E6%80%81-SQL"><span class="toc-number">6.</span> <span class="toc-text">6、动态 SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-0%E3%80%81%E5%87%86%E5%A4%87"><span class="toc-number">6.1.</span> <span class="toc-text">6.0、准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1%E3%80%81if"><span class="toc-number">6.2.</span> <span class="toc-text">6.1、if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2%E3%80%81where"><span class="toc-number">6.3.</span> <span class="toc-text">6.2、where</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3%E3%80%81SQL-%E7%89%87%E6%AE%B5"><span class="toc-number">6.4.</span> <span class="toc-text">6.3、SQL 片段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4%E3%80%81set"><span class="toc-number">6.5.</span> <span class="toc-text">6.4、set</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-5%E3%80%81trim"><span class="toc-number">6.6.</span> <span class="toc-text">6.5、trim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-6%E3%80%81choose-when-otherwise"><span class="toc-number">6.7.</span> <span class="toc-text">6.6、choose&#x2F;when&#x2F;otherwise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-7%E3%80%81foreach"><span class="toc-number">6.8.</span> <span class="toc-text">6.7、foreach</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81%E7%BC%93%E5%AD%98"><span class="toc-number">7.</span> <span class="toc-text">7、缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-0%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E7%BC%93%E5%AD%98"><span class="toc-number">7.1.</span> <span class="toc-text">7.0、什么是缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1%E3%80%81Mybatis-%E7%9A%84%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-number">7.2.</span> <span class="toc-text">7.1、Mybatis 的一级缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3%E3%80%81Mybatis-%E7%9A%84%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-number">7.3.</span> <span class="toc-text">7.3、Mybatis 的二级缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BC%93%E5%AD%98-ehcache"><span class="toc-number">7.4.</span> <span class="toc-text">7.4、自定义缓存 ehcache</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81MyBatis-Spring"><span class="toc-number">8.</span> <span class="toc-text">8、MyBatis-Spring</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1%E3%80%81%E5%9B%9E%E9%A1%BE-Mybatis"><span class="toc-number">8.1.</span> <span class="toc-text">8.1、回顾 Mybatis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2%E3%80%81Mybatis-Spring"><span class="toc-number">8.2.</span> <span class="toc-text">8.2、Mybatis-Spring</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E3%80%81Mybatis-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7"><span class="toc-number">9.</span> <span class="toc-text">9、Mybatis 高级特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1%E3%80%81TypeHandler"><span class="toc-number">9.1.</span> <span class="toc-text">9.1、TypeHandler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2%E3%80%81Intercptor"><span class="toc-number">9.2.</span> <span class="toc-text">9.2、Intercptor</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10%E3%80%81%E5%B0%8F%E7%BB%93%EF%BC%9AMyBatis%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92"><span class="toc-number">10.</span> <span class="toc-text">10、小结：MyBatis参数的传递</span></a></li></ol>
+    </div>
+    <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
 
 <!-- 目录内容结束 -->
           </div>
@@ -1100,23 +1124,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">guava</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">guava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1128,7 +1144,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1136,11 +1156,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1164,18 +1188,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">异步</a>
               </li>
              
@@ -1184,11 +1196,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
