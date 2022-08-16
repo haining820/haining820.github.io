@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://haining820.github.io">
   <title>springboot整理 | haining&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、Spring Boot 与微服务程序 &#x3D; 数据结构 + 算法 -&gt; 程序猿 程序 &#x3D; 面向对象 + 框架 -&gt; 码农 1.1、什么是 Spring Boot？所有的技术框架的发展似乎都遵循了一条主线规律：从一个复杂应用场景衍生 一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计">
+  <meta name="description" content="1、Spring Boot 与微服务1.1、什么是 Spring Boot？ 所有的技术框架的发展都遵循了一个规律：从一个复杂应用场景衍生出一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡 “约定大于">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springboot整理">
 <meta property="og:url" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/index.html">
 <meta property="og:site_name" content="haining&#39;s blog">
-<meta property="og:description" content="1、Spring Boot 与微服务程序 &#x3D; 数据结构 + 算法 -&gt; 程序猿 程序 &#x3D; 面向对象 + 框架 -&gt; 码农 1.1、什么是 Spring Boot？所有的技术框架的发展似乎都遵循了一条主线规律：从一个复杂应用场景衍生 一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计">
+<meta property="og:description" content="1、Spring Boot 与微服务1.1、什么是 Spring Boot？ 所有的技术框架的发展都遵循了一个规律：从一个复杂应用场景衍生出一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡 “约定大于">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20210715231801817.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20210715224529730.png">
@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20220122091634726.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20210720150323740.png">
 <meta property="article:published_time" content="2022-08-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-14T04:26:35.528Z">
+<meta property="article:modified_time" content="2022-08-16T12:39:19.064Z">
 <meta property="article:author" content="haining">
 <meta property="article:tag" content="springboot">
 <meta name="twitter:card" content="summary">
@@ -187,9 +187,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1、Spring-Boot-与微服务"><a href="#1、Spring-Boot-与微服务" class="headerlink" title="1、Spring Boot 与微服务"></a>1、Spring Boot 与微服务</h1><p><strong><code>程序 = 数据结构 + 算法 -&gt; 程序猿</code></strong></p>
-<p><strong><code>程序 = 面向对象 + 框架 -&gt; 码农</code></strong></p>
-<h2 id="1-1、什么是-Spring-Boot？"><a href="#1-1、什么是-Spring-Boot？" class="headerlink" title="1.1、什么是 Spring Boot？"></a>1.1、什么是 Spring Boot？</h2><p>所有的技术框架的发展似乎都遵循了一条主线规律：从一个复杂应用场景衍生 一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡 “约定大于配置” ，进而衍生出一些一站式的解决方案。 </p>
+        <h1 id="1、Spring-Boot-与微服务"><a href="#1、Spring-Boot-与微服务" class="headerlink" title="1、Spring Boot 与微服务"></a>1、Spring Boot 与微服务</h1><h2 id="1-1、什么是-Spring-Boot？"><a href="#1-1、什么是-Spring-Boot？" class="headerlink" title="1.1、什么是 Spring Boot？"></a>1.1、什么是 Spring Boot？</h2><blockquote>
+<p>所有的技术框架的发展都遵循了一个规律：从一个复杂应用场景衍生出一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡 “约定大于配置” ，进而衍生出一些一站式的解决方案。 </p>
+</blockquote>
 <span id="more"></span>
 
 <p>技术是不断变化的，演变过程：<code>Servlet + Tomcat -&gt; Structs -&gt; SpringMVC -&gt; Spring Boot</code> </p>
@@ -697,6 +697,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
@@ -713,15 +717,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -733,14 +733,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tips</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">AutoHotKey</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">死锁</a>
               </li>
              
@@ -749,7 +741,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">tips</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">AutoHotKey</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,7 +757,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -781,18 +781,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">注解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">异步</a>
               </li>
              
@@ -805,7 +793,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">注解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
