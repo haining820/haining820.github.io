@@ -25,30 +25,16 @@
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220812003535409.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220812014000178.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220812013437271.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220812015700112.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20210415191349238.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220414155739007.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220417144710171.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220417154305645.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220815163424577.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220815164420637.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/springmvc/httpMessageConverter2.jpg">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220815172200615.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/%EF%BC%88%E5%AD%90%EF%BC%89RequestResponseBodyMethodProcessor.jpg">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/%EF%BC%88%E5%AD%90%EF%BC%89RequestResponseBodyMethodProcessor2.jpg">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/%EF%BC%88%E7%88%B6%EF%BC%89AbstractMessageConverterMethodProcessor.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/%EF%BC%88%E7%88%B7%EF%BC%89AbstractMessageConverterMethodArgumentResolver2.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/find-converter-list.jpg">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/RequestMappiongHandlerAdapter.jpg">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/RequestMappiongHandlerAdapter2.jpg">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/HttpMessageConvertersAutoConfiguration.jpg">
 <meta property="article:published_time" content="2022-08-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-15T12:58:20.951Z">
+<meta property="article:modified_time" content="2022-08-17T14:39:07.536Z">
 <meta property="article:author" content="haining">
 <meta property="article:tag" content="SpringMVC">
 <meta property="article:tag" content="HttpServlet">
 <meta property="article:tag" content="DispatcherServlet">
-<meta property="article:tag" content="MessageConverter">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20210406194103487.png">
   
@@ -259,7 +245,7 @@
 <p><font size="4" style="font-weight:bold;background:yellow;">响应流程</font></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1、Web客户向Servlet容器发出Http请求；</span><br><span class="line">2、Servlet容器解析该Http请求；</span><br><span class="line">3、Servlet容器创建一个HttpRequest对象，在这个对象中封装 Http 请求信息；</span><br><span class="line">4、Servlet容器创建一个HttpResponse对象；</span><br><span class="line">5、Servlet容器调用HttpServlet的service()，把HttpRequest和HttpResponse对象作为service方法的参数传给HttpServlet对象；</span><br><span class="line">6、HttpServlet调用HttpRequest的有关方法，获取HTTP请求信息；</span><br><span class="line">7、HttpServlet调用HttpResponse的有关方法，生成响应数据；</span><br><span class="line">8、Servlet容器把HttpServlet 的响应结果传给Web客户；</span><br><span class="line">9、其中HttpServlet首先必须读取Http请求的内容，Servlet 容器负责创建HttpServlet对象，并把Http请求直接封装到HttpServlet对象中。</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-2、测试-demo"><a href="#2-2、测试-demo" class="headerlink" title="2.2、测试 demo"></a>2.2、测试 demo</h2><p><strong>新建 module，添加 Web App 支持，导入依赖 <code>servlet-api</code>。</strong></p>
+<h2 id="2-2、测试-demo"><a href="#2-2、测试-demo" class="headerlink" title="2.2、测试 demo"></a>2.2、测试 demo</h2><p><strong>新建 module，点击 Add Frameworks Support 添加 Web Application 支持，导入依赖 <code>servlet-api</code>。</strong></p>
 <p><strong>新建 HelloServlet 继承 HttpServlet 抽象类，重写 doGet()、doPost() 方法使用 HttpServletRequest 和 HttpServletResponse 处理用户的请求。</strong></p>
 <ul>
 <li>HelloServlet 将数据以键值对的形式保存在 <code>ServletContext</code> 中； </li>
@@ -471,9 +457,8 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>最后是<strong>配置视图解析器</strong>，在用配置实现时的处理器映射器和处理器适配器以及 bean 的映射被省略。</p>
-<p><img src="/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220812015700112.png" alt="image-20220812015700112"></p>
 <p><font size="4" style="font-weight:bold;background:yellow;">完整的 springmvc-servlet.xml</font></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">&quot;http://www.springframework.org/schema/mvc&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.haining820.controller&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:default-servlet-handler</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 视图解析器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;</span> <span class="attr">id</span>=<span class="string">&quot;internalResourceViewResolver&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;prefix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;/WEB-INF/jsp/&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;suffix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;.jsp&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">&quot;http://www.springframework.org/schema/mvc&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.haining820.controller&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:default-servlet-handler</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!--&lt;bean class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;/&gt;--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--&lt;bean class=&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;/&gt;--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 视图解析器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;</span> <span class="attr">id</span>=<span class="string">&quot;internalResourceViewResolver&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;prefix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;/WEB-INF/jsp/&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;suffix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;.jsp&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><font size="4" style="font-weight:bold;background:yellow;">用注解实现</font></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">之前使用配置的实现 -&gt; 实现接口，注册bean</span><br><span class="line">使用注解实现 -&gt; 使用 @Controller 注解</span><br></pre></td></tr></table></figure>
@@ -566,6 +551,17 @@
 <li>但是不能设置两个相同提交方式的函数，会报 500 错误，<code>Ambiguous mapping</code>。</li>
 </ul>
 <p>![GIF 2021-4-15 12-29-27](springmvc/GIF 2021-4-15 12-29-27.gif)</p>
+<h2 id="6-4、GET-POST"><a href="#6-4、GET-POST" class="headerlink" title="6.4、GET/POST"></a>6.4、GET/POST</h2><p><strong>GET请求一般用来获取服务器信息，POST一般用来更新信息；</strong></p>
+<p><strong>GET请求能做的，POST都能做，GET请求不能做的，POST也都能做。</strong></p>
+<p><font size="4" style="font-weight:bold;background:yellow;">GET</font></p>
+<p>GET 方法用于从服务器检索数据。这是一种只读方法，因此它没有改变或损坏数据的风险，使用 GET 的请求应该只被用于获取数据。</p>
+<p>GET API 是幂等的，<strong>每次发出多个相同的请求都必须产生相同的结果</strong>，直到另一个 API（POST 或 PUT）更改了服务器上资源的状态。</p>
+<p><font size="4" style="font-weight:bold;background:yellow;">POST</font></p>
+<p>POST 方法用于将实体提交到指定的资源，通常导致在服务器上的状态变化或创建新资源。POST既不安全也不幂等，调用两个相同的 POST 请求将导致两个不同的资源包含相同的信息（资源 ID 除外）。</p>
+<p><font size="4" style="font-weight:bold;background:yellow;">PUT</font></p>
+<p>使用 PUT API更新现有资源（如果资源不存在，则 API 可能决定是否创建新资源）。</p>
+<p><font size="4" style="font-weight:bold;background:yellow;">DELETE</font></p>
+<p>DELETE 方法删除指定的资源。DELETE 操作是幂等的。如果您删除一个资源，它会从资源集合中删除。</p>
 <h1 id="7、乱码问题（过滤器）"><a href="#7、乱码问题（过滤器）" class="headerlink" title="7、乱码问题（过滤器）"></a>7、乱码问题（过滤器）</h1><p><font size="4" style="font-weight:bold;background:yellow;">问题导入</font></p>
 <p>添加 form.jsp</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=<span class="string">&quot;/e/t1&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;name&quot;</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;submit&quot;</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
@@ -717,159 +713,88 @@
 <p>运行程序，打开浏览器点击输入框，此时聚焦输入框上；输入内容后点击其他地方，失去焦点，就会调用  <code>a()</code> 函数，在浏览器控制台中根据输入框中的内容输出相应结果，流程图：</p>
 <img src="/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220417154305645.png" alt="image-20220417154305645" style="zoom: 67%;">
 
-<h1 id="10、MessageConverter"><a href="#10、MessageConverter" class="headerlink" title="10、MessageConverter"></a>10、MessageConverter</h1><blockquote>
-<p>流程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40244391/article/details/102808162">https://blog.csdn.net/qq_40244391/article/details/102808162</a></p>
-<p>源码、自定义：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2f633cb817f5">https://www.jianshu.com/p/2f633cb817f5</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/w522301629/article/details/81128630">https://blog.csdn.net/w522301629/article/details/81128630</a></p>
-<p>初始化、加载、时序图：<a target="_blank" rel="noopener" href="https://blog.csdn.net/CL_YD/article/details/103938905">https://blog.csdn.net/CL_YD/article/details/103938905</a></p>
-</blockquote>
-<h2 id="10-1、请求体和响应体"><a href="#10-1、请求体和响应体" class="headerlink" title="10.1、请求体和响应体"></a>10.1、请求体和响应体</h2><p>请求和响应都有对应的body，而这个body就是需要关注的主要数据。</p>
-<p><font size="4" style="font-weight:bold;background:yellow;">请求体</font></p>
-<p><strong>请求体</strong>与<strong>请求的查询参数</strong>或者<strong>表单参数</strong>是不同的，</p>
-<ul>
-<li><p><strong>请求体</strong>的表述一般就是一段字符串；</p>
-</li>
-<li><p>而<strong>查询参数</strong>可以看作url的一部分，这两个是位于请求报文的不同地方；</p>
-</li>
-<li><p><strong>表单参数</strong>可以按照一定格式放在请求体中，也可以放在url上作为查询参数。总之可以把请求体看作客户端通过请求报文捎带的字符串。</p>
-</li>
-</ul>
-<p><font size="4" style="font-weight:bold;background:yellow;">响应体</font></p>
-<p><strong>响应体</strong>则是浏览器渲染页面的依据，对于一个普通html页面得响应，响应体就是这个html页面的源代码。</p>
-<h2 id="10-2、Accept-与-Content-Type"><a href="#10-2、Accept-与-Content-Type" class="headerlink" title="10.2、Accept 与 Content-Type"></a>10.2、Accept 与 Content-Type</h2><p><font size="4" style="font-weight:bold;background:yellow;">含义</font></p>
-<ul>
-<li><p>Accept 表示客户端希望接收的响应 body 类型，服务器可根据此字段选择合适的结果表述。</p>
-</li>
-<li><p>Content-Type 代表客户端发送的 body 的数据类型。</p>
-<ul>
-<li><p>请求体和响应体都是需要配合 Content-Type 头部使用的，这个头部主要用于说明 body 中的字符串是什么格式的，比如：text，json，xml 等。</p>
-</li>
-<li><p><strong>对于请求报文，只有通过此头部，服务器才能知道怎么解析请求体中的字符串；</strong></p>
-</li>
-<li><p><strong>对于响应报文，浏览器通过此头部才知道应该怎么渲染响应结果，是直接打印字符串还是根据代码渲染为一个网页。</strong></p>
-</li>
-</ul>
-</li>
-</ul>
-<p><font size="4" style="font-weight:bold;background:yellow;">常见的媒体格式</font></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">text/html   <span class="comment"># HTML格式</span></span><br><span class="line">text/plain  <span class="comment"># 纯文本格式      </span></span><br><span class="line">text/xml    <span class="comment"># XML格式</span></span><br><span class="line">image/gif   <span class="comment"># gif图片格式    </span></span><br><span class="line">image/jpeg  <span class="comment"># jpg图片格式 </span></span><br><span class="line">image/png   <span class="comment"># png图片格式</span></span><br><span class="line"></span><br><span class="line">application/xhtml+xml <span class="comment"># XHTML格式</span></span><br><span class="line">application/xml       <span class="comment"># XML数据格式</span></span><br><span class="line">application/atom+xml  <span class="comment"># Atom XML聚合格式    </span></span><br><span class="line">application/json      <span class="comment"># JSON数据格式</span></span><br><span class="line">application/pdf       <span class="comment"># pdf格式  </span></span><br><span class="line">application/msword    <span class="comment"># Word文档格式</span></span><br></pre></td></tr></table></figure>
 
-<p><font size="4" style="font-weight:bold;background:yellow;">比如</font></p>
-<ul>
-<li>表示希望接收的数据类型是 xml 格式，本次请求发送的数据的数据格式是 html。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Accept:text/xml;</span><br><span class="line">Content-Type:text/html;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>表示的是希望接收数据格式的顺序 最好先是 <code>application/xml</code>，不行的话使用 <code>application/json</code>。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Accept application/xml,application/json</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li> 接收任意类型。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">accept:*/*`</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>一大段资源，在最后又加上了<code>*/*</code>：客户端支持这些类型，并指定了希望得到类型的优先级，如果没有，依次表达意愿。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Accept&quot;, &quot;image/gif, image/jpeg, image/pjpeg, ... application/msword, */*&quot;，</span><br></pre></td></tr></table></figure>
 
-<p><font size="4" style="font-weight:bold;background:yellow;">Accept/Content-Type 对于 Java</font></p>
-<p>对于 HttpServletRequest 和 HttpServletResponse，可以分别调用 getInputStream 和 getOutputStream 来直接获取 body，但是获取到的仅仅只是一段字符串。对于 Java 来说，处理一个对象肯定比处理一个字符串要更方便得也更好理解，Accept 与 Content-Type 的作用就是进行类型之间的转换：</p>
-<ul>
-<li>根据 Content-Type 头部，将 body 字符串转换为 java 对象；</li>
-<li>反过来，根据 Accept 头部，将 java 对象转换客户端期望格式的字符串。</li>
-</ul>
-<p>SpringMVC 提供了多种 MessageConverter，用户也可以自己扩展实现，框架启动的时候，会装载能支持的各种 MessageConverter，请求来的时候，根据上述设置依次查找本地是否有对应的 MessageConverter，如果找到就用找到的 MessageConverter 返回对应的类型数据。</p>
-<h2 id="10-3、HttpMessageConverter"><a href="#10-3、HttpMessageConverter" class="headerlink" title="10.3、HttpMessageConverter"></a>10.3、HttpMessageConverter</h2><p><code>HttpMessageConverter&lt;T&gt; </code>是 Spring 3.0 新添加的一个接口，负责将请求信息转换为一个T类型的对象，将T类型的对象输出为响应信息。其中<code>read</code>和<code>write</code>方法的参数分别有有<code>HttpInputMessage</code>和<code>HttpOutputMessage</code>对象，这两个对象分别代表着一次http通讯中的请求和响应部分。</p>
-<p><img src="/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220815163424577.png" alt="image-20220815163424577"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.http.converter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.http.HttpInputMessage;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.HttpOutputMessage;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.MediaType;</span><br><span class="line"><span class="keyword">import</span> org.springframework.lang.Nullable;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Strategy interface for converting from and to HTTP requests and responses.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 3.0</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;T&gt; the converted object type</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">HttpMessageConverter</span>&lt;T&gt; &#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 判断该转换器是否能将请求内容转换成Java对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">canRead</span><span class="params">(Class&lt;?&gt; clazz, <span class="meta">@Nullable</span> MediaType mediaType)</span>;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 判断该转换器是否可以将Java对象转换成返回内容</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">canWrite</span><span class="params">(Class&lt;?&gt; clazz, <span class="meta">@Nullable</span> MediaType mediaType)</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 获得该转换器支持的MediaType类型</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	List&lt;MediaType&gt; <span class="title function_">getSupportedMediaTypes</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">default</span> List&lt;MediaType&gt; <span class="title function_">getSupportedMediaTypes</span><span class="params">(Class&lt;?&gt; clazz)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> (canRead(clazz, <span class="literal">null</span>) || canWrite(clazz, <span class="literal">null</span>) ?</span><br><span class="line">				getSupportedMediaTypes() : Collections.emptyList());</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 将请求信息流转换为T类型的对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	T <span class="title function_">read</span><span class="params">(Class&lt;? extends T&gt; clazz, HttpInputMessage inputMessage)</span></span><br><span class="line">			<span class="keyword">throws</span> IOException, HttpMessageNotReadableException;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 将T类型的对象写到响应流中，同时指定相应的MediaType为contentType</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">write</span><span class="params">(T t, <span class="meta">@Nullable</span> MediaType contentType, HttpOutputMessage outputMessage)</span></span><br><span class="line">			<span class="keyword">throws</span> IOException, HttpMessageNotWritableException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>DispatcherServlet 默认装配 RequestMappingHandlerAdapter ，可以打断点查看默认装配的 HttpMessageConverter：</p>
-<p><img src="/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220815164420637.png" alt="image-20220815164420637"></p>
-<p><img src="springmvc/httpMessageConverter2.jpg" alt="httpMessageConverter2"></p>
-<table>
-<thead>
-<tr>
-<th align="left">实现类</th>
-<th align="left">功能</th>
-<th>读支持MediaType</th>
-<th>写支持MediaType</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>StringHttpMessageConverter</strong></td>
-<td align="left">数据与String类型的相互转换</td>
-<td><code>text/*</code></td>
-<td><code>text/plain</code></td>
-</tr>
-<tr>
-<td align="left"><strong>ByteArrayHttpMessageConverter</strong></td>
-<td align="left">数据与字节数组的相互转换</td>
-<td><code>*/*</code></td>
-<td><code>application/octet-stream</code></td>
-</tr>
-<tr>
-<td align="left">FormHttpMessageConverter</td>
-<td align="left">表单与MultiValueMap的相互转换</td>
-<td><code>application/x-www-form-urlencoded</code></td>
-<td><code>application/x-www-form-urlencoded</code></td>
-</tr>
-<tr>
-<td align="left"><strong>SourceHttpMessageConverter</strong></td>
-<td align="left">数据与javax.xml.transform.Source的相互转换</td>
-<td><code>text/xml和application/xml</code></td>
-<td><code>text/xml和application/xml</code></td>
-</tr>
-<tr>
-<td align="left">MarshallingHttpMessageConverter</td>
-<td align="left">使用Spring的Marshaller/Unmarshaller转换xml数据</td>
-<td><code>text/xml和application/xml</code></td>
-<td><code>text/xml和application/xml</code></td>
-</tr>
-<tr>
-<td align="left">MappingJackson2HttpMessageConverter</td>
-<td align="left">使用Jackson的ObjectMapper转换Json数据</td>
-<td><code>application/json</code></td>
-<td><code>application/json</code></td>
-</tr>
-<tr>
-<td align="left">MappingJackson2XmlHttpMessageConverter</td>
-<td align="left">使用Jackson的XmlMapper转换xml数据</td>
-<td><code>application/xml</code></td>
-<td><code>application/xml</code></td>
-</tr>
-<tr>
-<td align="left">BufferedImageHttpMessageConverter</td>
-<td align="left">数据与java.awt.image.BufferedImage的相互转换</td>
-<td><code>Java I/O API支持的所有类型</code></td>
-<td><code>Java I/O API支持的所有类型</code></td>
-</tr>
-</tbody></table>
-<h2 id="10-4、MessageConverter-的调用"><a href="#10-4、MessageConverter-的调用" class="headerlink" title="10.4、MessageConverter 的调用"></a>10.4、MessageConverter 的调用</h2><p>对于消息转换器的调用，都是在 RequestResponseBodyMethodProcessor 类中完成的。它实现了HandlerMethodArgumentResolver 和 HandlerMethodReturnValueHandler 两个接口，分别实现了处理参数和处理返回值的方法。</p>
-<img src="/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220815172200615.png" alt="image-20220815172200615" style="zoom:67%;">
 
-<p><img src="/2022/08/14/mynotes/spring/springmvc/springmvc/%EF%BC%88%E5%AD%90%EF%BC%89RequestResponseBodyMethodProcessor.jpg" alt="（子）RequestResponseBodyMethodProcessor"></p>
-<p><img src="/2022/08/14/mynotes/spring/springmvc/springmvc/%EF%BC%88%E5%AD%90%EF%BC%89RequestResponseBodyMethodProcessor2.jpg" alt="（子）RequestResponseBodyMethodProcessor2"></p>
-<p><img src="/2022/08/14/mynotes/spring/springmvc/springmvc/%EF%BC%88%E7%88%B6%EF%BC%89AbstractMessageConverterMethodProcessor.png" alt="（父）AbstractMessageConverterMethodProcessor"></p>
-<p><img src="/2022/08/14/mynotes/spring/springmvc/springmvc/%EF%BC%88%E7%88%B7%EF%BC%89AbstractMessageConverterMethodArgumentResolver2.png" alt="（爷）AbstractMessageConverterMethodArgumentResolver2"></p>
-<p><img src="/2022/08/14/mynotes/spring/springmvc/springmvc/find-converter-list.jpg" alt="find-converter-list"></p>
-<p><font size="4" style="font-weight:bold;background:yellow;">HttpMessageConverter 初始化</font></p>
-<ul>
-<li>在ApplicationContextrefresh期间，HttpMessageConverter开始初始化，初始化分别在三个类中进行：其中RequestMappingHandlerAdapter和HttpMessageConvertersAutoConfiguration是同时行的互不干扰，HttpMessageConverters的初始化需要在前两个类初始化完成后才能进行；</li>
-<li>RequestMappingHandlerAdapter初始化默认HttpMessageConverter列表<ul>
-<li>调用所有WebMvcConfigurer类型的自定义配置类（@Configuration）的configureMessageConverters方法初始化 HttpMessageConverter列表；</li>
-<li>如果没有自定义的WebMvcConfigurer配置，调用addDefaultHttpMessageConverters方法初始化HttpMessageConverter列表，默认HttpMessageConverter列表都是根据ClassLoader中是否加载否一个特定类来判断某一个HttpMessageConverter是否需要加到默认列表中，并且在最后做了一下排序，仅仅是把xml类型的转换器放到了目前的HttpMessageConverter列表最后；</li>
-<li>调用所有WebMvcConfigurer类型的自定义配置类的extendMessageConverters方法扩展HttpMessageConverter列表，直接加在列表尾部</li>
-</ul>
-</li>
-<li>HttpMessageConvertersAutoConfiguration类将所有HttpMessageConverter类型的组件(@Conponent/@Bean等)，初始化到一个有上下文提供的 HttpMessageConverter列表中；</li>
-<li>HttpMessageConverters初始化时，将2和3两个列表合并，如果上下文提供的和默认列表中有重复但对象并非是同一个，会把上下文提供的HttpMessageConverter和默认列表中的HttpMessageConverter放在相邻的位置，并且会把上下文提供的放在前面；把所有上下文提供的且不在默认列表中的HttpMessageConverter放在整个合并列表的最前面，上下文提供的HttpMessageConverter顺序由类上的<code>@Order(value=1)</code>注解指定，value值越小越靠前，优先级越高。</li>
-</ul>
-<p><img src="/2022/08/14/mynotes/spring/springmvc/springmvc/RequestMappiongHandlerAdapter.jpg" alt="RequestMappiongHandlerAdapter"></p>
-<p><img src="/2022/08/14/mynotes/spring/springmvc/springmvc/RequestMappiongHandlerAdapter2.jpg" alt="RequestMappiongHandlerAdapter2"></p>
-<p><img src="/2022/08/14/mynotes/spring/springmvc/springmvc/HttpMessageConvertersAutoConfiguration.jpg" alt="HttpMessageConvertersAutoConfiguration"></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
       
 
@@ -911,10 +836,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DispatcherServlet</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">MessageConverter</a>
         		</li>
       		
 		</ul>
@@ -989,7 +910,7 @@
 	<div id="toc-article" class="toc-article">
 	<span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 	<strong class="toc-title">文章目录</strong>
-	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81MVC"><span class="toc-number">1.</span> <span class="toc-text">1、MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFMVC"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、什么是MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81MVC%E6%A1%86%E6%9E%B6%E8%A6%81%E5%81%9A%E5%93%AA%E4%BA%9B%E4%BA%8B%E6%83%85"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、MVC框架要做哪些事情</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E4%BC%A0%E7%BB%9F-Servlet"><span class="toc-number">2.</span> <span class="toc-text">2、传统 Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E3%80%81HttpServlet"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、HttpServlet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E3%80%81%E6%B5%8B%E8%AF%95-demo"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、测试 demo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81SpringMVC-%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">3、SpringMVC 执行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E3%80%81DispatcherServlet"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、DispatcherServlet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2%E3%80%81SpringMVC-%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text">3.2、SpringMVC 执行原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81Hello-SpringMVC-%EF%BC%88%E7%BA%AF%E9%85%8D%E7%BD%AE%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">4、Hello, SpringMVC!（纯配置实现）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E3%80%81web-xml-spring-mvc-xml-%E9%85%8D%E7%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、web.xml&#x2F;spring-mvc.xml 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E3%80%81Controller-%E6%8E%A5%E5%8F%A3"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、Controller 接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E3%80%81%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.3.</span> <span class="toc-text">4.3、接口实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4%E3%80%81%E7%BB%93%E6%9E%9C%E8%B7%B3%E8%BD%AC%E6%96%B9%E5%BC%8F"><span class="toc-number">4.4.</span> <span class="toc-text">4.4、结果跳转方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5%E3%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8F%90%E4%BA%A4%E4%B8%8E%E6%98%BE%E7%A4%BA"><span class="toc-number">4.5.</span> <span class="toc-text">4.5、数据的提交与显示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81Hello-SpringMVC%EF%BC%81%EF%BC%88%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">5、Hello, SpringMVC！（注解实现）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81RestFul"><span class="toc-number">6.</span> <span class="toc-text">6、RestFul</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1%E3%80%81%E6%A6%82%E5%BF%B5"><span class="toc-number">6.1.</span> <span class="toc-text">6.1、概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2%E3%80%81%E6%B5%8B%E8%AF%95-demo"><span class="toc-number">6.2.</span> <span class="toc-text">6.2、测试 demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3%E3%80%81%E5%90%8C%E4%B8%80%E8%B7%AF%E5%BE%84%E5%AE%9E%E7%8E%B0%E4%B8%8D%E5%90%8C%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">6.3.</span> <span class="toc-text">6.3、同一路径实现不同请求的原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98%EF%BC%88%E8%BF%87%E6%BB%A4%E5%99%A8%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">7、乱码问题（过滤器）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81JSON"><span class="toc-number">8.</span> <span class="toc-text">8、JSON</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-JSON%EF%BC%9F"><span class="toc-number">8.1.</span> <span class="toc-text">8.1、什么是 JSON？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2%E3%80%81Jackson"><span class="toc-number">8.2.</span> <span class="toc-text">8.2、Jackson</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3%E3%80%81JsonUtils"><span class="toc-number">8.3.</span> <span class="toc-text">8.3、JsonUtils</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4%E3%80%81fastjson"><span class="toc-number">8.4.</span> <span class="toc-text">8.4、fastjson</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E3%80%81Ajax"><span class="toc-number">9.</span> <span class="toc-text">9、Ajax</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-Ajax%EF%BC%9F"><span class="toc-number">9.1.</span> <span class="toc-text">9.1、什么是 Ajax？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2%E3%80%81%E6%A8%A1%E6%8B%9F-Ajax"><span class="toc-number">9.2.</span> <span class="toc-text">9.2、模拟 Ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3%E3%80%81jQuery-ajax"><span class="toc-number">9.3.</span> <span class="toc-text">9.3、jQuery.ajax</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10%E3%80%81MessageConverter"><span class="toc-number">10.</span> <span class="toc-text">10、MessageConverter</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1%E3%80%81%E8%AF%B7%E6%B1%82%E4%BD%93%E5%92%8C%E5%93%8D%E5%BA%94%E4%BD%93"><span class="toc-number">10.1.</span> <span class="toc-text">10.1、请求体和响应体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2%E3%80%81Accept-%E4%B8%8E-Content-Type"><span class="toc-number">10.2.</span> <span class="toc-text">10.2、Accept 与 Content-Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3%E3%80%81HttpMessageConverter"><span class="toc-number">10.3.</span> <span class="toc-text">10.3、HttpMessageConverter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-4%E3%80%81MessageConverter-%E7%9A%84%E8%B0%83%E7%94%A8"><span class="toc-number">10.4.</span> <span class="toc-text">10.4、MessageConverter 的调用</span></a></li></ol></li></ol>
+	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81MVC"><span class="toc-number">1.</span> <span class="toc-text">1、MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFMVC"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、什么是MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81MVC%E6%A1%86%E6%9E%B6%E8%A6%81%E5%81%9A%E5%93%AA%E4%BA%9B%E4%BA%8B%E6%83%85"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、MVC框架要做哪些事情</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E4%BC%A0%E7%BB%9F-Servlet"><span class="toc-number">2.</span> <span class="toc-text">2、传统 Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E3%80%81HttpServlet"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、HttpServlet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E3%80%81%E6%B5%8B%E8%AF%95-demo"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、测试 demo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81SpringMVC-%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">3、SpringMVC 执行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E3%80%81DispatcherServlet"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、DispatcherServlet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2%E3%80%81SpringMVC-%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text">3.2、SpringMVC 执行原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81Hello-SpringMVC-%EF%BC%88%E7%BA%AF%E9%85%8D%E7%BD%AE%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">4、Hello, SpringMVC!（纯配置实现）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E3%80%81web-xml-spring-mvc-xml-%E9%85%8D%E7%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、web.xml&#x2F;spring-mvc.xml 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E3%80%81Controller-%E6%8E%A5%E5%8F%A3"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、Controller 接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E3%80%81%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.3.</span> <span class="toc-text">4.3、接口实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4%E3%80%81%E7%BB%93%E6%9E%9C%E8%B7%B3%E8%BD%AC%E6%96%B9%E5%BC%8F"><span class="toc-number">4.4.</span> <span class="toc-text">4.4、结果跳转方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5%E3%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8F%90%E4%BA%A4%E4%B8%8E%E6%98%BE%E7%A4%BA"><span class="toc-number">4.5.</span> <span class="toc-text">4.5、数据的提交与显示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81Hello-SpringMVC%EF%BC%81%EF%BC%88%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">5、Hello, SpringMVC！（注解实现）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81RestFul"><span class="toc-number">6.</span> <span class="toc-text">6、RestFul</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1%E3%80%81%E6%A6%82%E5%BF%B5"><span class="toc-number">6.1.</span> <span class="toc-text">6.1、概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2%E3%80%81%E6%B5%8B%E8%AF%95-demo"><span class="toc-number">6.2.</span> <span class="toc-text">6.2、测试 demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3%E3%80%81%E5%90%8C%E4%B8%80%E8%B7%AF%E5%BE%84%E5%AE%9E%E7%8E%B0%E4%B8%8D%E5%90%8C%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">6.3.</span> <span class="toc-text">6.3、同一路径实现不同请求的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4%E3%80%81GET-POST"><span class="toc-number">6.4.</span> <span class="toc-text">6.4、GET&#x2F;POST</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98%EF%BC%88%E8%BF%87%E6%BB%A4%E5%99%A8%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">7、乱码问题（过滤器）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81JSON"><span class="toc-number">8.</span> <span class="toc-text">8、JSON</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-JSON%EF%BC%9F"><span class="toc-number">8.1.</span> <span class="toc-text">8.1、什么是 JSON？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2%E3%80%81Jackson"><span class="toc-number">8.2.</span> <span class="toc-text">8.2、Jackson</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3%E3%80%81JsonUtils"><span class="toc-number">8.3.</span> <span class="toc-text">8.3、JsonUtils</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4%E3%80%81fastjson"><span class="toc-number">8.4.</span> <span class="toc-text">8.4、fastjson</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E3%80%81Ajax"><span class="toc-number">9.</span> <span class="toc-text">9、Ajax</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-Ajax%EF%BC%9F"><span class="toc-number">9.1.</span> <span class="toc-text">9.1、什么是 Ajax？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2%E3%80%81%E6%A8%A1%E6%8B%9F-Ajax"><span class="toc-number">9.2.</span> <span class="toc-text">9.2、模拟 Ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3%E3%80%81jQuery-ajax"><span class="toc-number">9.3.</span> <span class="toc-text">9.3、jQuery.ajax</span></a></li></ol></li></ol>
    </div>
    <script type="text/javascript">
 	function showToc(){
@@ -1104,10 +1025,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
@@ -1124,11 +1041,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1140,11 +1057,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1156,7 +1077,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1164,7 +1085,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1188,18 +1109,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">异步</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">future</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">注解</a>
               </li>
              
@@ -1208,11 +1117,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color3">异步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">future</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1232,19 +1161,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">HttpServlet</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DispatcherServlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
               </li>
             
             <div class="clearfix"></div>

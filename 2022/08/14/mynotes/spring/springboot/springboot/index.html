@@ -8,26 +8,22 @@
   <link rel="dns-prefetch" href="https://haining820.github.io">
   <title>springboot整理 | haining&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、Spring Boot 与微服务1.1、什么是 Spring Boot？ 所有的技术框架的发展都遵循了一个规律：从一个复杂应用场景衍生出一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡 “约定大于">
+  <meta name="description" content="1、SpringBoot 与微服务1.1、SpringBoot 简介所有的技术框架的发展都遵循了一个规律：从一个复杂应用场景衍生出一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡 “约定大于配置” ，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springboot整理">
 <meta property="og:url" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/index.html">
 <meta property="og:site_name" content="haining&#39;s blog">
-<meta property="og:description" content="1、Spring Boot 与微服务1.1、什么是 Spring Boot？ 所有的技术框架的发展都遵循了一个规律：从一个复杂应用场景衍生出一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡 “约定大于">
+<meta property="og:description" content="1、SpringBoot 与微服务1.1、SpringBoot 简介所有的技术框架的发展都遵循了一个规律：从一个复杂应用场景衍生出一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡 “约定大于配置” ，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20210715231801817.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20210715224529730.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20220120111851686.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20210716110739435.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20220120223536515.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20220122091634726.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20210720150323740.png">
 <meta property="article:published_time" content="2022-08-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-16T12:39:19.064Z">
+<meta property="article:modified_time" content="2022-08-16T13:36:23.566Z">
 <meta property="article:author" content="haining">
 <meta property="article:tag" content="springboot">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20210715231801817.png">
+<meta name="twitter:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springboot/springboot/image-20220120223536515.png">
   
     <link rel="alternative" href="/atom.xml" title="haining&#39;s blog" type="application/atom+xml">
   
@@ -187,26 +183,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1、Spring-Boot-与微服务"><a href="#1、Spring-Boot-与微服务" class="headerlink" title="1、Spring Boot 与微服务"></a>1、Spring Boot 与微服务</h1><h2 id="1-1、什么是-Spring-Boot？"><a href="#1-1、什么是-Spring-Boot？" class="headerlink" title="1.1、什么是 Spring Boot？"></a>1.1、什么是 Spring Boot？</h2><blockquote>
-<p>所有的技术框架的发展都遵循了一个规律：从一个复杂应用场景衍生出一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡 “约定大于配置” ，进而衍生出一些一站式的解决方案。 </p>
-</blockquote>
+        <h1 id="1、SpringBoot-与微服务"><a href="#1、SpringBoot-与微服务" class="headerlink" title="1、SpringBoot 与微服务"></a>1、SpringBoot 与微服务</h1><h2 id="1-1、SpringBoot-简介"><a href="#1-1、SpringBoot-简介" class="headerlink" title="1.1、SpringBoot 简介"></a>1.1、SpringBoot 简介</h2><p>所有的技术框架的发展都遵循了一个规律：从一个复杂应用场景衍生出一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡 “约定大于配置” ，进而衍生出一些一站式的解决方案。 </p>
 <span id="more"></span>
 
-<p>技术是不断变化的，演变过程：<code>Servlet + Tomcat -&gt; Structs -&gt; SpringMVC -&gt; Spring Boot</code> </p>
-<p>随着 Spring 不断的发展，涉及的领域越来越多，项目整合开发需要配合各种各样的文件，慢慢变得不那 么易用简单，违背了最初的理念，人称 ”配置地狱“ 。Spring Boot 正是在这样的一个背景下被抽象出来的开发框架，目的为了让大家更容易的使用 Spring ，更容易的集成各种常用的中间件、开源软件。约定大于配置，简化开发。</p>
-<p>Spring Boot 以约定大于配置的核心思想，默认的进行了很多设置，多数 SpringBoot 应用只需要很少的 Spring 配置。同时它集成了大量常用的第三方库配置（例如 Redis、MongoDB、Jpa、RabbitMQ、Quartz 等等）。Spring Boot 应用中这些第三方库几乎可以零配置的开箱即用。简单来说就是Spring Boot其实不是什么新的框架，它默认配置了很多框架的使用方式，<strong>就像 maven 整合 了所有的jar包，Spring Boot整合了所有的框架 。</strong>Spring Boot 出身名门，从一开始就站在一个比较高的起点，又经过这几年的发展，生态足够完善，Spring Boot 已经当之无愧成为 Java 领域最热门的技术。</p>
 <p><font size="4" style="font-weight:bold;background:yellow;">什么是Spring Boot？</font></p>
-<p>Spring Boot 基于 Spring 开发，Spirng Boot 本身并不提供 Spring 框架的核心特性以及扩展功能，只是用于快速、敏捷地开发新一代基于 Spring 框架的应用程序。也就是说，它并不是用来替代 Spring 的解决方案，而是和 Spring 框架紧密结合用于提升 Spring 开发者体验的工具。</p>
+<p>随着 Spring 不断的发展，涉及的领域越来越多，项目整合开发需要配合各种各样的文件，慢慢变得复杂，违背了最初的理念，人称 ”配置地狱“ 。SpringBoot 正是在这样的一个背景下被抽象出来的开发框架，目的是更容易的使用 Spring ，更容易的集成各种常用的中间件、开源软件，简化开发。</p>
+<p>SpringBoot 以约定大于配置的核心思想，默认的进行了很多设置，多数 SpringBoot 应用只需要很少的 Spring 配置。同时它集成了大量常用的第三方库配置，几乎可以零配置开箱即用。</p>
+<p>Spring Boot 基于 Spring 开发，SpringBoot 本身并不提供 Spring 框架的核心特性以及扩展功能，只是用于快速、敏捷地开发新一代基于 Spring 框架的应用程序。它并不是用来替代 Spring 的解决方案，而是和 Spring 框架紧密结合用于提升 Spring 开发者体验的工具。</p>
 <p><font size="4" style="font-weight:bold;background:yellow;">Spring Boot的主要优点</font></p>
 <ul>
-<li>为所有 Spring 开发者更快的入门；</li>
-<li>开箱即用，提供各种默认配置来简化项目配置；</li>
+<li>开箱即用，提供各种默认配置来简化项目配置，入门简单；</li>
 <li>内嵌式容器简化 Web 项目；</li>
 <li>没有冗余代码生成和 xml 配置的要求。</li>
 </ul>
-<h2 id="1-2、什么是微服务？"><a href="#1-2、什么是微服务？" class="headerlink" title="1.2、什么是微服务？"></a>1.2、什么是微服务？</h2><p><font size="4" style="font-weight:bold;background:yellow;">什么是微服务?</font></p>
-<p>微服务是一种架构风格，微服务要求我们在开发一个应用的时候，这个应用必须构建成一系列小服务的组合；可以通过 http 的方式进行互通。</p>
-<p>架构风格<font size="4" style="font-weight:bold;background:yellow;"></font></p>
+<h2 id="1-2、微服务简介"><a href="#1-2、微服务简介" class="headerlink" title="1.2、微服务简介"></a>1.2、微服务简介</h2><p><font size="4" style="font-weight:bold;background:yellow;">什么是微服务?</font></p>
+<p>微服务是一种架构风格，微服务要求在开发一个应用的时候必须构建成一系列小服务的组合，可以通过 http 的方式进行互通。</p>
+<p><font size="4" style="font-weight:bold;background:yellow;">架构风格</font></p>
 <ul>
 <li><p>MVC 三层架构：将服务分为三层，model，view，controller 层。</p>
 </li>
@@ -216,41 +208,37 @@
 </li>
 </ul>
 <p>要说微服务架构，先得说说过去的单体应用架构。</p>
-<p><font size="4" style="font-weight:bold;background:yellow;">单体应用架构</font></p>
-<p>所谓单体应用架构（all in one）是指将一个应用的中的所有应用服务都封装在一个应用中。无论是 ERP、CRM 或是其他什么系统，都把数据库访问，web 访问，等等各个功能放到一个 war 包内。</p>
+<p><strong>单体应用架构</strong></p>
+<p>单体应用架构（all in one）是指将一个应用的中的所有应用服务都封装在一个应用中，把数据库访问、web 访问等等各个功能放到一个 war 包内。</p>
 <ul>
-<li><strong>优点：</strong>易于开发和测试；也十分方便部署；当需要扩展时，只需要将 war 复制多份，然后放到多个服务器上，然后进行负载均衡。</li>
+<li><strong>优点：</strong>易于开发和测试；也十分方便部署；当负载能力不行需要扩展时，只需要将 war 复制多份，然后放到多个服务器上进行负载均衡。</li>
 <li><strong>缺点：</strong>哪怕要修改一个非常小的地方，都需要停掉整个服务，重新打包、部署这个应用war包。特别是对于一个大型应用，不可能把所有内容都放在一个应用里面，如何维护，如何分工合作都是问题。</li>
 </ul>
-<p>微服务架构<font size="4" style="font-weight:bold;background:yellow;"></font></p>
-<p>all in one 的架构方式是把所有的功能单元放在一个应用里面，然后我们把整个应用部署到服务器上。如果负载能力不行，就将整个应用进行水平复制，进行扩展，然后再负载均衡。</p>
-<p>所谓微服务架构，就是打破之前 all in one 的架构方式，把每个功能元素独立出来。<strong>把独立出来的功能元素的动态组合，需要的功能元素才去拿来组合，需要多一些时可以整合多个功能元素。</strong>所以微服务架构是对<strong>功能元素</strong>进行复制，而没有对<strong>整个应用</strong>进行复制。实现<strong>高内聚，低耦合</strong>！</p>
+<p><strong>微服务架构</strong></p>
+<p>微服务架构把每个功能元素独立出来。<strong>把独立出来的功能元素的动态组合，需要的功能元素才去拿来组合，需要多一些时可以整合多个功能元素</strong>，所以微服务架构是对<strong>功能元素</strong>进行复制，而没有对<strong>整个应用</strong>进行复制。实现<strong>高内聚，低耦合</strong>！</p>
 <p><strong>优点：</strong>节省了调用资源，每个功能元素的服务都是一个可替换的、 可独立升级的软件代码。</p>
-<img src="/2022/08/14/mynotes/spring/springboot/springboot/image-20210715231801817.png" alt="image-20210715231801817" style="zoom: 60%;">
-
 <p><font size="4" style="font-weight:bold;background:yellow;">如何构建微服务？</font></p>
-<p>一个大型系统的微服务架构，就像一个复杂交织的神经网络,每-个神经元就是一个功能元素，它们各自完成自己的功能，然后通过 http 相互请求调用。比如一个电商系统，查缓存、连数据库、浏览页面、结账、支付等服务都是一个个独立的功能服务，都被微化了，它们作为一个个微服务共同构建了一个庞大的系统。如果修改其中的一个功能，只需要更新升级其中一个功能服务单元即可。</p>
-<p>但是这种庞大的系统架构给部署和运维带来很大的难度。于是，spring 为我们带来了构建大型分布式微服务的全套、全程产品。</p>
+<p>一个大型系统的微服务架构，就像一个复杂交织的神经网络，每个神经元就是一个功能元素，它们各自完成自己的功能，然后通过 http 相互请求调用。</p>
+<p>比如一个电商系统，查缓存、连数据库、浏览页面、结账、支付等服务都是一个个独立的功能服务，都被微化了，它们作为一个个微服务共同构建了一个庞大的系统，如果修改其中的一个功能，只需要更新升级其中一个功能服务单元即可。</p>
+<p>但是这种庞大的系统架构给部署和运维带来很大的难度，spring 为我们带来了构建大型分布式微服务的全套产品。</p>
 <ul>
-<li>构建一个个功能独立的微服务应用单元，可以使用 Spring Boot，可以帮我们快速构建一 个应用；</li>
-<li>大型分布式网络服务的调用，这部分由 Spring Cloud来完成，实现分布式；</li>
-<li>在分布式中间，进行流式数据计算、批处理，有 Spring Cloud Data Flow。</li>
-<li>Spring 为我们想清楚了整个从开始构建应用到大型分布式应用全流程方案。</li>
+<li>构建一个个功能独立的微服务应用单元，可以使用 SpringBoot，可以帮我们快速构建一 个应用；</li>
+<li>大型分布式网络服务的调用，这部分由 SpringCloud来完成，实现分布式；</li>
+<li>在分布式中间，进行流式数据计算、批处理，有 SpringCloud Data Flow。</li>
 </ul>
 <p>Martin Flower 关于微服务的论文：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuning8023/p/4493156.html">https://www.cnblogs.com/liuning8023/p/4493156.html</a></p>
 <h1 id="2、Hello-SpringBoot！"><a href="#2、Hello-SpringBoot！" class="headerlink" title="2、Hello, SpringBoot！"></a>2、Hello, SpringBoot！</h1><p><font size="4" style="font-weight:bold;background:yellow;">SpringBoot 项目的创建</font></p>
 <ul>
-<li><p>使用 <a target="_blank" rel="noopener" href="https://start.spring.io/">Spring Initializr</a> 网站，填写项目信息，在线创建下载到本地后用 IDEA 打开。</p>
+<li><p>使用 SpringInitializr 网站（<a target="_blank" rel="noopener" href="https://start.spring.io/%EF%BC%89%EF%BC%8C%E5%A1%AB%E5%86%99%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%9C%A8%E7%BA%BF%E5%88%9B%E5%BB%BA%E4%B8%8B%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%90%8E%E7%94%A8">https://start.spring.io/），填写项目信息，在线创建下载到本地后用</a> IDEA 打开。</p>
 </li>
 <li><p>使用 IDEA 直接创建，选择 Spring Initializr，其实同样是从官网进行创建，IDEA 集成了这个网站。</p>
-<img src="/2022/08/14/mynotes/spring/springboot/springboot/image-20210715224529730.png" alt="image-20210715224529730" style="zoom: 67%;"></li>
+</li>
 </ul>
 <p><font size="4" style="font-weight:bold;background:yellow;">项目文件介绍</font></p>
-<ul>
-<li><p><code>main/java/com/**/项目名</code> 包下的 <code>项目名+Application.java</code>：SpringBoot 的启动类，程序的主入口， 可以直接运行；</p>
+<p><code>项目名+Application.java</code> 是 SpringBoot 的启动类，是程序的主入口， 可以直接运行：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.haining820.hellospringboot;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HellospringbootApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(HellospringbootApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>SpringApplication</code> 这个类主要做了以下四件事情</p>
+<p><strong>这个类主要做了以下四件事情：</strong></p>
 <ul>
 <li><p>推断应用的类型是普通的项目还是 Web 项目；</p>
 </li>
@@ -258,76 +246,70 @@
 </li>
 <li><p>找出所有的应用程序监听器，设置到 listeners 属性中；</p>
 </li>
-<li><p>推断并设置 main 方法的定义类，找到运行的主类。</p>
-</li>
-</ul>
+<li><p>推断并设置 main 方法的定义类，找到运行的主类；</p>
 </li>
 <li><p><code>main/resources</code> 包下的 <code>application.properties</code>：配置文件，之后会用 SpringBoot 推荐的 yaml 文件代替；</p>
 </li>
-<li><p><code>test/java/com/**/项目名</code> 包下的 <code>项目名+ApplicationTest.java</code>：测试类。</p>
+<li><p>test 包下的 <code>项目名+ApplicationTest.java</code>：测试类。</p>
 </li>
 </ul>
-<p>编写测试接口<font size="4" style="font-weight:bold;background:yellow;"></font></p>
+<p><font size="4" style="font-weight:bold;background:yellow;">编写测试接口</font></p>
 <p>启动类同级目录下建 controller 包，存放接口代码。运行启动类之后在浏览器中打开接口：<code>http://localhost:8080/hello</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.haining820.hellospringboot.controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello,SpringBoot!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello,SpringBoot!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><font size="4" style="font-weight:bold;background:yellow;">依赖 pom.xml</font></p>
-<p><strong>pom.xml 由以下四个部分组成</strong></p>
+<p><strong>pom.xml 由以下四个部分组成：</strong></p>
 <ul>
 <li>项目元数据信息：创建时候输入的 Project Metadata 部分，也就是 Maven 项目的基本元素，包括 groupld、artifactld、version、name、description 等；</li>
-<li><code>parent</code>：继承 spring-boot-starter-parent 的依赖管理，控制版本与打包等内容，SpringBoot 核心依赖在父工程中；</li>
-<li><code>dependencies</code>：项目的具体依赖，<code>spring-boot-starter</code> 是 SpringBoot 的启动器。SpringBoot 会将所有的功能场景封装成一个个的启动器（starter），当需要使用这些功能时，只需要找到对应的 starter 即可。<ul>
-<li><code>spring-boot-starter-web</code>，会自动导入 web 环境所有的依赖，用于实现 HTTP 接口（该依赖中包含 SpringMVC），官网对它的描述是：使用 SpringMVC 构建 Web（包括 RESTful），应用程序的入门者，使用 Tomcat 作为默认嵌入式容器； </li>
-<li><code>spring-boot-starter-test</code> 用于编写单元测试的依赖包。</li>
+<li>parent：继承 spring-boot-starter-parent 的依赖管理，控制版本与打包等内容，SpringBoot 核心依赖在父工程中；</li>
+<li>dependencies：项目的具体依赖，spring-boot-starter 是 SpringBoot 的启动器，所有的 SpringBoot 依赖都是以 spring-boot-starter 为开头的，SpringBoot 会将所有的功能场景封装成一个个的启动器（starter），当需要使用这些功能时，只需要找到对应的 starter 即可。<ul>
+<li>spring-boot-starter-web：会自动导入 web 环境所有的依赖，用于实现 HTTP 接口（该依赖中包含 SpringMVC），官网对它的描述是：使用 SpringMVC 构建 Web，应用程序的入门者，使用 Tomcat 作为默认嵌入式容器； </li>
+<li>spring-boot-starter-test：用于编写单元测试的依赖包。</li>
 </ul>
 </li>
-<li><code>build</code>：构建配置部分。默认使用了 <code>spring-boot-maven-plugin</code>，配合 <code>spring-boot-starter-parent</code> 就可以把 SpringBoot 应用打包成 jar 来直接运行。</li>
+<li>build：构建配置部分。默认使用了 <code>spring-boot-maven-plugin</code>，配合 <code>spring-boot-starter-parent</code> 就可以把 SpringBoot 应用打包成 jar 来直接运行。</li>
 </ul>
-<p>所有的 SpringBoot 依赖都是以 spring-boot-starter 为开头的。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--父项目--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.haining820<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hellospringboot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hellospringboot<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>hellospringboot<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--所有的springboot依赖都是以spring-boot-starter为开头的--&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--web依赖：Tomcat，DispatcherServlet，xml...--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--单元测试--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--打jar包插件--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>打包程序<font size="4" style="font-weight:bold;background:yellow;"></font></p>
-<p>可以选择 maven 中的 package 将程序打包为 jar 包，得到的 jar 包仍然是一个可以独立运行的程序，在 target 文件夹中进行运行，可以不依赖 IDEA 直接运行。</p>
-<p><img src="/2022/08/14/mynotes/spring/springboot/springboot/image-20220120111851686.png" alt="image-20220120111851686"></p>
-<p>个性化配置<font size="4" style="font-weight:bold;background:yellow;"></font></p>
+<p>可以选择 maven 中的 package 将程序打包为 jar 包，得到的 jar 包仍然是一个可以独立运行的程序，在 target 文件夹中进行运行，可以使用 <code>java -jar &#39;***.jar&#39;</code> 不依赖 IDEA 直接运行。</p>
+<p><font size="4" style="font-weight:bold;background:yellow;">个性化配置</font></p>
 <ul>
 <li><p>配置端口号，可在 <code>application.properties</code> 中进行修改。</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更改项目的端口号</span></span><br><span class="line"><span class="attr">server.port</span>=<span class="string">8081</span></span><br></pre></td></tr></table></figure></li>
 <li><p>配置 SpringBoot 项目启动时的图案，在 resources 目录下新建 <code>banner.txt</code> ，将想要的图案放入即可。<a target="_blank" rel="noopener" href="https://www.bootschool.net/ascii">ASCII 文字生成网站</a></p>
 </li>
 </ul>
-<h1 id="3、SpringBoot-自动装配原理"><a href="#3、SpringBoot-自动装配原理" class="headerlink" title="3、SpringBoot 自动装配原理"></a>3、SpringBoot 自动装配原理</h1><h1 id="4、yaml"><a href="#4、yaml" class="headerlink" title="4、yaml"></a>4、yaml</h1><p>配置文件的作用：修改 SpringBoot 自动配置的默认值，因为 SpringBoot 的底层都已经自动配置好了。</p>
-<p>YAML 是 “ YAML Ain’t a Markup Language ” （YAML 不是一 种置标语言）的缩写。在开发的这种语言时，YAML 的意思其实是：“ Yet Another Markup Language ”（仍是一种置标语言），yaml 文件是 Spring 推荐的配置文件格式。</p>
-<p>SpringBoot 配置文件的官方的配置比较多，要掌握原理。</p>
-<h3 id="4-1、yaml-语法"><a href="#4-1、yaml-语法" class="headerlink" title="4.1、yaml 语法"></a>4.1、yaml 语法</h3><p><code>application.properties</code> 的语法结构是 <code>key = value</code></p>
-<p><code>application.yml</code> 的语法结构是 <code>key: value</code>（ key + 英文冒号 + 空格 + value）<strong>yaml 对空格的要求极其严格</strong>，用空格代表层级关系。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 普通的key-value</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">yuhaiyang</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用yaml表示对象</span></span><br><span class="line"><span class="attr">student:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">yuhaiyang</span></span><br><span class="line">  <span class="attr">age:</span> <span class="number">18</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 表示对象的行内写法</span></span><br><span class="line"><span class="attr">student:</span> &#123;<span class="attr">name:</span> <span class="string">yuhaiyang</span>,<span class="attr">age:</span> <span class="number">18</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用yaml表示数组</span></span><br><span class="line"><span class="attr">pets:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">cat</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">dog</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">pig</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 表示数组的行内写法</span></span><br><span class="line"><span class="attr">pets:</span> [<span class="string">cat</span>,<span class="string">dog</span>,<span class="string">pig</span>]</span><br></pre></td></tr></table></figure>
+<h1 id="3、SpringBoot-自动装配原理"><a href="#3、SpringBoot-自动装配原理" class="headerlink" title="3、SpringBoot 自动装配原理"></a>3、SpringBoot 自动装配原理</h1><h1 id="4、yaml"><a href="#4、yaml" class="headerlink" title="4、yaml"></a>4、yaml</h1><p>yaml 是 Spring 推荐的配置文件格式，配置文件的作用是修改 SpringBoot 自动配置的默认值，因为 SpringBoot 的底层都已经自动配置好了，SpringBoot 配置文件的官方的配置比较多，要掌握原理。</p>
+<h3 id="4-1、yaml-语法"><a href="#4-1、yaml-语法" class="headerlink" title="4.1、yaml 语法"></a>4.1、yaml 语法</h3><p>properties 的语法结构是 <code>key = value</code>，而 yaml 的语法结构如下，yaml 对空格的要求极其严格，用空格代表层级关系。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># key+英文冒号+空格+value</span></span><br><span class="line"><span class="attr">key:</span> <span class="string">value</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 普通的key-value</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">yuhaiyang</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用yaml表示对象</span></span><br><span class="line"><span class="attr">student:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">yuhaiyang</span></span><br><span class="line">  <span class="attr">age:</span> <span class="number">18</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 表示对象的行内写法</span></span><br><span class="line"><span class="attr">student:</span> &#123;<span class="attr">name:</span> <span class="string">yuhaiyang</span>,<span class="attr">age:</span> <span class="number">18</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用yaml表示数组</span></span><br><span class="line"><span class="attr">pets:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">cat</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">dog</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">pig</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 表示数组的行内写法</span></span><br><span class="line"><span class="attr">pets:</span> [<span class="string">cat</span>,<span class="string">dog</span>,<span class="string">pig</span>]</span><br></pre></td></tr></table></figure>
 
-<h3 id="4-2、yaml-注入配置文件：Dog-Person"><a href="#4-2、yaml-注入配置文件：Dog-Person" class="headerlink" title="4.2、yaml 注入配置文件：Dog/Person"></a>4.2、yaml 注入配置文件：Dog/Person</h3><p><strong>yaml 文件更强大的地方在于，可以给实体类直接注入匹配值！</strong></p>
-<p>传统注入方式<font size="4" style="font-weight:bold;background:yellow;"></font></p>
-<ul>
-<li><p>编写一个实体类 Dog；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span> <span class="comment">// 将bean注册到容器中</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>以下是原来给 bean 注入属性值的方法，要在成员变量上使用 <code>@Value</code> 注解；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;大黄&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="meta">@Value(&quot;3&quot;)</span></span><br><span class="line"><span class="keyword">private</span> Integer age;</span><br></pre></td></tr></table></figure></li>
-<li><p>可以在 SpringBoot 测试类进行测试输出。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Springboot02ConfigApplicationTests</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span>  <span class="comment">// 将dog自动注入进来</span></span><br><span class="line">    <span class="keyword">private</span> Dog dog;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">contextLoads</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(dog);	<span class="comment">// 输出结果：Dog(name=大黄, age=3)</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>yaml 方式注入<font size="4" style="font-weight:bold;background:yellow;"></font></p>
-<p>将 resources 目录下的 <code>application.properties</code> 文件删掉，新建 <code>application.yaml</code> 文件。</p>
-<ul>
-<li><p>继续编写一个 Person 实体类，这个实体类的属性多一些。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> Boolean happy;</span><br><span class="line">    <span class="keyword">private</span> Date birth;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String,Object&gt; maps;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Object&gt; lists;</span><br><span class="line">    <span class="keyword">private</span> Dog dog;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>使用 yaml 的方式对 Person 进行注入，对<code>application.yaml</code> 文件进行修改。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">person:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">yuhaiyang</span></span><br><span class="line">  <span class="attr">age:</span> <span class="number">18</span></span><br><span class="line">  <span class="attr">happy:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">birth:</span> <span class="number">2000</span><span class="string">/09/17</span></span><br><span class="line">  <span class="attr">maps:</span> &#123;<span class="attr">k1:</span> <span class="string">v1</span>,<span class="attr">k2:</span> <span class="string">v2</span>&#125;</span><br><span class="line">  <span class="attr">lists:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">code</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">girl</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">music</span></span><br><span class="line">  <span class="attr">dog:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">旺财</span></span><br><span class="line">    <span class="attr">age:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure></li>
-<li><p>在 Person 实体类上方加入 <code>@ConfigurationProperties</code> 注解与 yaml 文件进行绑定，如果不配置直接加上后会报红（其实不影响），在依赖中加入以下内容后重启即可。</p>
+<h3 id="4-2、yaml-注入"><a href="#4-2、yaml-注入" class="headerlink" title="4.2、yaml 注入"></a>4.2、yaml 注入</h3><p><strong>yaml 文件更强大的地方在于，可以给实体类直接注入匹配值！</strong></p>
+<p><font size="4" style="font-weight:bold;background:yellow;">传统注入方式</font></p>
+<p>编写一个实体类 Dog</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以下是原来给 bean 注入属性值的方法，要在成员变量上使用 <code>@Value</code> 注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;大黄&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="meta">@Value(&quot;3&quot;)</span></span><br><span class="line"><span class="keyword">private</span> Integer age;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Springboot02ConfigApplicationTests</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Dog dog;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">contextLoads</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(dog);	<span class="comment">// 输出结果：Dog(name=大黄, age=3)</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><font size="4" style="font-weight:bold;background:yellow;">yaml 方式注入</font></p>
+<p>将 resources 目录下的 application.properties 文件删掉，新建 application.yaml 文件。</p>
+<p>编写一个 Person 实体类，这个实体类的属性多一些。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> Boolean happy;</span><br><span class="line">    <span class="keyword">private</span> Date birth;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String,Object&gt; maps;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Object&gt; lists;</span><br><span class="line">    <span class="keyword">private</span> Dog dog;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 yaml 的方式对 Person 进行注入，对<code>application.yaml</code> 文件进行修改。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">person:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">yuhaiyang</span></span><br><span class="line">  <span class="attr">age:</span> <span class="number">18</span></span><br><span class="line">  <span class="attr">happy:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">birth:</span> <span class="number">2000</span><span class="string">/09/17</span></span><br><span class="line">  <span class="attr">maps:</span> &#123;<span class="attr">k1:</span> <span class="string">v1</span>,<span class="attr">k2:</span> <span class="string">v2</span>&#125;</span><br><span class="line">  <span class="attr">lists:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">code</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">girl</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">music</span></span><br><span class="line">  <span class="attr">dog:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">旺财</span></span><br><span class="line">    <span class="attr">age:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>在 Person 实体类上方加入 <code>@ConfigurationProperties</code> 注解与 yaml 文件进行绑定，如果不配置直接加上后会报红（其实不影响），在依赖中加入以下内容后重启 IDEA 即可。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 导入配置文件处理器，配置文件进行绑定就会有提示，需要重启 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><code>@ConfigurationProperties</code> 注解将配置文件中配置的每一个属性的值，映射到这个组件中，告诉 SpringBoot 将本类中所有属性和配置文件中相关的配置进行绑定。通过 <strong><code>prefix</code> 参数</strong>将实体类与 yaml 文件中的 person 属性进行绑定。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;person&quot;)</span></span><br></pre></td></tr></table></figure></li>
-<li><p>在 SpringBoot 测试类进行测试输出。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> Person person;</span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">contextLoads2</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(person);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出结果：Person(name=yuhaiyang, age=18, happy=false, birth=Sun Sep 17 00:00:00 CST 2000, maps=&#123;k1=v1, k2=v2&#125;, lists=[code, girl, music], dog=Dog(name=旺财, age=1))</span></span><br></pre></td></tr></table></figure></li>
-<li><p>注意</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;person&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p><font size="4" style="font-weight:bold;background:yellow;">测试</font></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> Person person;</span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">contextLoads2</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(person);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出结果：Person(name=yuhaiyang, age=18, happy=false, birth=Sun Sep 17 00:00:00 CST 2000, maps=&#123;k1=v1, k2=v2&#125;, lists=[code, girl, music], dog=Dog(name=旺财, age=1))</span></span><br></pre></td></tr></table></figure>
+
+<p><font size="4" style="font-weight:bold;background:yellow;">注意</font></p>
 <ul>
 <li>将 yaml 配置文件的 <strong>key 值</strong> 和 <strong>实体类中的属性值</strong>设置为不一样，结果中对象的属性是 null，会注入失败。<code>lists/list</code></li>
 </ul>
@@ -341,21 +323,18 @@
 
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">person:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">yuhaiyang$&#123;random.uuid&#125;</span> <span class="comment"># 随机uuid</span></span><br><span class="line">  <span class="attr">age:</span> <span class="string">$&#123;random.int&#125;</span> <span class="comment"># 随机int</span></span><br><span class="line">  <span class="attr">happy:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">birth:</span> <span class="number">2000</span><span class="string">/09/17</span></span><br><span class="line">  <span class="attr">maps:</span> &#123;<span class="attr">k1:</span> <span class="string">v1</span>,<span class="attr">k2:</span> <span class="string">v2</span>&#125;</span><br><span class="line">  <span class="attr">lists:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">code</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">girl</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">music</span></span><br><span class="line">  <span class="attr">dog:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">$&#123;person.hello:other&#125;_旺财</span></span><br><span class="line">    <span class="attr">age:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-</li>
-</ul>
-<h3 id="4-3、properties-注入配置文件：Cat"><a href="#4-3、properties-注入配置文件：Cat" class="headerlink" title="4.3、properties 注入配置文件：Cat"></a>4.3、properties 注入配置文件：Cat</h3><p>【注意】properties配置文件在写中文的时候，会有乱码，需要去IDEA中设置编码格式为UTF-8：设置中搜索 propertie 找到 File Encodings 进行配置。</p>
-<img src="/2022/08/14/mynotes/spring/springboot/springboot/image-20210716110739435.png" alt="image-20210716110739435" style="zoom: 80%;">
+<h3 id="4-3、properties-注入"><a href="#4-3、properties-注入" class="headerlink" title="4.3、properties 注入"></a>4.3、properties 注入</h3><blockquote>
+<p>properties配置文件在写中文的时候，会有乱码，需要去 IDEA 中设置编码格式为UTF-8：设置中搜索 encoding 找到 File Encodings 进行配置。</p>
+</blockquote>
+<p>新建一个类似于之前的 Dog 实体类 Cat 和 mycat.properties 配置文件。</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name</span>=<span class="string">小咪咪</span></span><br><span class="line"><span class="attr">age</span>=<span class="string">100</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>新建一个类似于之前的 Dog 实体类 Cat（略）。</p>
-</li>
-<li><p>新建 <code>mycat.properties</code> 配置文件。</p>
-  <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name</span>=<span class="string">小咪咪</span></span><br><span class="line"><span class="attr">age</span>=<span class="string">100</span></span><br></pre></td></tr></table></figure></li>
-<li><p>在实体类上加上 <code>@PropertySource</code> 注解，并在后边的 value 表明对应的配置文件。</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@PropertySource(value = &quot;classpath:mycat.properties&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;name&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;age&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>测试，测试结果表明 Cat 对象属性注入成功。</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cat(name=小咪咪, age=<span class="number">100</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
+<p>在实体类上加上 <code>@PropertySource</code> 注解，并在后边的 value 表明对应的配置文件；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@PropertySource(value = &quot;classpath:mycat.properties&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;name&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;age&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cat(name=小咪咪, age=<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
 <h3 id="4-4、对比：yaml-方式注入的优点"><a href="#4-4、对比：yaml-方式注入的优点" class="headerlink" title="4.4、对比：yaml 方式注入的优点"></a>4.4、对比：yaml 方式注入的优点</h3><img src="/2022/08/14/mynotes/spring/springboot/springboot/image-20220120223536515.png" alt="image-20220120223536515" style="zoom:50%;">
 
 <p>@Value 这个注解使用起来并不友好，需要为每个属性单独注解赋值，比较麻烦！</p>
@@ -371,9 +350,9 @@
 </ul>
 <p><strong>结论</strong></p>
 <ul>
-<li>配置 yml 和配置 properties 都可以获取到值 ， 强烈推荐 yaml。</li>
-<li>如果在某个业务中，只需要获取配置文件中的某个值，可以使用一下 <code>@Value</code>。</li>
-<li>如果说，我们专门编写了一个 JavaBean 来和配置文件进行一一映射，就直接使用 <code>@ConfigurationProperties</code>，不要犹豫！</li>
+<li>配置 yml 和配置 properties 都可以获取到值 ， 强烈推荐 yaml；</li>
+<li>如果在某个业务中，只需要获取配置文件中的某个值，可以使用一下 <code>@Value</code>；</li>
+<li>专门编写了一个 JavaBean 来和配置文件进行一一映射，就直接使用 <code>@ConfigurationProperties</code>。</li>
 </ul>
 <h3 id="4-5、扩展：JRS303数据校验"><a href="#4-5、扩展：JRS303数据校验" class="headerlink" title="4.5、扩展：JRS303数据校验"></a>4.5、扩展：JRS303数据校验</h3><p>SpringBoot 中可以用 <code>@Validated</code> 注解来校验数据，如果数据异常则会统一抛出异常，方便异常中心统一处理。<code>@Email</code> 是让 name 只能支持 Email 格式的一个注解。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span> <span class="comment">//注册bean</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;person&quot;)</span></span><br><span class="line"><span class="meta">@Validated</span> <span class="comment">//数据校验</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="meta">@Email(message=&quot;邮箱格式错啦!&quot;)</span> <span class="comment">// @Email规定name必须是邮箱格式，message是自己定义的错误提示信息。</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -387,7 +366,7 @@
 <h1 id="5、多环境配置"><a href="#5、多环境配置" class="headerlink" title="5、多环境配置"></a>5、多环境配置</h1><p>多位置的配置文件的优先级顺序如下，高优先级的配置会覆盖低优先级的配置，SpringBoot 会从这四个位置全部加载住配置文件，互补配置。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1- file:./config/		<span class="comment"># 项目下的config目录	</span></span><br><span class="line">2- file:./				<span class="comment"># 项目根目录</span></span><br><span class="line">3- classpath:/config/	<span class="comment"># resources下的config目录</span></span><br><span class="line">4- classpath:/			<span class="comment"># resources根目录</span></span><br></pre></td></tr></table></figure>
 
-<p>多环境配置优先级<font size="4" style="font-weight:bold;background:yellow;"></font></p>
+<p><font size="4" style="font-weight:bold;background:yellow;">多环境配置优先级</font></p>
 <ul>
 <li><p>properties</p>
 <p>假设有多个配置文件：<code>application.properties</code>、<code>application-dev.properties</code>、<code>application-test.properties</code>，可以在 <code>application.properties</code> 中通过以下代码对配置文件进行选择。</p>
@@ -434,9 +413,9 @@
 <li><p><code>#&#123;&#125;</code> 表达式与 <code>th:text</code> 一起使用，加载数据源中的国际化消息，用于国际化。</p>
 </li>
 </ul>
-<p>拦截器<font size="4" style="font-weight:bold;background:yellow;"></font></p>
+<p><font size="4" style="font-weight:bold;background:yellow;">拦截器</font></p>
 <p>原理与国际化类似，需要自定义拦截器组件并进行注册后即可使用。</p>
-<p>展示员工列表<font size="4" style="font-weight:bold;background:yellow;"></font></p>
+<p><font size="4" style="font-weight:bold;background:yellow;">展示员工列表</font></p>
 <ul>
 <li><p>因为 dashboard 与员工列表展示的顶栏和侧边栏是相同的，所以可以提取公共页面，减少代码，将公共页面部分放在新建页面 commons.html 下并单独储存，然后标签添加以下内容使其可以被抽取；</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th:fragment=&quot;topbar&quot;</span><br></pre></td></tr></table></figure>
@@ -526,7 +505,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/08/14/mynotes/java/multi%20thread/multi-thread/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/08/14/mynotes/java/multi-thread/multi-thread/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -582,7 +561,7 @@
 	<div id="toc-article" class="toc-article">
 	<span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 	<strong class="toc-title">文章目录</strong>
-	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81Spring-Boot-%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">1、Spring Boot 与微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-Spring-Boot%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、什么是 Spring Boot？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E6%9C%8D%E5%8A%A1%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、什么是微服务？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81Hello-SpringBoot%EF%BC%81"><span class="toc-number">2.</span> <span class="toc-text">2、Hello, SpringBoot！</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81SpringBoot-%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">3、SpringBoot 自动装配原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81yaml"><span class="toc-number">4.</span> <span class="toc-text">4、yaml</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1%E3%80%81yaml-%E8%AF%AD%E6%B3%95"><span class="toc-number">4.0.1.</span> <span class="toc-text">4.1、yaml 语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2%E3%80%81yaml-%E6%B3%A8%E5%85%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%9ADog-Person"><span class="toc-number">4.0.2.</span> <span class="toc-text">4.2、yaml 注入配置文件：Dog&#x2F;Person</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3%E3%80%81properties-%E6%B3%A8%E5%85%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%9ACat"><span class="toc-number">4.0.3.</span> <span class="toc-text">4.3、properties 注入配置文件：Cat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4%E3%80%81%E5%AF%B9%E6%AF%94%EF%BC%9Ayaml-%E6%96%B9%E5%BC%8F%E6%B3%A8%E5%85%A5%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">4.0.4.</span> <span class="toc-text">4.4、对比：yaml 方式注入的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5%E3%80%81%E6%89%A9%E5%B1%95%EF%BC%9AJRS303%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C"><span class="toc-number">4.0.5.</span> <span class="toc-text">4.5、扩展：JRS303数据校验</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">5、多环境配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81SpringBoot-Web-%E5%BC%80%E5%8F%91"><span class="toc-number">6.</span> <span class="toc-text">6、SpringBoot Web 开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1%E3%80%81%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%AF%BC%E5%85%A5"><span class="toc-number">6.1.</span> <span class="toc-text">6.1、静态资源导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2%E3%80%81%E9%A6%96%E9%A1%B5%E5%92%8C%E5%9B%BE%E6%A0%87%E5%AE%9A%E5%88%B6"><span class="toc-number">6.2.</span> <span class="toc-text">6.2、首页和图标定制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81Thymeleaf-%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E"><span class="toc-number">7.</span> <span class="toc-text">8、Thymeleaf 模板引擎</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81%E5%91%98%E5%B7%A5%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">8.</span> <span class="toc-text">6、员工管理系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81Spring-Data"><span class="toc-number">9.</span> <span class="toc-text">6、Spring Data</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81Druid-%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="toc-number">10.</span> <span class="toc-text">7、Druid 数据源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81SpringBoot-MyBatis"><span class="toc-number">11.</span> <span class="toc-text">8、SpringBoot-MyBatis</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E3%80%81SpringSecurity"><span class="toc-number">12.</span> <span class="toc-text">9、SpringSecurity</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10%E3%80%81Shrio"><span class="toc-number">13.</span> <span class="toc-text">10、Shrio</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11%E3%80%81SpringBoot-%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1"><span class="toc-number">14.</span> <span class="toc-text">11、SpringBoot 中的事务</span></a></li></ol>
+	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81SpringBoot-%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">1、SpringBoot 与微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81SpringBoot-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、SpringBoot 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、微服务简介</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81Hello-SpringBoot%EF%BC%81"><span class="toc-number">2.</span> <span class="toc-text">2、Hello, SpringBoot！</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81SpringBoot-%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">3、SpringBoot 自动装配原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81yaml"><span class="toc-number">4.</span> <span class="toc-text">4、yaml</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1%E3%80%81yaml-%E8%AF%AD%E6%B3%95"><span class="toc-number">4.0.1.</span> <span class="toc-text">4.1、yaml 语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2%E3%80%81yaml-%E6%B3%A8%E5%85%A5"><span class="toc-number">4.0.2.</span> <span class="toc-text">4.2、yaml 注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3%E3%80%81properties-%E6%B3%A8%E5%85%A5"><span class="toc-number">4.0.3.</span> <span class="toc-text">4.3、properties 注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4%E3%80%81%E5%AF%B9%E6%AF%94%EF%BC%9Ayaml-%E6%96%B9%E5%BC%8F%E6%B3%A8%E5%85%A5%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">4.0.4.</span> <span class="toc-text">4.4、对比：yaml 方式注入的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5%E3%80%81%E6%89%A9%E5%B1%95%EF%BC%9AJRS303%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C"><span class="toc-number">4.0.5.</span> <span class="toc-text">4.5、扩展：JRS303数据校验</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">5、多环境配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81SpringBoot-Web-%E5%BC%80%E5%8F%91"><span class="toc-number">6.</span> <span class="toc-text">6、SpringBoot Web 开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1%E3%80%81%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%AF%BC%E5%85%A5"><span class="toc-number">6.1.</span> <span class="toc-text">6.1、静态资源导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2%E3%80%81%E9%A6%96%E9%A1%B5%E5%92%8C%E5%9B%BE%E6%A0%87%E5%AE%9A%E5%88%B6"><span class="toc-number">6.2.</span> <span class="toc-text">6.2、首页和图标定制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81Thymeleaf-%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E"><span class="toc-number">7.</span> <span class="toc-text">8、Thymeleaf 模板引擎</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81%E5%91%98%E5%B7%A5%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">8.</span> <span class="toc-text">6、员工管理系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81Spring-Data"><span class="toc-number">9.</span> <span class="toc-text">6、Spring Data</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81Druid-%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="toc-number">10.</span> <span class="toc-text">7、Druid 数据源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81SpringBoot-MyBatis"><span class="toc-number">11.</span> <span class="toc-text">8、SpringBoot-MyBatis</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E3%80%81SpringSecurity"><span class="toc-number">12.</span> <span class="toc-text">9、SpringSecurity</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10%E3%80%81Shrio"><span class="toc-number">13.</span> <span class="toc-text">10、Shrio</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11%E3%80%81SpringBoot-%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1"><span class="toc-number">14.</span> <span class="toc-text">11、SpringBoot 中的事务</span></a></li></ol>
    </div>
    <script type="text/javascript">
 	function showToc(){
@@ -697,10 +676,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
@@ -717,11 +692,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -733,11 +708,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -749,7 +728,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,7 +736,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -781,18 +760,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">异步</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">future</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">注解</a>
               </li>
              
@@ -801,11 +768,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color3">异步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">future</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -825,19 +812,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">HttpServlet</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DispatcherServlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
               </li>
             
             <div class="clearfix"></div>
