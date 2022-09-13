@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/Java/future/future/image-20220912142952407.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/Java/future/future/image-20220722143333094.png">
 <meta property="article:published_time" content="2022-08-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-12T12:01:37.764Z">
+<meta property="article:modified_time" content="2022-09-13T16:08:52.591Z">
 <meta property="article:author" content="haining">
 <meta property="article:tag" content="异步">
 <meta property="article:tag" content="future">
@@ -287,60 +287,62 @@
 <p> ListenableFuture 是由 Google Guava工具包提供的 Future 扩展类，随后，JDK 在 1.8 版本中马上也提供了类似这样的类，在 9 中进一步增强，这就是 CompletableFuture。</p>
 </blockquote>
 <p>CompletableFuture 同样实现了 Future 接口，并在此基础上进行了丰富的扩展，弥补了 Future 的局限性，是对 Future 的扩展和增强，同时 CompletableFuture 实现了对任务编排的能力。</p>
+<p>在进行方法的测试前，首先准备打印当前时间和线程名的工具类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SmallTool</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sleepMillis</span><span class="params">(<span class="type">long</span> millis)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(millis);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printTimeAndThread</span><span class="params">(String tag)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringJoiner</span>(<span class="string">&quot;\t|\t&quot;</span>)</span><br><span class="line">                .add(String.valueOf(System.currentTimeMillis()))</span><br><span class="line">                .add(String.valueOf(Thread.currentThread().getId()))</span><br><span class="line">                .add(Thread.currentThread().getName())</span><br><span class="line">                .add(tag)</span><br><span class="line">                .toString();</span><br><span class="line">        System.out.println(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-1、join-get"><a href="#4-1、join-get" class="headerlink" title="4.1、join/get"></a>4.1、join/get</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> T <span class="title function_">get</span><span class="params">()</span></span><br><span class="line"><span class="keyword">public</span> T <span class="title function_">get</span><span class="params">(<span class="type">long</span> timeout, TimeUnit unit)</span></span><br><span class="line"><span class="keyword">public</span> T <span class="title function_">getNow</span><span class="params">(T valueIfAbsent)</span></span><br><span class="line"><span class="keyword">public</span> T <span class="title function_">join</span><span class="params">()</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-1、get-join"><a href="#4-1、get-join" class="headerlink" title="4.1、get/join"></a>4.1、get/join</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> T <span class="title function_">get</span><span class="params">()</span></span><br><span class="line"><span class="keyword">public</span> T <span class="title function_">get</span><span class="params">(<span class="type">long</span> timeout, TimeUnit unit)</span></span><br><span class="line"><span class="keyword">public</span> T <span class="title function_">getNow</span><span class="params">(T valueIfAbsent)</span></span><br><span class="line"><span class="keyword">public</span> T <span class="title function_">join</span><span class="params">()</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CompletableFuture&lt;Integer&gt; future = <span class="keyword">new</span> <span class="title class_">CompletableFuture</span>&lt;&gt;();</span><br><span class="line"><span class="type">Integer</span> <span class="variable">integer</span> <span class="operator">=</span> future.get();</span><br></pre></td></tr></table></figure>
 
-<p><strong><code>get()</code></strong> 方法同样会阻塞直到任务完成，上面的代码，主线程会一直阻塞，因为这种方式创建的 future 从未完成，可以打个断点看看，状态一直是 not completed。</p>
+<p><font size="4" style="font-weight:bold;background:yellow;">get()</font></p>
+<p><code>get()</code> 方法同样会阻塞直到任务完成，上面的代码，主线程会一直阻塞，因为这种方式创建的 future 从未完成，可以打个断点看看，状态一直是 not completed。</p>
 <p><img src="/2022/08/14/mynotes/Java/future/future/image-20220722143333094.png" alt="image-20220722143333094"></p>
-<p>**<code>get(long timeout, TimeUnit unit)</code>**：可以指定超时时间，当到了指定的时间还未获取到任务，就会抛出TimeoutException 异常。</p>
-<p>**<code>getNow(T valueIfAbsent)</code>**：获取任务的执行结果，但不会产生阻塞。如果任务还没执行完成，那么就会返回传入的 <code>valueIfAbsent</code> 参数值，如果执行完成了，就会返回任务执行的结果。</p>
-<p><strong><code>join()</code></strong></p>
+<p><code>get(long timeout, TimeUnit unit)</code>：可以指定超时时间，当到了指定的时间还未获取到任务，就会抛出 TimeoutException 异常。</p>
+<p><code>getNow(T valueIfAbsent)</code>：获取任务的执行结果，但不会产生阻塞。如果任务还没执行完成，那么就会返回传入的 <code>valueIfAbsent</code> 参数值，如果执行完成了，就会返回任务执行的结果。</p>
+<p><font size="4" style="font-weight:bold;background:yellow;">join()</font></p>
 <ul>
-<li><p>返回的类型就是 CompletableFuture 的泛型，即 supplier 的返回值；</p>
-</li>
-<li><p>实际上就是 Future 中 <code>get()</code> 的升级版，等待任务结束，返回任务的结果；</p>
-</li>
-<li><p><code>join()</code> 与 <code>get()</code> 区别：<code>get()</code> 会抛出检查时异常，<code>join()</code> 不会。</p>
-</li>
+<li>返回的类型就是 CompletableFuture 的泛型，即 supplier 的返回值；</li>
+<li>实际上就是 Future 中 <code>get()</code> 的升级版，等待任务结束，返回任务的结果；</li>
 </ul>
-<h2 id="4-2、supplyAsync-runAsync"><a href="#4-2、supplyAsync-runAsync" class="headerlink" title="4.2、supplyAsync/runAsync"></a>4.2、supplyAsync/runAsync</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">supplyAsync</span><span class="params">(Supplier&lt;U&gt; supplier)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> asyncSupplyStage(asyncPool, supplier);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">supplyAsync</span><span class="params">(Supplier&lt;U&gt; supplier,</span></span><br><span class="line"><span class="params">                                                   Executor executor)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> asyncSupplyStage(screenExecutor(executor), supplier);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>join() 与 get() 区别：get() 会抛出检查时异常，join() 不会。</p>
+<h2 id="4-2、supplyAsync-runAsync"><a href="#4-2、supplyAsync-runAsync" class="headerlink" title="4.2、supplyAsync/runAsync"></a>4.2、supplyAsync/runAsync</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">supplyAsync</span><span class="params">(Supplier&lt;U&gt; supplier)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> asyncSupplyStage(asyncPool, supplier);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">supplyAsync</span><span class="params">(Supplier&lt;U&gt; supplier, Executor executor)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> asyncSupplyStage(screenExecutor(executor), supplier);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Supplier supplier<font size="4" style="font-weight:bold;background:yellow;"></font></p>
+<p><strong>关于 supplyAsync 的参数 Supplier supplier：</strong></p>
 <ul>
 <li>供应者，是一个函数式接口；</li>
 <li>supplyAsync 后括号中的 supplier 会去另一个线程中执行。</li>
+<li>Executor 参数可以手动指定线程池，否则默认使用 <code>ForkJoinPool.commonPool()</code> 系统级公共线程池，注意：这些线程都是 Daemon 线程，主线程结束 Daemon 线程不结束，只有 JVM 关闭时，生命周期终止。</li>
 </ul>
-<p>supplyAsync 与 runAsync 的区别？<font size="4" style="font-weight:bold;background:yellow;"></font></p>
+<p><strong>supplyAsync 与 runAsync 的区别？</strong></p>
 <p>supplyAsync 用于有返回值的任务，runAsync 用于没有返回值的任务，不需要返回值时使用 runAsync 即可。</p>
-<p><font size="4" style="font-weight:bold;background:yellow;">关于构造方法中的 Executor 参数与守护线程</font></p>
-<p>Executor 参数可以手动指定线程池，否则默认使用 <code>ForkJoinPool.commonPool()</code> 系统级公共线程池，注意：这些线程都是 Daemon 线程，主线程结束 Daemon 线程不结束，只有 JVM 关闭时，生命周期终止。</p>
-<p><font size="4" style="font-weight:bold;background:yellow;">异步执行线程（开启）</font></p>
+<p><strong>Demo</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SupplyAsyncTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;小白进入餐厅&quot;</span>);</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;小白点了 番茄炒蛋 + 一碗米饭&quot;</span>);</span><br><span class="line"></span><br><span class="line">        CompletableFuture&lt;String&gt; cf1 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">            SmallTool.printTimeAndThread(<span class="string">&quot;厨师炒菜&quot;</span>);</span><br><span class="line">            SmallTool.sleepMillis(<span class="number">200</span>);</span><br><span class="line">            SmallTool.printTimeAndThread(<span class="string">&quot;厨师打饭&quot;</span>);</span><br><span class="line">            SmallTool.sleepMillis(<span class="number">100</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;番茄炒蛋 + 米饭 做好了&quot;</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;小白在打王者&quot;</span>);</span><br><span class="line">        SmallTool.printTimeAndThread(String.format(<span class="string">&quot;%s ,小白开吃&quot;</span>, cf1.join()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1658369178737	|	1	|	main	|	小白进入餐厅</span><br><span class="line">1658369178737	|	1	|	main	|	小白点了 番茄炒蛋 + 一碗米饭</span><br><span class="line">1658369178784	|	1	|	main	|	小白在打王者</span><br><span class="line">1658369178784	|	20	|	ForkJoinPool.commonPool-worker-9	|	厨师炒菜</span><br><span class="line">1658369178984	|	20	|	ForkJoinPool.commonPool-worker-9	|	厨师打饭</span><br><span class="line">1658369179101	|	1	|	main	|	番茄炒蛋 + 米饭 做好了 ,小白开吃</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-3、thenCompose"><a href="#4-3、thenCompose" class="headerlink" title="4.3、thenCompose"></a>4.3、thenCompose</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">thenCompose</span><span class="params">(</span></span><br><span class="line"><span class="params">    Function&lt;? <span class="built_in">super</span> T, ? extends CompletionStage&lt;U&gt;&gt; fn)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> uniComposeStage(<span class="literal">null</span>, fn);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-3、thenCompose"><a href="#4-3、thenCompose" class="headerlink" title="4.3、thenCompose"></a>4.3、thenCompose</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">thenCompose</span><span class="params">(Function&lt;? <span class="built_in">super</span> T, ? extends CompletionStage&lt;U&gt;&gt; fn)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> uniComposeStage(<span class="literal">null</span>, fn);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>Function</code>：同样是函数式接口，传入T，返回Ｒ。</p>
+<ul>
+<li>参数 Function：函数式接口，传入T，返回Ｒ。</li>
+</ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Function</span>&lt;T, R&gt; &#123;</span><br><span class="line">    R <span class="title function_">apply</span><span class="params">(T t)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>CompletionStage</code>：CompletableFuture 的父接口，使用 CompletableFuture 即可。</p>
-<p><strong>连接</strong>：在异步执行线程1的基础上再开一个新的线程，使用 thenCompose 会将之前线程的结果交给下一个的线程，<strong>前一个线程运行完了有结果后下一个线程才能触发</strong>。</p>
-<p>在下面例子中。入参 dish 是厨师任务的返回值，然后进入第二个 CompletableFuture，再开启一个线程运行后返回，观察运行结果也可知，炒菜和打饭不在同一个线程上运行。</p>
+<ul>
+<li>参数 CompletionStage：CompletableFuture 的父接口，使用 CompletableFuture 即可。</li>
+</ul>
+<p>thenCompose：<font color="red" style="font-weight:bold;">连接</font>，在异步执行线程1的基础上再开一个新的线程，<font color="#0000ff" style="font-weight:bold;">使用 thenCompose 会将之前线程的结果交给下一个的线程，前一个线程运行完了有结果后下一个线程才能触发。</font></p>
+<p>在下面例子中入参 dish 是厨师任务的返回值，只有厨师炒菜完成后服务员才会开始打饭，然后进入第二个 CompletableFuture，再开启一个线程运行后返回，观察运行结果也可知，炒菜和打饭不在同一个线程上运行。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ThenComposeTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;小白进入餐厅&quot;</span>);</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;小白点了 番茄炒蛋 + 一碗米饭&quot;</span>);</span><br><span class="line">        CompletableFuture&lt;String&gt; cf1 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">            SmallTool.printTimeAndThread(<span class="string">&quot;厨师炒菜&quot;</span>);</span><br><span class="line">            SmallTool.sleepMillis(<span class="number">200</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;番茄炒蛋&quot;</span>;</span><br><span class="line">        &#125;).thenCompose(dish -&gt; CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">            SmallTool.printTimeAndThread(<span class="string">&quot;服务员打饭&quot;</span>);</span><br><span class="line">            SmallTool.sleepMillis(<span class="number">100</span>);</span><br><span class="line">            <span class="keyword">return</span> dish + <span class="string">&quot; + 米饭&quot;</span>;</span><br><span class="line">        &#125;));</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;小白在打王者&quot;</span>);</span><br><span class="line">        SmallTool.printTimeAndThread(String.format(<span class="string">&quot;%s 好了,小白开吃&quot;</span>, cf1.join()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1658369953335	|	1	|	main	|	小白进入餐厅</span><br><span class="line">1658369953336	|	1	|	main	|	小白点了 番茄炒蛋 + 一碗米饭</span><br><span class="line">1658369953390	|	20	|	ForkJoinPool.commonPool-worker-9	|	厨师炒菜</span><br><span class="line">1658369953390	|	1	|	main	|	小白在打王者</span><br><span class="line">1658369953593	|	21	|	ForkJoinPool.commonPool-worker-2	|	服务员打饭</span><br><span class="line">1658369953722	|	1	|	main	|	番茄炒蛋 + 米饭 好了,小白开吃</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-4、thenCombine"><a href="#4-4、thenCombine" class="headerlink" title="4.4、thenCombine"></a>4.4、thenCombine</h2><p><strong>合并</strong>：将任务1和任务2一起执行，然后将任务1和任务2的返回结果用作任务3的输入。</p>
+<h2 id="4-4、thenCombine"><a href="#4-4、thenCombine" class="headerlink" title="4.4、thenCombine"></a>4.4、thenCombine</h2><p>thenCombine：<font color="red" style="font-weight:bold;">合并</font>，<font color="#0000ff" style="font-weight:bold;">将任务1和任务2一起执行，然后将任务1和任务2的返回结果用作任务3的输入。</font></p>
 <p>下例中 dish 和 rice 作为线程 3 的输入，只有等线程 1 和线程 2 运行完毕后线程 3 才能开始运行，观察运行结果也可知，线程 2 和线程 3 使用的使用同一个线程。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ThenCombineTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;小白进入餐厅&quot;</span>);</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;小白点了 番茄炒蛋 + 一碗米饭&quot;</span>);</span><br><span class="line">        CompletableFuture&lt;String&gt; cf1 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">            SmallTool.printTimeAndThread(<span class="string">&quot;厨师炒菜&quot;</span>);</span><br><span class="line">            SmallTool.sleepMillis(<span class="number">200</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;番茄炒蛋&quot;</span>;</span><br><span class="line">        &#125;).thenCombine(CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">            SmallTool.printTimeAndThread(<span class="string">&quot;服务员蒸饭&quot;</span>);</span><br><span class="line">            SmallTool.sleepMillis(<span class="number">300</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;米饭&quot;</span>;</span><br><span class="line">        &#125;), (dish, rice) -&gt; &#123;</span><br><span class="line">            SmallTool.printTimeAndThread(<span class="string">&quot;服务员打饭&quot;</span>);</span><br><span class="line">            SmallTool.sleepMillis(<span class="number">100</span>);</span><br><span class="line">            <span class="keyword">return</span> String.format(<span class="string">&quot;%s + %s 好了&quot;</span>, dish, rice);</span><br><span class="line">        &#125;);</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;小白在打王者&quot;</span>);</span><br><span class="line">        SmallTool.printTimeAndThread(String.format(<span class="string">&quot;%s ,小白开吃&quot;</span>, cf1.join()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1658370473189	|	1	|	main	|	小白进入餐厅</span><br><span class="line">1658370473189	|	1	|	main	|	小白点了 番茄炒蛋 + 一碗米饭</span><br><span class="line">1658370473263	|	20	|	ForkJoinPool.commonPool-worker-9	|	厨师炒菜</span><br><span class="line">1658370473264	|	21	|	ForkJoinPool.commonPool-worker-2	|	服务员蒸饭</span><br><span class="line">1658370473264	|	1	|	main	|	小白在打王者</span><br><span class="line">1658370473575	|	21	|	ForkJoinPool.commonPool-worker-2	|	服务员打饭</span><br><span class="line">1658370473721	|	1	|	main	|	番茄炒蛋 + 米饭 好了 ,小白开吃</span><br></pre></td></tr></table></figure>
 
-<h3 id="thenAcceptBoth-runAfterBoth"><a href="#thenAcceptBoth-runAfterBoth" class="headerlink" title="- thenAcceptBoth/runAfterBoth"></a>- thenAcceptBoth/runAfterBoth</h3><p><strong>与 thenCombine相比的区别？</strong></p>
+<h3 id="补充：thenAcceptBoth-runAfterBoth"><a href="#补充：thenAcceptBoth-runAfterBoth" class="headerlink" title="补充：thenAcceptBoth/runAfterBoth"></a>补充：thenAcceptBoth/runAfterBoth</h3><p>thenAcceptBoth/runAfterBoth 与 thenCombine相比的区别？</p>
 <ul>
 <li><p>thenCombine：需要前边任务的结果，有返回值；</p>
 </li>
@@ -353,8 +355,7 @@
 <ul>
 <li><p>thenApply 使用同一线程运行前后两个任务；</p>
 </li>
-<li><p>thenApplyAsync 使用不同的线程运行前后两个任务，类似之前的 thenCompose。</p>
-<p>（在下面的运行结果中并没有切换线程，可能是默认线程池设置的问题，之后可以更换线程池再进行尝试。）</p>
+<li><p>thenApplyAsync 使用不同的线程运行前后两个任务，类似之前的 thenCompose。（在下面的运行结果中并没有切换线程，可能是默认线程池设置的问题，之后可以更换线程池再进行尝试。）</p>
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">thenApply</span><span class="params">(</span></span><br><span class="line"><span class="params">    Function&lt;? <span class="built_in">super</span> T,? extends U&gt; fn)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> uniApplyStage(<span class="literal">null</span>, fn);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">thenApplyAsync</span><span class="params">(</span></span><br><span class="line"><span class="params">    Function&lt;? <span class="built_in">super</span> T,? extends U&gt; fn)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> uniApplyStage(asyncPool, fn);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -363,7 +364,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1658371611764</span>	|	<span class="number">1</span>	|	main	|	小白吃好了</span><br><span class="line"><span class="number">1658371611765</span>	|	<span class="number">1</span>	|	main	|	小白 结账、要求开发票</span><br><span class="line"><span class="number">1658371611811</span>	|	<span class="number">20</span>	|	ForkJoinPool.commonPool-worker-<span class="number">9</span>	|	服务员收款 <span class="number">500</span>元</span><br><span class="line"><span class="number">1658371611811</span>	|	<span class="number">1</span>	|	main	|	小白 接到朋友的电话，想一起打游戏</span><br><span class="line"><span class="number">1658371611937</span>	|	<span class="number">20</span>	|	ForkJoinPool.commonPool-worker-<span class="number">9</span>	|	服务员开发票 面额 <span class="number">500</span>元</span><br><span class="line"><span class="number">1658371612140</span>	|	<span class="number">1</span>	|	main	|	小白拿到<span class="number">500</span>元发票，准备回家</span><br></pre></td></tr></table></figure>
 
-<h3 id="thenAccept-thenRun"><a href="#thenAccept-thenRun" class="headerlink" title="- thenAccept/thenRun"></a>- thenAccept/thenRun</h3><p><strong>与 thenApply 相比的区别？</strong></p>
+<h3 id="补充：thenAccept-thenRun"><a href="#补充：thenAccept-thenRun" class="headerlink" title="补充：thenAccept/thenRun"></a>补充：thenAccept/thenRun</h3><p>thenAccept/thenRun 与 thenApply 相比的区别？</p>
 <ul>
 <li><p>thenApply 接收前边任务的参数，有返回值；</p>
 </li>
@@ -372,14 +373,14 @@
 <li><p>thenRun 不接收前边任务的参数，也没有返回值；</p>
 </li>
 </ul>
-<h2 id="4-6、applyToEither"><a href="#4-6、applyToEither" class="headerlink" title="4.6、applyToEither"></a>4.6、applyToEither</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">applyToEither</span><span class="params">(</span></span><br><span class="line"><span class="params">    CompletionStage&lt;? extends T&gt; other, Function&lt;? <span class="built_in">super</span> T, U&gt; fn)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> orApplyStage(<span class="literal">null</span>, other, fn);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-8、applyToEither"><a href="#4-8、applyToEither" class="headerlink" title="4.8、applyToEither"></a>4.8、applyToEither</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">applyToEither</span><span class="params">(</span></span><br><span class="line"><span class="params">    CompletionStage&lt;? extends T&gt; other, Function&lt;? <span class="built_in">super</span> T, U&gt; fn)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> orApplyStage(<span class="literal">null</span>, other, fn);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>两个任务一起运行，谁先运行完返回谁。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ApplyToEitherTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;张三走出餐厅，来到公交站&quot;</span>);</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;等待 700路 或者 800路 公交到来&quot;</span>);</span><br><span class="line">        CompletableFuture&lt;String&gt; bus = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">            SmallTool.printTimeAndThread(<span class="string">&quot;700路公交正在赶来&quot;</span>);</span><br><span class="line">            SmallTool.sleepMillis(<span class="number">100</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;700路到了&quot;</span>;</span><br><span class="line">        &#125;).applyToEither(CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">            SmallTool.printTimeAndThread(<span class="string">&quot;800路公交正在赶来&quot;</span>);</span><br><span class="line">            SmallTool.sleepMillis(<span class="number">200</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;800路到了&quot;</span>;</span><br><span class="line">        &#125;), firstComeBus -&gt; firstComeBus);</span><br><span class="line">        SmallTool.printTimeAndThread(String.format(<span class="string">&quot;%s,小白坐车回家&quot;</span>, bus.join()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1658371576938	|	1	|	main	|	张三走出餐厅，来到公交站</span><br><span class="line">1658371576938	|	1	|	main	|	等待 700路 或者 800路 公交到来</span><br><span class="line">1658371576979	|	20	|	ForkJoinPool.commonPool-worker-9	|	700路公交正在赶来</span><br><span class="line">1658371576980	|	21	|	ForkJoinPool.commonPool-worker-2	|	800路公交正在赶来</span><br><span class="line">1658371577107	|	1	|	main	|	700路到了,小白坐车回家</span><br></pre></td></tr></table></figure>
 
-<h3 id="acceptEither-runAfterEither"><a href="#acceptEither-runAfterEither" class="headerlink" title="- acceptEither/runAfterEither"></a>- acceptEither/runAfterEither</h3><p><strong>和 applyToEither 的区别？</strong></p>
+<h3 id="补充：acceptEither-runAfterEither"><a href="#补充：acceptEither-runAfterEither" class="headerlink" title="补充：acceptEither/runAfterEither"></a>补充：acceptEither/runAfterEither</h3><p>acceptEither/runAfterEither 和 applyToEither 的区别？</p>
 <ul>
 <li>applyToEither：获取前两个任务最先完成的任务的结果，处理后得到返回值；</li>
 <li>acceptEither：得到结果，没有返回值；</li>
@@ -401,7 +402,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实例化一个CompletableFuture,返回值是Integer</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;	<span class="comment">// 返回null</span></span><br><span class="line">&#125;);</span><br><span class="line">CompletableFuture&lt;String&gt; exceptionally = future.thenApply(result -&gt; &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> result;	<span class="comment">// 制造一个空指针异常NPE</span></span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;).thenApply(result -&gt; &#123;</span><br><span class="line">    <span class="comment">// 这里不会执行，因为上面出现了异常</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">words</span> <span class="operator">=</span> <span class="string">&quot;现在是&quot;</span> + result + <span class="string">&quot;点钟&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> words;</span><br><span class="line">&#125;).exceptionally(error -&gt; &#123;</span><br><span class="line">    <span class="comment">// 选择在这里打印出异常</span></span><br><span class="line">    error.printStackTrace();</span><br><span class="line">    <span class="comment">// 并且当异常发生的时候，返回一个默认的文字</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;出错啊~&quot;</span>;</span><br><span class="line">&#125;);</span><br><span class="line">exceptionally.thenAccept(System.out::println);</span><br></pre></td></tr></table></figure>
 
-<h3 id="handle-whenComplete"><a href="#handle-whenComplete" class="headerlink" title="- handle/whenComplete"></a>- handle/whenComplete</h3><p><strong>与 exceptionally 的区别？</strong></p>
+<h3 id="补充：handle-whenComplete"><a href="#补充：handle-whenComplete" class="headerlink" title="补充：handle/whenComplete"></a>补充：handle/whenComplete</h3><p>handle/whenComplete 与 exceptionally 的区别？</p>
 <ul>
 <li>handle：参数是 BiFunction<ul>
 <li>如果前面的程序正常执行，那么会接收到正常执行的结果；</li>
@@ -422,24 +423,24 @@
 <li>如果任务没完成，就会返回 true，<strong>并且其它线程获取到的任务的结果就是 complete 的参数值。</strong></li>
 </ul>
 <p>completeExceptionally：跟 complete 的作用差不多，complete 是正常结束任务，返回结果，而completeExceptionally 就是触发任务执行的异常。</p>
-<h2 id="4-9、allOf-anyOf"><a href="#4-9、allOf-anyOf" class="headerlink" title="4.9、allOf/anyOf"></a>4.9、allOf/anyOf</h2><p><code>allOf</code>：多个任务都执行完成后才会执行。</p>
+<h2 id="4-9、allOf-anyOf"><a href="#4-9、allOf-anyOf" class="headerlink" title="4.9、allOf/anyOf"></a>4.9、allOf/anyOf</h2><p>allOf：多个任务都执行完成后才会执行。</p>
 <ul>
 <li>只有一个任务执行异常，则返回的 CompletableFuture 执行 get 方法时会抛出异常；</li>
 <li>如果都是正常执行，则 get 返回 null。</li>
 </ul>
-<p><code>anyOf</code>：多个任务中只要有一个任务执行完成，get 就会返回已经执行完成任务的结果。</p>
+<p>anyOf：多个任务中只要有一个任务执行完成，get 就会返回已经执行完成任务的结果。</p>
 <ul>
 <li>成功执行就返回成功执行的结果；</li>
 <li>有异常就返回异常。</li>
 </ul>
-<p>举例如下：</p>
+<p><strong>举例如下：</strong></p>
 <ul>
 <li>allOf 等待所有任务执行完成才执行 cfAll，如果有一个任务异常终止，则 <code>cfAll.get()</code> 时会抛出异常，都是正常执行，<code>cfAll.get()</code> 返回 null；</li>
 <li>anyOf 是只有一个任务执行完成，无论是正常执行或者执行异常，都会执行 cfAny，<code>cfAny.get()</code>的结果就是已执行完成的任务的执行结果。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">testAllOf</span><span class="params">()</span> <span class="keyword">throws</span> ExecutionException, InterruptedException &#123;</span><br><span class="line">    CompletableFuture&lt;String&gt; cf1 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">        SmallTool.sleepMillis(<span class="number">100</span>);</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;cf1 working...&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;cf1 任务完成&quot;</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    CompletableFuture&lt;String&gt; cf2 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">        SmallTool.sleepMillis(<span class="number">100</span>);</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;cf2 working...&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;cf2 任务完成&quot;</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    CompletableFuture&lt;String&gt; cf3 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">        SmallTool.sleepMillis(<span class="number">50</span>);</span><br><span class="line">        SmallTool.printTimeAndThread(<span class="string">&quot;cf3 working...&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;cf3 任务完成&quot;</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// CompletableFuture&lt;Void&gt; cfAll = CompletableFuture.allOf(cf1, cf2, cf3);</span></span><br><span class="line">    <span class="comment">// System.out.println(&quot;cfAll-&gt;&quot; + cfAll.get());</span></span><br><span class="line">    CompletableFuture&lt;Object&gt; cfAny = CompletableFuture.anyOf(cf1, cf2, cf3);</span><br><span class="line">    System.out.println(<span class="string">&quot;cfAll-&gt;&quot;</span> + cfAny.get());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-10、规律"><a href="#4-10、规律" class="headerlink" title="4.10、规律"></a>4.10、规律</h2><p><font size="4" style="font-weight:bold;background:yellow;">规律</font></p>
+<h1 id="5、规律"><a href="#5、规律" class="headerlink" title="5、规律"></a>5、规律</h1><p><font size="4" style="font-weight:bold;background:yellow;">规律</font></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xxx(arg)</span><br><span class="line">xxxAsync(arg)</span><br><span class="line">xxxAsync(arg,Executor)</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -510,7 +511,7 @@
 </tbody></table>
 <p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/318472639/answer/652254785">https://www.zhihu.com/question/318472639/answer/652254785</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/344431341">https://zhuanlan.zhihu.com/p/344431341</a></p>
-<h1 id="5、CompletableFuture-与-ListenableFuture-之间的转换"><a href="#5、CompletableFuture-与-ListenableFuture-之间的转换" class="headerlink" title="5、CompletableFuture 与 ListenableFuture 之间的转换"></a>5、CompletableFuture 与 ListenableFuture 之间的转换</h1><blockquote>
+<h1 id="6、CompletableFuture-与-ListenableFuture-之间的转换"><a href="#6、CompletableFuture-与-ListenableFuture-之间的转换" class="headerlink" title="6、CompletableFuture 与 ListenableFuture 之间的转换"></a>6、CompletableFuture 与 ListenableFuture 之间的转换</h1><blockquote>
 <p>更新时间：2022-09-11 18:20</p>
 </blockquote>
 <p>FutureUtil 工具类，实现 ListenableFuture 和 CompletableFuture 的相互转换：</p>
@@ -602,18 +603,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/08/14/mynotes/Java/annotation-reflex/annotation-reflex/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/08/14/mynotes/Java/Java-network/Java-network/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          注解与反射
+          网络编程
         
       </div>
     </a>
   
   
-    <a href="/2022/08/14/mynotes/Java/multi-thread/multi-thread/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">多线程整理</div>
+    <a href="/2022/08/14/mynotes/Java/annotation-reflex/annotation-reflex/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">注解与反射</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -658,7 +659,7 @@
 	<div id="toc-article" class="toc-article">
 	<span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 	<strong class="toc-title">文章目录</strong>
-	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E5%90%8C%E6%AD%A5%E5%92%8C%E5%BC%82%E6%AD%A5"><span class="toc-number">1.</span> <span class="toc-text">1、同步和异步</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81FutureTask"><span class="toc-number">2.</span> <span class="toc-text">2、FutureTask</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E3%80%81Future"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、Future</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E3%80%81FutureTask-%E6%BA%90%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、FutureTask 源码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81ListenableFuture"><span class="toc-number">3.</span> <span class="toc-text">3、ListenableFuture</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E3%80%81ListenableFuture-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、ListenableFuture 的初始化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81CompletableFuture"><span class="toc-number">4.</span> <span class="toc-text">4、CompletableFuture</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E3%80%81join-get"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、join&#x2F;get</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E3%80%81supplyAsync-runAsync"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、supplyAsync&#x2F;runAsync</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E3%80%81thenCompose"><span class="toc-number">4.3.</span> <span class="toc-text">4.3、thenCompose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4%E3%80%81thenCombine"><span class="toc-number">4.4.</span> <span class="toc-text">4.4、thenCombine</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#thenAcceptBoth-runAfterBoth"><span class="toc-number">4.4.1.</span> <span class="toc-text">- thenAcceptBoth&#x2F;runAfterBoth</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5%E3%80%81thenApply-thenApplyAsync"><span class="toc-number">4.5.</span> <span class="toc-text">4.5、thenApply&#x2F;thenApplyAsync</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#thenAccept-thenRun"><span class="toc-number">4.5.1.</span> <span class="toc-text">- thenAccept&#x2F;thenRun</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6%E3%80%81applyToEither"><span class="toc-number">4.6.</span> <span class="toc-text">4.6、applyToEither</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#acceptEither-runAfterEither"><span class="toc-number">4.6.1.</span> <span class="toc-text">- acceptEither&#x2F;runAfterEither</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7%E3%80%81exceptionally"><span class="toc-number">4.7.</span> <span class="toc-text">4.7、exceptionally</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#handle-whenComplete"><span class="toc-number">4.7.1.</span> <span class="toc-text">- handle&#x2F;whenComplete</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8%E3%80%81complete-completeExceptionally"><span class="toc-number">4.8.</span> <span class="toc-text">4.8、complete&#x2F;completeExceptionally</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9%E3%80%81allOf-anyOf"><span class="toc-number">4.9.</span> <span class="toc-text">4.9、allOf&#x2F;anyOf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10%E3%80%81%E8%A7%84%E5%BE%8B"><span class="toc-number">4.10.</span> <span class="toc-text">4.10、规律</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81CompletableFuture-%E4%B8%8E-ListenableFuture-%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">5.</span> <span class="toc-text">5、CompletableFuture 与 ListenableFuture 之间的转换</span></a></li></ol>
+	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E5%90%8C%E6%AD%A5%E5%92%8C%E5%BC%82%E6%AD%A5"><span class="toc-number">1.</span> <span class="toc-text">1、同步和异步</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81FutureTask"><span class="toc-number">2.</span> <span class="toc-text">2、FutureTask</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E3%80%81Future"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、Future</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E3%80%81FutureTask-%E6%BA%90%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、FutureTask 源码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81ListenableFuture"><span class="toc-number">3.</span> <span class="toc-text">3、ListenableFuture</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E3%80%81ListenableFuture-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、ListenableFuture 的初始化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81CompletableFuture"><span class="toc-number">4.</span> <span class="toc-text">4、CompletableFuture</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E3%80%81get-join"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、get&#x2F;join</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E3%80%81supplyAsync-runAsync"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、supplyAsync&#x2F;runAsync</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E3%80%81thenCompose"><span class="toc-number">4.3.</span> <span class="toc-text">4.3、thenCompose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4%E3%80%81thenCombine"><span class="toc-number">4.4.</span> <span class="toc-text">4.4、thenCombine</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9AthenAcceptBoth-runAfterBoth"><span class="toc-number">4.4.1.</span> <span class="toc-text">补充：thenAcceptBoth&#x2F;runAfterBoth</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5%E3%80%81thenApply-thenApplyAsync"><span class="toc-number">4.5.</span> <span class="toc-text">4.5、thenApply&#x2F;thenApplyAsync</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9AthenAccept-thenRun"><span class="toc-number">4.5.1.</span> <span class="toc-text">补充：thenAccept&#x2F;thenRun</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8%E3%80%81applyToEither"><span class="toc-number">4.6.</span> <span class="toc-text">4.8、applyToEither</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9AacceptEither-runAfterEither"><span class="toc-number">4.6.1.</span> <span class="toc-text">补充：acceptEither&#x2F;runAfterEither</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7%E3%80%81exceptionally"><span class="toc-number">4.7.</span> <span class="toc-text">4.7、exceptionally</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9Ahandle-whenComplete"><span class="toc-number">4.7.1.</span> <span class="toc-text">补充：handle&#x2F;whenComplete</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8%E3%80%81complete-completeExceptionally"><span class="toc-number">4.8.</span> <span class="toc-text">4.8、complete&#x2F;completeExceptionally</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9%E3%80%81allOf-anyOf"><span class="toc-number">4.9.</span> <span class="toc-text">4.9、allOf&#x2F;anyOf</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E8%A7%84%E5%BE%8B"><span class="toc-number">5.</span> <span class="toc-text">5、规律</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81CompletableFuture-%E4%B8%8E-ListenableFuture-%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">6.</span> <span class="toc-text">6、CompletableFuture 与 ListenableFuture 之间的转换</span></a></li></ol>
    </div>
    <script type="text/javascript">
 	function showToc(){
@@ -777,10 +778,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -790,6 +787,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">dubbo异步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -813,7 +814,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -825,11 +830,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -837,19 +838,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -861,11 +850,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -873,11 +862,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">注解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -889,7 +874,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">注解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">线程池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
