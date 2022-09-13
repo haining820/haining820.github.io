@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="haining&#39;s blog">
 <meta property="og:description" content="1、池化思想背景：经常创建和销毁、使用量特别大的资源，比如并发情况下的线程，对性能影响很大。 思路：提前创建好多个线程，放入线程池中，使用时直接获取，使用完放回池中。 可以避免频繁创建销毁、实现重复利用。类似生活中的公共交通工具。 池化思想：程序运行本质就是占用系统资源，要优化资源的使用！就要用到池化技术，池化技术就是事先准备好一些资源，要用就来这里拿，用完之后还回来。线程池、连接池、内存池、对象">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://haining820.github.io/2022/09/03/mynotes/Java/thread-pool/thread-pool/image-20211203124102523-1658673442166.png">
+<meta property="og:image" content="https://haining820-bucket.oss-cn-beijing.aliyuncs.com/typora_img/线程池参数示意.png">
 <meta property="article:published_time" content="2022-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-13T14:30:35.782Z">
+<meta property="article:modified_time" content="2022-09-13T16:47:46.489Z">
 <meta property="article:author" content="haining">
 <meta property="article:tag" content="多线程">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="线程池">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://haining820.github.io/2022/09/03/mynotes/Java/thread-pool/thread-pool/image-20211203124102523-1658673442166.png">
+<meta name="twitter:image" content="https://haining820-bucket.oss-cn-beijing.aliyuncs.com/typora_img/线程池参数示意.png">
   
     <link rel="alternative" href="/atom.xml" title="haining&#39;s blog" type="application/atom+xml">
   
@@ -251,7 +251,7 @@
 <li><code>ThreadFactory threadFactory</code>：线程工厂，创建线程</li>
 <li><code>RejectedExecutionHandler handler</code>：银行所有窗口、候客区都满了，又新来了客人，对新客人的处理的方式：等待/离开。（拒绝策略）</li>
 </ul>
-<img src="/2022/09/03/mynotes/Java/thread-pool/thread-pool/image-20211203124102523-1658673442166.png" alt="image-20211203124102523" style="zoom: 67%;">
+<img src="https://haining820-bucket.oss-cn-beijing.aliyuncs.com/typora_img/线程池参数示意.png" style="zoom: 67%;">
 
 <p><font size="4" style="font-weight:bold;background:yellow;">关于线程池的创建</font>（阿里 Java 编程规范手册）</p>
 <p>【强制】线程池不允许用 <code>Executors</code> 去创建，而是要通过 <strong><code>ThreadPoolExecutor</code></strong> 的方式自己指定参数创建，这样的处理方式可以让写的同学更加明确线程池的运行规则，避免资源耗尽的风险。</p>
@@ -532,7 +532,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,15 +548,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">guava</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color5">tips</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">AutoHotKey</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -568,19 +572,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tips</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">AutoHotKey</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,6 +588,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JUC</a>
               </li>
              
@@ -604,15 +604,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -620,11 +616,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">异步</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">future</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,19 +640,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">异步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">future</a>
               </li>
              
               <li class="article-tag-list-item">

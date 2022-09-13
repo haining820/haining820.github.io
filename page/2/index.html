@@ -249,19 +249,19 @@
 <!-- 目录内容结束 -->
 
   
-    <article id="post-mynotes/mybatis/mybatis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mynotes/mysql/mysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/mybatis/mybatis/">mybatis整理</a>
+      <a class="article-title" href="/2022/08/14/mynotes/mysql/mysql/">mysql整理</a>
     </h1>
   
 
         
-        <a href="/2022/08/14/mynotes/mybatis/mybatis/" class="archive-article-date">
+        <a href="/2022/08/14/mynotes/mysql/mysql/" class="archive-article-date">
   	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
 </a>
         
@@ -269,12 +269,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1、Mybatis-框架设计"><a href="#1、Mybatis-框架设计" class="headerlink" title="1、Mybatis 框架设计"></a>1、Mybatis 框架设计</h1><blockquote>
-<p> Mybatis 官方文档地址：<a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/index.html">https://mybatis.org/mybatis-3/zh/index.html</a></p>
-</blockquote>
-<p>Mybatis 分为接口层、数据处理层和基础支撑层。</p>
+        <h1 id="1、数据库"><a href="#1、数据库" class="headerlink" title="1、数据库"></a>1、数据库</h1><p>SQL 只是一个操作数据库的语言，属于编程语言的一种，而数据库是一个很大范畴的概念。</p>
+<p><strong>数据库的分类</strong></p>
 <ul>
-<li>接口层：使用 mapper 接口与 mapper.xml 进行映射，不用实现接口就可以调用；</li>
+<li>数据库根据数据结构可分为<strong>关系型数据库</strong>和<strong>非关系型数据库</strong>；</li>
+<li>非关系型数据库中根据应用场景又可分为：键值数据库（Redis）、列存储数据库（Kudu）、面向文档数据库（MongoDB ）、图形数据库</li>
 </ul>
         
       
@@ -296,7 +295,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -306,189 +305,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/mybatis/mybatis/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
-    <article id="post-mynotes/计算机网络/计算机网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络常见面试题</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/14/mynotes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="计算机网络面试题-Part-1"><a href="#计算机网络面试题-Part-1" class="headerlink" title="计算机网络面试题 Part 1"></a>计算机网络面试题 Part 1</h1><h2 id="1、计算机网络的各层协议及作用？"><a href="#1、计算机网络的各层协议及作用？" class="headerlink" title="1、计算机网络的各层协议及作用？"></a>1、计算机网络的各层协议及作用？</h2><p>计算机网络体系可以大致分为一下三种，OSI七层模型、TCP/IP四层模型和五层模型。</p>
-<ul>
-<li>OSI七层模型：大而全，但是比较复杂、而且是先有了理论模型，没有实际应用。</li>
-<li>TCP/IP四层模型：是由实际应用发展总结出来的，从实质上讲，TCP/IP只有最上面三层，最下面一层没有什么具体内容，TCP/IP参考模型没有真正描述这一层的实现。</li>
-</ul>
-        
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
-    <article id="post-mynotes/tips/autohotkey" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/tips/autohotkey/">AutoHotKey使用技巧</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/14/mynotes/tips/autohotkey/" class="archive-article-date">
-  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="AutoHotKey"><a href="#AutoHotKey" class="headerlink" title="AutoHotKey"></a>AutoHotKey</h2><p>强烈推荐 AutoHotKey 这个小东西，可以快速在 typora 中输入 html 代码，因为在 typora 中是支持 html 的，比如高亮，在 typora 中使用 <code>==</code> 可显示出来；</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">==高亮内容==</span><br></pre></td></tr></table></figure>
-
-<p>使用 AutoHotKey 脚本的话，设置好了快捷键之后选中需要高亮的内容可以直接生成相应的 html 代码，还可以进一步设置背景颜色，字号大小等等；</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;font size=4 style=&quot;font-weight:bold;background:yellow;&quot;&gt;高亮内容&lt;/font&gt;</span><br></pre></td></tr></table></figure>
-        
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tips</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">AutoHotKey</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/tips/autohotkey/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/08/14/mynotes/mysql/mysql/">展开全文 >></a>
         </p>
       
 
@@ -783,6 +600,271 @@
 <!-- 目录内容结束 -->
 
   
+    <article id="post-mynotes/algorithm/leetcode/leetcode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/">leetcode记录</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/" class="archive-article-date">
+  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="字符串类"><a href="#字符串类" class="headerlink" title="字符串类"></a>字符串类</h1>
+        
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
+    <article id="post-mynotes/计算机网络/计算机网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/14/mynotes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络常见面试题</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/14/mynotes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="archive-article-date">
+  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="计算机网络面试题-Part-1"><a href="#计算机网络面试题-Part-1" class="headerlink" title="计算机网络面试题 Part 1"></a>计算机网络面试题 Part 1</h1><h2 id="1、计算机网络的各层协议及作用？"><a href="#1、计算机网络的各层协议及作用？" class="headerlink" title="1、计算机网络的各层协议及作用？"></a>1、计算机网络的各层协议及作用？</h2><p>计算机网络体系可以大致分为一下三种，OSI七层模型、TCP/IP四层模型和五层模型。</p>
+<ul>
+<li>OSI七层模型：大而全，但是比较复杂、而且是先有了理论模型，没有实际应用。</li>
+<li>TCP/IP四层模型：是由实际应用发展总结出来的，从实质上讲，TCP/IP只有最上面三层，最下面一层没有什么具体内容，TCP/IP参考模型没有真正描述这一层的实现。</li>
+</ul>
+        
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/14/mynotes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
+    <article id="post-mynotes/mybatis/mybatis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/14/mynotes/mybatis/mybatis/">mybatis整理</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/14/mynotes/mybatis/mybatis/" class="archive-article-date">
+  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、Mybatis-框架设计"><a href="#1、Mybatis-框架设计" class="headerlink" title="1、Mybatis 框架设计"></a>1、Mybatis 框架设计</h1><blockquote>
+<p> Mybatis 官方文档地址：<a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/index.html">https://mybatis.org/mybatis-3/zh/index.html</a></p>
+</blockquote>
+<p>Mybatis 分为接口层、数据处理层和基础支撑层。</p>
+<ul>
+<li>接口层：使用 mapper 接口与 mapper.xml 进行映射，不用实现接口就可以调用；</li>
+</ul>
+        
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/14/mynotes/mybatis/mybatis/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
     <article id="post-mynotes/Java/JUC/JUC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -874,19 +956,19 @@
 <!-- 目录内容结束 -->
 
   
-    <article id="post-mynotes/Java/JVM/JVM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mynotes/algorithm/sort/sort" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/Java/JVM/JVM/">JVM</a>
+      <a class="article-title" href="/2022/08/14/mynotes/algorithm/sort/sort/">排序算法整理</a>
     </h1>
   
 
         
-        <a href="/2022/08/14/mynotes/Java/JVM/JVM/" class="archive-article-date">
+        <a href="/2022/08/14/mynotes/algorithm/sort/sort/" class="archive-article-date">
   	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
 </a>
         
@@ -894,28 +976,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="JVM内存分区"><a href="#JVM内存分区" class="headerlink" title="JVM内存分区"></a><strong>JVM内存分区</strong></h3><p> 大多数 JVM 将内存区域划分为 </p>
-<table>
-<thead>
-<tr>
-<th>Method Area（Non-Heap）（方法区）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Heap（堆）</strong></td>
-</tr>
-<tr>
-<td><strong>Program Counter Register（程序计数器）</strong></td>
-</tr>
-<tr>
-<td><strong>VM Stack（虚拟机栈， Java方法栈）</strong></td>
-</tr>
-<tr>
-<td><strong>Native Method Stack （本地方法栈）</strong></td>
-</tr>
-</tbody></table>
-<p>其中 Method Area 和 Heap 是线程共享的（方法区和堆）</p>
-<p>其他的几个（Program Counter Register，VM Stack，Native Method Stack）是非线程共享的。</p>
+        <p><img src="/2022/08/14/mynotes/algorithm/sort/sort/image-20210710193034597.png" alt="image-20210710193034597"></p>
+<h2 id="1、冒泡排序"><a href="#1、冒泡排序" class="headerlink" title="1、冒泡排序"></a>1、冒泡排序</h2><ul>
+<li>冒泡排序：重复遍历数组，每次比较相邻的两个元素，如果顺序错误就进行交换，较小的元素会慢慢“冒泡”到最上边。</li>
+</ul>
         
       
 
@@ -936,92 +1000,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/Java/JVM/JVM/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
-    <article id="post-mynotes/Java/Java-basic/Java-basic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/Java/Java-basic/Java-basic/">java基础</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/14/mynotes/Java/Java-basic/Java-basic/" class="archive-article-date">
-  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1、命令行操作与-JDK"><a href="#1、命令行操作与-JDK" class="headerlink" title="1、命令行操作与 JDK"></a>1、命令行操作与 JDK</h1>
-        
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
         		</li>
       		
 		</ul>
@@ -1031,7 +1014,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/Java/Java-basic/Java-basic/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/08/14/mynotes/algorithm/sort/sort/">展开全文 >></a>
         </p>
       
 
@@ -1172,7 +1155,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1188,15 +1171,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">guava</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color5">tips</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">AutoHotKey</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1208,19 +1195,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tips</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">AutoHotKey</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1236,6 +1211,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JUC</a>
               </li>
              
@@ -1244,15 +1227,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1260,11 +1239,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">异步</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">future</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1276,19 +1263,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">异步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">future</a>
               </li>
              
               <li class="article-tag-list-item">
