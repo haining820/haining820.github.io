@@ -8,24 +8,18 @@
   <link rel="dns-prefetch" href="https://haining820.github.io">
   <title>maven整理 | haining&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、projectproject 是 pom 文件的根元素，project 下有 modelVersion、groupId、artifactId、version、packaging 等重要元素，使用 groupId、artifactId、version 三个元素定义一个项目。">
+  <meta name="description" content="https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_38569499&#x2F;article&#x2F;details&#x2F;91456988  1、projectproject 是 pom 文件的根元素，project 下有 modelVersion、groupId、artifactId、version、packaging 等重要元素，使用 groupId、artifactId、version 三个元素定义一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="maven整理">
 <meta property="og:url" content="https://haining820.github.io/2022/08/14/mynotes/maven/maven/index.html">
 <meta property="og:site_name" content="haining&#39;s blog">
-<meta property="og:description" content="1、projectproject 是 pom 文件的根元素，project 下有 modelVersion、groupId、artifactId、version、packaging 等重要元素，使用 groupId、artifactId、version 三个元素定义一个项目。">
+<meta property="og:description" content="https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_38569499&#x2F;article&#x2F;details&#x2F;91456988  1、projectproject 是 pom 文件的根元素，project 下有 modelVersion、groupId、artifactId、version、packaging 等重要元素，使用 groupId、artifactId、version 三个元素定义一个">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/maven/maven/image-20220719115307174.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/maven/maven/image-20220719115047677.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/maven/maven/image-20220719120302318.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/maven/maven/image-20220719135754127.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/maven/maven/image-20220719140214669.png">
 <meta property="article:published_time" content="2022-08-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-04T08:20:05.120Z">
+<meta property="article:modified_time" content="2022-09-26T15:43:06.286Z">
 <meta property="article:author" content="haining">
 <meta property="article:tag" content="maven">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://haining820.github.io/2022/08/14/mynotes/maven/maven/image-20220719115307174.png">
   
     <link rel="alternative" href="/atom.xml" title="haining&#39;s blog" type="application/atom+xml">
   
@@ -185,106 +179,69 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1、project"><a href="#1、project" class="headerlink" title="1、project"></a>1、project</h1><p>project 是 pom 文件的根元素，project 下有 modelVersion、groupId、artifactId、version、packaging 等重要元素，使用 groupId、artifactId、version 三个元素定义一个项目。</p>
+        <blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38569499/article/details/91456988">https://blog.csdn.net/weixin_38569499/article/details/91456988</a></p>
+</blockquote>
+<h1 id="1、project"><a href="#1、project" class="headerlink" title="1、project"></a>1、project</h1><p>project 是 pom 文件的根元素，project 下有 modelVersion、groupId、artifactId、version、packaging 等重要元素，使用 groupId、artifactId、version 三个元素定义一个项目。</p>
 <span id="more"></span>
 
 <p><font size="4" style="font-weight:bold;background:yellow;">头信息（粘贴即用）</font></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<table>
-<thead>
-<tr>
-<th align="center">字段</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">xmlns</td>
-<td align="center">命名空间，类似包名</td>
-</tr>
-<tr>
-<td align="center">xmlns:xsi</td>
-<td align="center">xml 遵循的标签规范</td>
-</tr>
-<tr>
-<td align="center">xsi:schemaLocation</td>
-<td align="center">用来定义 xmlschema 的地址，也就是xml书写时需要遵循的语法</td>
-</tr>
-</tbody></table>
+<p><code>project</code>：根元素；</p>
+<p><code>xmlns</code>：命名空间，类似包名<br><code>xmlns:xsi</code>：xml 遵循的标签规范<br><code>xsi:schemaLocation</code>：用来定义 xmlschema 的地址，也就是xml书写时需要遵循的语法</p>
 <p><font size="4" style="font-weight:bold;background:yellow;">字段说明</font></p>
-<p><img src="/2022/08/14/mynotes/maven/maven/image-20220719115307174.png" alt="image-20220719115307174"></p>
-<table>
-<thead>
-<tr>
-<th align="center">字段</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">modelVersion</td>
-<td align="center">声明项目描述符遵循哪一个POM模型版本。模型本身的版本很少改变，虽然如此，但它仍然是必不可少的，这是为了当Maven引入了新的特性或者其他模型变更的时候，确保稳定性。</td>
-</tr>
-<tr>
-<td align="center">groupId</td>
-<td align="center">公司或者组织的唯一标志，并且配置时生成的路径也是由此生成，如 com.trip.finance，maven 会将该项目打成的 jar 包放本地路径：/com/trip/finance</td>
-</tr>
-<tr>
-<td align="center">artifactId</td>
-<td align="center">本项目的唯一 ID，一个 groupId 下面可能多个项目，就是靠 artifactId 来区分的</td>
-</tr>
-<tr>
-<td align="center">version</td>
-<td align="center">本项目目前所处的版本号</td>
-</tr>
-<tr>
-<td align="center">name</td>
-<td align="center">项目的名称，Maven 产生的文档用，可省略</td>
-</tr>
-<tr>
-<td align="center">packaging</td>
-<td align="center">打包类型，可取值：pom、jar、maven-plugin、ejb、war、ear、rar、par 等等</td>
-</tr>
-</tbody></table>
-<h1 id="2、parent"><a href="#2、parent" class="headerlink" title="2、parent"></a>2、parent</h1><p><img src="/2022/08/14/mynotes/maven/maven/image-20220719115047677.png" alt="image-20220719115047677"></p>
-<table>
-<thead>
-<tr>
-<th align="center">字段</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">groupId</td>
-<td align="center">父项目的 groupId，用于定位父项目；</td>
-</tr>
-<tr>
-<td align="center">artifactId</td>
-<td align="center">父项目的 artifactId，用于定位父项目；</td>
-</tr>
-<tr>
-<td align="center">version</td>
-<td align="center">父项目的 version，用于定位父项目；</td>
-</tr>
-</tbody></table>
-<h1 id="3、properties"><a href="#3、properties" class="headerlink" title="3、properties"></a>3、properties</h1><p>为 pom 定义一些常量，在 pom 中的其它地方可以直接引用。</p>
-<p><img src="/2022/08/14/mynotes/maven/maven/image-20220719120302318.png" alt="image-20220719120302318"></p>
-<h1 id="4、dependencyManagement"><a href="#4、dependencyManagement" class="headerlink" title="4、dependencyManagement"></a>4、dependencyManagement</h1><p>dependencyManagement 元素提供了一种管理依赖版本号的方式。在 dependencyManagement 元素中声明所依赖的 jar 包的版本号等信息，那么所有子项目再次引入此依赖 jar 包时则无需显式的列出版本号。<strong>Maven 会沿着父子层级向上寻找拥有 dependencyManagement 元素的项目，然后使用它指定的版本号。</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.haining820<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>study-projects<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>modelVersion</code>：声明项目描述符遵循哪一个 pom 模型版本，模型本身的版本很少改变，所以 modelVersion 一般固定不变；</p>
+<p><code>groupId</code>：公司或者组织的唯一标志，并且配置时生成的路径也是由此生成，如 com.trip.finance，maven 会将该项目打成的 jar 包放本地路径：/com/trip/finance；</p>
+<p><code>artifactId</code>：本项目的唯一 id，一个 groupId 下面可能多个项目，就是靠 artifactId 来区分的；</p>
+<p><code>version</code>：本项目目前所处的版本号；</p>
+<p><code>name</code>：项目的名称，Maven 产生的文档用（可省略）；</p>
+<p><code>packaging</code>  打包类型，可取值：pom、jar、maven-plugin、ejb、war、ear、rar、par 等等；</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/imaginehero/article/details/103706732">https://blog.csdn.net/imaginehero/article/details/103706732</a></p>
+</blockquote>
 <ul>
-<li><p>pom 中在该标签下声明依赖只起到一个<font color="red" style="font-weight:bold;">声明</font>的作用，实际上并<font color="red" style="font-weight:bold;">不会真实导入</font>；</p>
+<li><p><code>&lt;packaging&gt;pom&lt;/packaging&gt;</code></p>
+<p>在父级项目中的 pom.xml 文件使用的 packaging 配置一定为 pom。父级的pom文件只作项目的子模块的整合，在 maven install 时不会生成 jar/war 压缩包。</p>
 </li>
-<li><p><font color="red" style="font-weight:bold;">当子模块 pom 需要引入对应依赖时，只需声明对应的 groupId 和 artifactId 即可，省略掉的 version 和 scope，会沿着树向上层 pom 查找最近的 dependencyManagement 声明的 groupId 和 artifactId，并使用其声明的 version 和 scope。</font></p>
-<p>如果有多个子项目都引用同一样依赖，可以避免在每个使用的子项目里都声明一个版本号。当想升级或切换到另一个版本时，只需要在顶层父容器里更新，而不需要逐个修改子项目。</p>
+<li><p><code>&lt;packaging&gt;jar&lt;/packaging&gt;</code></p>
+<p>jar 包是最为常见的打包方式，当 pom 文件中没有设置 packaging 参数时，默认使用 jar 方式打包；<br>这种打包方式意味着在 maven build 时会将这个项目中的所有 java 文件都进行编译形成 <code>.class</code> 文件，且按照原来的 java 文件层级结构放置，最终压缩为一个 jar 文件。<br>当使用 <code>mvn install</code> 命令的时候，能够发现在项目中与 src 文件夹同级新生成了一个 target 文件夹，这个文件夹内的 classes 文件夹即为刚才提到的编译后形成的文件夹。如下图所示，这是我自己的项目生成的 target 文件夹，而最下方的 jar 文件即为此文件夹的压缩版本。</p>
 </li>
-<li><p>如果某个子项目需要另外的一个版本，也可以声明 version 和 scope， 覆盖父级继承的配置，<font color="red" style="font-weight:bold;">dependencies 优先级高于 dependencyManagement</font>。</p>
-</li>
-<li><p><font color="red" style="font-weight:bold;">父 pom 中的 dependencyManagement 允许被子模块的 dependencyManagement 覆盖。</font></p>
+<li><p><code>&lt;packaging&gt;war&lt;/packaging&gt;</code></p>
+<p>war 包与 jar 包非常相似，同样是编译后的 .class 文件按层级结构形成文件树后打包形成的压缩包。不同的是，它会将项目中依赖的所有 jar 包都放在 <code>WEB-INF/lib</code> 这个文件夹下。</p>
 </li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 继承自该项目的所有子项目的默认依赖信息，这部分的依赖信息不会被立即解析。 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 当子项目声明一个依赖，如果group ID和artifact ID以外的一些信息没有描述，则使用这里的依赖信息 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--参见dependencies/dependency元素 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            ......</span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="2、parent"><a href="#2、parent" class="headerlink" title="2、parent"></a>2、parent</h1><p>父项目的坐标，坐标包括 groupId，artifactId 和 version，如果项目中没有规定某个元素的值，那么父项目中的对应值即为项目的默认值。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/2022/08/14/mynotes/maven/maven/image-20220719135754127.png" alt="image-20220719135754127"></p>
-<h1 id="5、dependencies-标签"><a href="#5、dependencies-标签" class="headerlink" title="5、dependencies 标签"></a>5、dependencies 标签</h1><p><font size="4" style="font-weight:bold;background:yellow;">dependencies</font></p>
+<p><code>groupId</code> ：父项目的 groupId，用于定位父项目；</p>
+<p><code>artifactId</code> ：父项目的 artifactId，用于定位父项目；</p>
+<p><code>version</code> ：父项目的 version，用于定位父项目；</p>
+<p><code>relativePath</code>：</p>
 <ul>
+<li>指定查找该父项目 pom.xml 的(相对)路径。默认顺序：构建当前项目的地方 &gt; relativePath &gt; 本地仓库 &gt; 远程仓库；</li>
+<li>没有 relativePath 标签等同 <code>../pom.xml</code>，即默认从当前 pom 文件的上一级目录找，表示不从 relativePath 找，直接从本地仓库找，找不到再从远程仓库找。</li>
+</ul>
+<h1 id="3、properties"><a href="#3、properties" class="headerlink" title="3、properties"></a>3、properties</h1><p>为 pom 定义一些常量，在 pom 中的其它地方可以直接引用。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="tag">&lt;<span class="name">spring.version</span>&gt;</span>4.3.0.RELEASE<span class="tag">&lt;/<span class="name">spring.version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">mybatis-spring.version</span>&gt;</span>1.3.0<span class="tag">&lt;/<span class="name">mybatis-spring.version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="tag">&lt;<span class="name">slf4j.version</span>&gt;</span>1.7.5<span class="tag">&lt;/<span class="name">slf4j.version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">junit.version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">junit.version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">guava.version</span>&gt;</span>20.0<span class="tag">&lt;/<span class="name">guava.version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="tag">&lt;<span class="name">mysql-connector.version</span>&gt;</span>5.1.36<span class="tag">&lt;/<span class="name">mysql-connector.version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">mybatis.version</span>&gt;</span>3.3.0<span class="tag">&lt;/<span class="name">mybatis.version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="tag">&lt;<span class="name">dubbo.version</span>&gt;</span>2.7.3<span class="tag">&lt;/<span class="name">dubbo.version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-api.version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">servlet-api.version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">joda-time.version</span>&gt;</span>2.10.10<span class="tag">&lt;/<span class="name">joda-time.version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="4、dependencyManagement"><a href="#4、dependencyManagement" class="headerlink" title="4、dependencyManagement"></a>4、dependencyManagement</h1><p>dependencyManagement 元素提供了一种管理依赖版本号的方式。在 dependencyManagement 元素中声明所依赖的 jar 包的版本号等信息，那么所有子项目再次引入此依赖 jar 包时则无需显式的列出版本号。<strong>Maven 会沿着父子层级向上寻找拥有 dependencyManagement 元素的项目，然后使用它指定的版本号。</strong></p>
+<ul>
+<li><p>pom 中在该标签下声明依赖<strong>只起到一个声明的作用，实际上并不会真实导入；</strong></p>
+</li>
+<li><p>当子模块 pom 需要引入对应依赖时，只需声明对应的 groupId 和 artifactId 即可，省略掉的 version 和 scope，会沿着树向上层 pom 查找最近的 dependencyManagement 声明的 groupId 和 artifactId，并使用其声明的 version 和 scope；</p>
+<p>如果有多个子项目都引用同一样依赖，可以避免在每个使用的子项目里都声明一个版本号。当想升级或切换到另一个版本时，只需要在顶层父容器里更新，不需要逐个修改子项目；</p>
+</li>
+<li><p>如果某个子项目需要另外的一个版本，也可以声明 version 和 scope， <strong>覆盖父级继承的配置 dependencies 优先级高于 dependencyManagement；</strong></p>
+</li>
+<li><p>父 pom 中的 dependencyManagement 允许被子模块的 dependencyManagement 覆盖。</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--参考dependencies/dependency元素 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            ......</span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="5、dependencies-标签"><a href="#5、dependencies-标签" class="headerlink" title="5、dependencies 标签"></a>5、dependencies 标签</h1><ul>
 <li><p>pom 文件中通过 dependencyManagement 来声明依赖，通过 dependencies 元素来管理依赖。</p>
 </li>
 <li><p>dependencies 子元素的配置和 dependencyManagement 下的 dependencices 相同；</p>
@@ -292,10 +249,11 @@
 <li><p>而 dependencies 下只有一类直接的子元素：dependency，一个 dependency 子元素表示一个依赖项目。</p>
 </li>
 </ul>
-<h2 id="5-1、依赖坐标"><a href="#5-1、依赖坐标" class="headerlink" title="5.1、依赖坐标"></a>5.1、依赖坐标</h2><p><strong>groupId/artifactId/version：</strong>依赖项目的坐标三元素</p>
-<p><font size="4" style="font-weight:bold;background:yellow;">依赖范围</font></p>
+<p><font size="4" style="font-weight:bold;background:yellow;">依赖坐标</font></p>
+<p>groupId/artifactId/version：依赖项目的坐标三元素，一个 maven 仓库中，完全相同的一组 groupId、artifactId、version，只能有一个项目。</p>
+<p><strong>依赖范围</strong></p>
 <p>provided：在运行期外部已经提供了，所以在运行时就不需要</p>
-<p>可能会与依赖包有一些交互，speing 接口controller拿到请求获取对象，httpservletresponse、httpservletrequest，但是要导入servlet，写的时候要引进来但是在编译期不需要，运行时候不需要这个</p>
+<p>可能会与依赖包有一些交互，spring 接口controller拿到请求获取对象，httpservletresponse、httpservletrequest，但是要导入servlet，写的时候要引进来但是在编译期不需要，运行时候不需要这个</p>
 <p>jdbc驱动：写的时候不需要，但是运行时需要</p>
 <table>
 <thead>
@@ -370,12 +328,6 @@
 <h1 id="7、build"><a href="#7、build" class="headerlink" title="7、build"></a>7、build</h1><p>build 标签定义了构建项目需要的信息</p>
 <p>路径管理、资源管理、插件管理、构建扩展、其他配置</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--构建项目需要的信息 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--------------------- 路径管理（在遵循约定大于配置原则下，不需要配置） ---------------------&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--项目源码目录，当构建项目的时候，构建系统会编译目录里的源码。该路径是相对于pom.xml的相对路径。 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sourceDirectory</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--该元素设置了项目单元测试使用的源码目录。该路径是相对于pom.xml的相对路径 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">testSourceDirectory</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--被编译过的应用程序class文件存放的目录。 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">outputDirectory</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--被编译过的测试class文件存放的目录。 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">testOutputDirectory</span> /&gt;</span>        </span><br><span class="line">    <span class="comment">&lt;!--项目脚本源码目录，该目录下的内容，会直接被拷贝到输出目录，因为脚本是被解释的，而不是被编译的 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scriptSourceDirectory</span> /&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">&lt;!--------------------- 资源管理 ---------------------&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--这个元素描述了项目相关的所有资源路径列表，例如和项目相关的属性文件，这些资源被包含在最终的打包文件里。 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--这个元素描述了项目相关或测试相关的所有资源路径 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 描述了资源的目标输出路径。该路径是相对于target/classes的路径 --&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 如果是想要把资源直接放在target/classes下，不需要配置该元素 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">targetPath</span> /&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--是否使用参数值代替参数名。参数值取自文件里配置的属性，文件在filters元素里列出。 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filtering</span> /&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--描述存放资源的目录，该路径相对POM路径 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">directory</span> /&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--包含的模式列表，例如**/*.xml，只有符合条件的资源文件才会在打包的时候被放入到输出路径中 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">includes</span> /&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--排除的模式列表，例如**/*.xml，符合的资源文件不会在打包的时候会被过滤掉 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">excludes</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--这个元素描述了单元测试相关的所有资源路径，例如和单元测试相关的属性文件。 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">testResources</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--这个元素描述了测试相关的所有资源路径，子元素说明参考build/resources/resource元素的说明 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">testResource</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">targetPath</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filtering</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">directory</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">includes</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">excludes</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">testResource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">testResources</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">&lt;!--------------------- 插件管理 ---------------------&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 子项目可以引用的默认插件信息。pluginManagement中的插件直到被引用时才会被解析或绑定到生命周期 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这里只是做了声明，并没有真正的引入。给定插件的任何本地配置都会覆盖这里的配置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 可使用的插件列表 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--plugin元素包含描述插件所需要的信息。 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--插件在仓库里的group ID --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span> /&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--插件在仓库里的artifact ID --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span> /&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--被使用的插件的版本（或版本范围） --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span> /&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 是否从该插件下载Maven扩展(例如打包和类型处理器) --&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 由于性能原因，只有在真需要下载时，该元素才被设置成enabled --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">extensions</span> /&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--在构建生命周期中执行一组目标的配置。每个目标可能有不同的配置。 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--execution元素包含了插件执行需要的信息 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!--执行目标的标识符，用于标识构建过程中的目标，或者匹配继承过程中需要合并的执行目标 --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">id</span> /&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!--绑定了目标的构建生命周期阶段，如果省略，目标会被绑定到源数据里配置的默认阶段 --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">phase</span> /&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!--配置的执行目标 --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goals</span> /&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!--配置是否被传播到子POM --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">inherited</span> /&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!--作为DOM对象的配置 --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">configuration</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--项目引入插件所需要的额外依赖 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--参见dependencies/dependency元素 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                        ......</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--任何配置是否被传播到子项目 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">inherited</span> /&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--作为DOM对象的配置 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--使用的插件列表 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--参见build/pluginManagement/plugins/plugin元素 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">extensions</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">phase</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">inherited</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">configuration</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--参见dependencies/dependency元素 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                    ......</span><br><span class="line">                <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goals</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">inherited</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">&lt;!--------------------- 构建扩展 ---------------------&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--使用来自其他项目的一系列构建扩展 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">extensions</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--每个extension描述一个会使用到其构建扩展的一个项目，extension的子元素是项目的坐标 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">extension</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--项目坐标三元素：groupId + artifactId + version --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">extension</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">extensions</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">&lt;!--------------------- 其他配置 ---------------------&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--当项目没有规定目标（Maven2 叫做阶段）时的默认值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">defaultGoal</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--构建产生的所有文件存放的目录 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">directory</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--产生的构件的文件名，默认值是$&#123;artifactId&#125;-$&#123;version&#125;。 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--当filtering开关打开时，使用到的过滤器属性文件列表 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filters</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p><img src="/2022/08/14/mynotes/maven/maven/image-20220719140214669.png" alt="image-20220719140214669"></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
       
 
@@ -427,11 +379,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/08/14/mynotes/mybatis/mybatis/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/08/14/mynotes/linux/Linux/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          mybatis整理
+          linux整理
         
       </div>
     </a>
@@ -483,7 +435,7 @@
 	<div id="toc-article" class="toc-article">
 	<span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 	<strong class="toc-title">文章目录</strong>
-	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81project"><span class="toc-number">1.</span> <span class="toc-text">1、project</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81parent"><span class="toc-number">2.</span> <span class="toc-text">2、parent</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81properties"><span class="toc-number">3.</span> <span class="toc-text">3、properties</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81dependencyManagement"><span class="toc-number">4.</span> <span class="toc-text">4、dependencyManagement</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81dependencies-%E6%A0%87%E7%AD%BE"><span class="toc-number">5.</span> <span class="toc-text">5、dependencies 标签</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1%E3%80%81%E4%BE%9D%E8%B5%96%E5%9D%90%E6%A0%87"><span class="toc-number">5.1.</span> <span class="toc-text">5.1、依赖坐标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81"><span class="toc-number">6.</span> <span class="toc-text">6、依赖冲突</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81build"><span class="toc-number">7.</span> <span class="toc-text">7、build</span></a></li></ol>
+	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81project"><span class="toc-number">1.</span> <span class="toc-text">1、project</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81parent"><span class="toc-number">2.</span> <span class="toc-text">2、parent</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81properties"><span class="toc-number">3.</span> <span class="toc-text">3、properties</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81dependencyManagement"><span class="toc-number">4.</span> <span class="toc-text">4、dependencyManagement</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81dependencies-%E6%A0%87%E7%AD%BE"><span class="toc-number">5.</span> <span class="toc-text">5、dependencies 标签</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81"><span class="toc-number">6.</span> <span class="toc-text">6、依赖冲突</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81build"><span class="toc-number">7.</span> <span class="toc-text">7、build</span></a></li></ol>
    </div>
    <script type="text/javascript">
 	function showToc(){
@@ -598,10 +550,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">生产者消费者</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
@@ -610,23 +558,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">guava</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">生产者消费者</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">guava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mybatisplus</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -638,7 +582,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mybatisplus</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">死锁</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -650,14 +606,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
@@ -666,11 +614,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -682,15 +626,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">异步</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">future</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,6 +647,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">异步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">future</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -722,6 +674,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -731,14 +691,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">aop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
               </li>
              
               <li class="article-tag-list-item">
