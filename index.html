@@ -156,6 +156,301 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mynotes/Java/functional-interface" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/10/04/mynotes/Java/functional-interface/">函数式接口</a>
+    </h1>
+  
+
+        
+        <a href="/2022/10/04/mynotes/Java/functional-interface/" class="archive-article-date">
+  	<time datetime="2022-10-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、函数式接口"><a href="#1、函数式接口" class="headerlink" title="1、函数式接口"></a>1、函数式接口</h1><p><strong>只有一个抽象方法的接口就叫函数式接口，</strong>Runnable 接口中只有一个 <code>run()</code> 方法，所以 Runnable 接口就是一个函数式接口。</p>
+<p>只要是函数式接口，就可以用 lambda 表达式简化。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Runnable</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于函数式接口，可以通过 lambda 表达式来创建该接口的对象，避免匿名内部类定义过多，可以让代码更简洁的一种表示方法。</p>
+<h1 id="2、lambda-表达式（JDK-8）"><a href="#2、lambda-表达式（JDK-8）" class="headerlink" title="2、lambda 表达式（JDK 8）"></a>2、lambda 表达式（JDK 8）</h1><p><strong>使用 lambda 表达式简化一个函数式接口对象的过程：</strong><font color="red" style="font-weight:bold;">普通实现类 -&gt; 静态内部类 -&gt; 局部内部类 -&gt; 匿名内部类 -&gt; lambda表达式</font></p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        展开查看折叠代码
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个函数式接口</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ILikeLambda</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">lambda</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Like</span> <span class="keyword">implements</span> <span class="title class_">ILikeLambda</span> &#123;	<span class="comment">// 普通实现类</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">lambda</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;实现类：Lambda666!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LambdaTest01</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Like2</span> <span class="keyword">implements</span> <span class="title class_">ILikeLambda</span> &#123;	<span class="comment">// 静态内部类</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">lambda</span><span class="params">()</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;静态内部类：Lambda666!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ILikeLambda</span> <span class="variable">like</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1、普通实现类</span></span><br><span class="line">        like = <span class="keyword">new</span> <span class="title class_">Like</span>();</span><br><span class="line">        like.lambda();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 2、静态内部类</span></span><br><span class="line">        like = <span class="keyword">new</span> <span class="title class_">Like2</span>();</span><br><span class="line">        like.lambda();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 3、局部内部类</span></span><br><span class="line">        <span class="keyword">class</span> <span class="title class_">Like3</span> <span class="keyword">implements</span> <span class="title class_">ILikeLambda</span> &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">lambda</span><span class="params">()</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;局部内部类：Lambda666!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        like = <span class="keyword">new</span> <span class="title class_">Like3</span>();</span><br><span class="line">        like.lambda();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 4、匿名内部类，没有类的名称，必须借助父类或者接口</span></span><br><span class="line">        like = <span class="keyword">new</span> <span class="title class_">ILikeLambda</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">lambda</span><span class="params">()</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;匿名内部类：Lambda666!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        like.lambda();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 5、用lambda表达式简化</span></span><br><span class="line">        like = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Lambda:Lambda666!&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        like.lambda();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+
+<p><strong>Lambda 表达式本身还可以进行简化</strong></p>
+<p>比如函数式接口 Runnable 使用 Lambda 表达式不断简化：<font color="red" style="font-weight:bold;">去掉参数类型 -&gt; 去括号 -&gt; 去花括号</font></p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        展开查看折叠代码
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">ILoveLambda</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">love</span><span class="params">(<span class="type">int</span> a)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LambdaTest02</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ILoveLambda</span> <span class="variable">i</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 普通的lambda表达式:()-&gt;&#123;&#125;</span></span><br><span class="line">        i = (<span class="type">int</span> a) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;普通的lambda表达式--&gt;&quot;</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        i.love(<span class="number">666</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 简化1：去掉参数类型</span></span><br><span class="line">        i = (a) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;lambda去掉参数类型--&gt;&quot;</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        i.love(<span class="number">777</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 简化2：去掉括号</span></span><br><span class="line">        i = a -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;lambda去掉括号--&gt;&quot;</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        i.love(<span class="number">888</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 简化3：去掉花括号</span></span><br><span class="line">        i = a -&gt; System.out.println(<span class="string">&quot;lambda去掉花括号--&gt;&quot;</span> + a);</span><br><span class="line">        i.love(<span class="number">999</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+
+<p><strong>简化的注意事项</strong></p>
+<ul>
+<li><p>接口必须是函数式接口；</p>
+</li>
+<li><p>方法如果有多个参数也可以去掉参数类型，但是参数类型要去掉就都去掉，去掉之后必须加上括号；</p>
+</li>
+<li><p>Lambda 表达式只能在有一行代码的情况下才能简化成一行，如果有多行就用代码块包裹。</p>
+</li>
+</ul>
+<h1 id="3、四大函数式接口"><a href="#3、四大函数式接口" class="headerlink" title="3、四大函数式接口"></a>3、四大函数式接口</h1><h2 id="3-1、Supplier"><a href="#3-1、Supplier" class="headerlink" title="3.1、Supplier"></a>3.1、Supplier</h2><p><code>java.util.function.Supplier&lt;T&gt;</code> 接口，仅包含一个无参的方法：<code>T get()</code>，用来获取一个泛型参数指定类型的对象数据</p>
+<p>Supplier 接口被称之为生产型接口，传入一个泛型 T，将返回一个泛型 T。泛型如果不进行特别指定会默认为 Object，注意要与函数式接口的传入返回类型相匹配。</p>
+<p><strong>测试</strong></p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        展开查看折叠代码
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">_01_SupplierDemo_get</span> &#123;</span><br><span class="line">    <span class="comment">// 定义一个方法，方法的参数传递Supplier&lt;T&gt;接口，泛型设置为String，get方法就会返回一个String</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getString</span><span class="params">(Supplier&lt;String&gt; sup)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sup.get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">helloSupplier</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 调用getString方法，方法参数Supplier是一个函数式接口，所以可以传递Lambda表达式</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> getString(() -&gt; &#123;</span><br><span class="line">            <span class="comment">// 生产一个字符串，并返回</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;hello,supplier!&quot;</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">byeSupplier</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 简化</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> getString(() -&gt; <span class="string">&quot;goodbye,supplier!&quot;</span>);</span><br><span class="line">        System.out.println(s1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">supplierTest</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 传一个字符串：hello world，使用get返回这个字符串</span></span><br><span class="line">        Supplier&lt;String&gt; supplier = () -&gt; <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">        System.out.println(supplier.get());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 传一个对象，使用get返回这个对象</span></span><br><span class="line">        Supplier&lt;Student&gt; studentSupplier = () -&gt; <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;小明&quot;</span>,<span class="number">12</span>);</span><br><span class="line">        System.out.println(studentSupplier.get());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        helloSupplier();</span><br><span class="line">        byeSupplier();</span><br><span class="line">        System.out.println(<span class="string">&quot;================&quot;</span>);</span><br><span class="line">        <span class="type">_01_SupplierDemo_get</span> <span class="variable">a01SupplierDemoAccept</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">_01_SupplierDemo_get</span>();</span><br><span class="line">        a01SupplierDemoAccept.supplierTest();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Student</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Student</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.name = name;</span><br><span class="line">            <span class="built_in">this</span>.age = age;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Student&#123;&quot;</span> +</span><br><span class="line">                    <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                    <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                    <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+
+<h2 id="3-2、Consumer"><a href="#3-2、Consumer" class="headerlink" title="3.2、Consumer"></a>3.2、Consumer</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44230693/article/details/113847162">https://blog.csdn.net/weixin_44230693/article/details/113847162</a></p>
+</blockquote>
+<p><code>java.util.function.Consumer</code> 接口则正好与 Supplier 接口相反，它不是生产一个数据，而是消费一个数据， 其数据类型由泛型决定。</p>
+<p><font size="4" style="font-weight:bold;background:yellow;">accept 方法</font></p>
+<p>消费一个指定泛型的数据</p>
+<p><strong>测试</strong></p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        展开查看折叠代码
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">_02_ConsumerDemo_accept</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 定义一个方法，方法的参数传递一个字符串的姓名</span></span><br><span class="line"><span class="comment">     * 方法的参数传递Consumer接口，泛型使用String，可以使用Consumer接口消费字符串的姓名</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">(String name, Consumer&lt;String&gt; con)</span> &#123;</span><br><span class="line">        con.accept(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">consumerTest</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 调用method方法，传递字符串姓名，方法的另一个参数是Consumer接口，是一个函数式接口，所以可以传递Lambda表达式</span></span><br><span class="line">        method(<span class="string">&quot;小明&quot;</span>, name -&gt; &#123;</span><br><span class="line">            <span class="comment">// 对传递的字符串进行消费，消费方式：直接输出字符串</span></span><br><span class="line">            System.out.println(name);	<span class="comment">// 小明</span></span><br><span class="line">            <span class="comment">// 消费方式:把字符串进行反转输出</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(name).reverse().toString();</span><br><span class="line">            System.out.println(str);	<span class="comment">// 明小</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        consumerTest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+
+<p><font size="4" style="font-weight:bold;background:yellow;">andThen 方法</font></p>
+<p>如果一个方法的参数和返回值全都是 Consumer 类型，在消费数据的时候，可以首先做一个操作，然后再做一个操作，实现组合。由 Consumer 接口中的 default 方法 <code>andThen()</code> 可以实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">default</span> Consumer&lt;T&gt; <span class="title function_">andThen</span><span class="params">(Consumer&lt;? <span class="built_in">super</span> T&gt; after)</span> &#123;</span><br><span class="line">    <span class="comment">// 在参数为null时主动抛出NullPointerException异常，避免对null的判断和抛出异常</span></span><br><span class="line">    Objects.requireNonNull(after);</span><br><span class="line">    <span class="keyword">return</span> (T t) -&gt; &#123; accept(t); after.accept(t); &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Consumer 接口的默认方法 andThen：需要两个 Consumer 接口，可以把两个 Consumer 接口组合到一起，再对数据进行消费。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; con1</span><br><span class="line">Consumer&lt;String&gt; con2</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">con1.accept(s);</span><br><span class="line">con2.accept(s);</span><br><span class="line"><span class="comment">// 连接两个Consumer接口进行消费，谁在前边谁先消费</span></span><br><span class="line">con1.andThen(con2).accept(s);</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试</strong></p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        展开查看折叠代码
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">_03_ConsumerDemo_andThen</span> &#123;</span><br><span class="line">    <span class="comment">// 定义一个方法，方法的参数传递一个字符串和两个Consumer接口，Consumer接口的泛型使用字符串</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">(String s, Consumer&lt;String&gt; con1, Consumer&lt;String&gt; con2)</span> &#123;</span><br><span class="line">        <span class="comment">// con1.accept(s);</span></span><br><span class="line">        <span class="comment">// con2.accept(s);</span></span><br><span class="line">        <span class="comment">// 使用andThen方法，把两个Consumer接口连接到一起，再消费数据</span></span><br><span class="line">        con1.andThen(con2).accept(s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 调用method方法，传递一个字符串，两个lambda表达式</span></span><br><span class="line">        method(<span class="string">&quot;hello&quot;</span>,</span><br><span class="line">                (t) -&gt; &#123;</span><br><span class="line">                    <span class="comment">// 消费方式：把字符串转换为大写输出</span></span><br><span class="line">                    System.out.println(t.toUpperCase());</span><br><span class="line">                &#125;,</span><br><span class="line">                (t) -&gt; &#123;</span><br><span class="line">                    <span class="comment">// 消费方式：把字符串转换为小写输出</span></span><br><span class="line">                    System.out.println(t.toLowerCase());</span><br><span class="line">                &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+
+<h2 id="3-3、Function"><a href="#3-3、Function" class="headerlink" title="3.3、Function"></a>3.3、Function</h2><p>Function：函数型接口，有一个输入参数，有一个输出参数。</p>
+<p><strong>源码</strong></p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        展开查看折叠代码
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Function</span>&lt;T, R&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 传入类型T，返回类型R</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    R <span class="title function_">apply</span><span class="params">(T t)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">default</span> &lt;V&gt; Function&lt;V, R&gt; <span class="title function_">compose</span><span class="params">(Function&lt;? <span class="built_in">super</span> V, ? extends T&gt; before)</span> &#123;</span><br><span class="line">        Objects.requireNonNull(before);</span><br><span class="line">        <span class="keyword">return</span> (V v) -&gt; apply(before.apply(v));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">default</span> &lt;V&gt; Function&lt;T, V&gt; <span class="title function_">andThen</span><span class="params">(Function&lt;? <span class="built_in">super</span> R, ? extends V&gt; after)</span> &#123;</span><br><span class="line">        Objects.requireNonNull(after);</span><br><span class="line">        <span class="keyword">return</span> (T t) -&gt; after.apply(apply(t));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> &lt;T&gt; Function&lt;T, T&gt; <span class="title function_">identity</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> t -&gt; t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+
+<p><strong>测试：</strong>将输入的小写字母转换为大写</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">_04_FunctionDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">functionTest</span><span class="params">(String str, Function&lt;String,String&gt; function)</span> &#123;</span><br><span class="line">        System.out.println(function.apply(str));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        functionTest(<span class="string">&quot;hhh&quot;</span>,str-&gt;&#123;</span><br><span class="line">            <span class="comment">// 将输入的小写字母转换为大写</span></span><br><span class="line">            <span class="keyword">return</span> str.toUpperCase();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-4、Predicate"><a href="#3-4、Predicate" class="headerlink" title="3.4、Predicate"></a>3.4、Predicate</h2><p>Predicate：断定型接口，只有一个输入参数，返回值只能是 boolean 值。</p>
+<p><strong>源码</strong></p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        展开查看折叠代码
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Predicate</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">test</span><span class="params">(T t)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span> Predicate&lt;T&gt; <span class="title function_">and</span><span class="params">(Predicate&lt;? <span class="built_in">super</span> T&gt; other)</span> &#123;</span><br><span class="line">        Objects.requireNonNull(other);</span><br><span class="line">        <span class="keyword">return</span> (t) -&gt; test(t) &amp;&amp; other.test(t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span> Predicate&lt;T&gt; <span class="title function_">negate</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (t) -&gt; !test(t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span> Predicate&lt;T&gt; <span class="title function_">or</span><span class="params">(Predicate&lt;? <span class="built_in">super</span> T&gt; other)</span> &#123;</span><br><span class="line">        Objects.requireNonNull(other);</span><br><span class="line">        <span class="keyword">return</span> (t) -&gt; test(t) || other.test(t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &lt;T&gt; Predicate&lt;T&gt; <span class="title function_">isEqual</span><span class="params">(Object targetRef)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="literal">null</span> == targetRef)</span><br><span class="line">                ? Objects::isNull</span><br><span class="line">                : object -&gt; targetRef.equals(object);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+
+<p><strong>测试：</strong>判断字符串是否为空</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">_05_PredicateDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Predicate&lt;String&gt; p = str -&gt; str.isEmpty();</span><br><span class="line">        System.out.println(p.test(<span class="string">&quot;&quot;</span>));     <span class="comment">// true</span></span><br><span class="line">        System.out.println(p.test(<span class="string">&quot;a&quot;</span>));    <span class="comment">// false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">函数式接口</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/10/04/mynotes/Java/functional-interface/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
+    <article id="post-mynotes/guava/guava中的集合类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/29/mynotes/guava/guava%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB/">guava中的集合类</a>
+    </h1>
+  
+
+        
+        <a href="/2022/09/29/mynotes/guava/guava%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB/" class="archive-article-date">
+  	<time datetime="2022-09-28T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、ImmutableMap"><a href="#1、ImmutableMap" class="headerlink" title="1、ImmutableMap"></a>1、ImmutableMap</h1><h2 id="1-1、Immutable-的概念"><a href="#1-1、Immutable-的概念" class="headerlink" title="1.1、Immutable 的概念"></a>1.1、Immutable 的概念</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.blogjava.net/stevenjohn/archive/2015/01/08/422140.html">http://www.blogjava.net/stevenjohn/archive/2015/01/08/422140.html</a></p>
+</blockquote>
+<p>如果一个对象实例不能被更改，该对象就是一个 Immutable 的对象，比如 String 等都是 Immutable 的对象</p>
+<p><strong>使对象变得 Immutable 的条件</strong></p>
+<ul>
+<li>保证类不能被继承，为了避免其继承的类进行 mutable 的操作；</li>
+<li>去掉所有 setter/update 等修改对象实例的操作；</li>
+<li>保证所有的 field 是 private 和 final 的。</li>
+</ul>
+        
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">guava</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集合</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/09/29/mynotes/guava/guava%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
     <article id="post-essay/essay_220914" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -374,11 +669,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -527,6 +822,189 @@
 <!-- 目录内容结束 -->
 
   
+    <article id="post-mynotes/dubbo/dubbo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/14/mynotes/dubbo/dubbo/">dubbo整理</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/14/mynotes/dubbo/dubbo/" class="archive-article-date">
+  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、RPC-介绍"><a href="#1、RPC-介绍" class="headerlink" title="1、RPC 介绍"></a>1、RPC 介绍</h1><p><font size="4" style="font-weight:bold;background:yellow;">什么是 RPC？</font></p>
+<p>RPC（Remote Procedure Call）：远程过程调用，是一种进程间通信方式，是一种技术思想，而不是规范。它允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，而不用程序员显式编码这个远程调用的细节。即程序员无论是调用本地的还是远程的函数，本质上编写的调用代码基本相同。</p>
+        
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">dubbo异步</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/14/mynotes/dubbo/dubbo/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
+    <article id="post-mynotes/mybatis/mybatis-plus" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/14/mynotes/mybatis/mybatis-plus/">mybatisplus整理</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/14/mynotes/mybatis/mybatis-plus/" class="archive-article-date">
+  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、MyBatis-Plus"><a href="#1、MyBatis-Plus" class="headerlink" title="1、MyBatis-Plus"></a>1、MyBatis-Plus</h1><blockquote>
+<p>mybatis 简化 JDBC，myBatisplus 简化 mybatis，是一种增强工具。</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://baomidou.com/pages/24112f/#%E7%89%B9%E6%80%A7">https://baomidou.com/pages/24112f/#%E7%89%B9%E6%80%A7</a></p>
+</blockquote>
+<p>MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。</p>
+        
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">mybatisplus</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/14/mynotes/mybatis/mybatis-plus/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
     <article id="post-essay/essay_220814" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -620,96 +1098,6 @@
 <!-- 目录内容结束 -->
 
   
-    <article id="post-mynotes/dubbo/dubbo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/dubbo/dubbo/">dubbo整理</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/14/mynotes/dubbo/dubbo/" class="archive-article-date">
-  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1、RPC-介绍"><a href="#1、RPC-介绍" class="headerlink" title="1、RPC 介绍"></a>1、RPC 介绍</h1><p><font size="4" style="font-weight:bold;background:yellow;">什么是 RPC？</font></p>
-<p>RPC（Remote Procedure Call）：远程过程调用，是一种进程间通信方式，是一种技术思想，而不是规范。它允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，而不用程序员显式编码这个远程调用的细节。即程序员无论是调用本地的还是远程的函数，本质上编写的调用代码基本相同。</p>
-        
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">dubbo异步</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/dubbo/dubbo/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
     <article id="post-mynotes/guava/class-note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -756,269 +1144,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/08/14/mynotes/guava/class-note/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
-    <article id="post-mynotes/guava/guava" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/guava/guava/">guava</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/14/mynotes/guava/guava/" class="archive-article-date">
-  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1、Java"><a href="#1、Java" class="headerlink" title="1、Java"></a>1、Java</h1>
-        
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">guava</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/guava/guava/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
-    <article id="post-mynotes/linux/Linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/linux/Linux/">linux整理</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/14/mynotes/linux/Linux/" class="archive-article-date">
-  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Linux：一切皆文件，读，写，权限。</p>
-<blockquote>
-<p>Linux 简介</p>
-</blockquote>
-<p>Linux 内核最初只是由芬兰人林纳斯·托瓦兹（Linus Torvalds）在赫尔辛基大学上学时出于个人爱好而 编写的。</p>
-<p>Linux 是一套免费使用和自由传播的类 Unix 操作系统，是一个基于 POSIX（可移植操作系统接口） 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统。</p>
-        
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/linux/Linux/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
-    <article id="post-mynotes/maven/maven" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/maven/maven/">maven整理</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/14/mynotes/maven/maven/" class="archive-article-date">
-  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38569499/article/details/91456988">https://blog.csdn.net/weixin_38569499/article/details/91456988</a></p>
-</blockquote>
-<h1 id="1、project"><a href="#1、project" class="headerlink" title="1、project"></a>1、project</h1><p>project 是 pom 文件的根元素，project 下有 modelVersion、groupId、artifactId、version、packaging 等重要元素，使用 groupId、artifactId、version 三个元素定义一个项目。</p>
-        
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">maven</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/maven/maven/">展开全文 >></a>
         </p>
       
 
@@ -1155,15 +1280,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">dubbo异步</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">函数式接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1171,19 +1288,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">guava</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color3">dubbo异步</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1195,11 +1308,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
+                <a href="javascript:void(0)" class="js-tag color1">guava</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color3">集合</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1211,11 +1332,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1223,19 +1344,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1247,11 +1360,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">注解</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1263,7 +1388,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
+                <a href="javascript:void(0)" class="js-tag color3">注解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1275,15 +1404,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1299,11 +1424,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">HttpServlet</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DispatcherServlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
               </li>
             
             <div class="clearfix"></div>
