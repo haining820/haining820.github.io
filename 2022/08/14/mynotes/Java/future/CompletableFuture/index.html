@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://haining820.github.io">
   <title>CompletableFuture学习 | haining&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0、准备ListenableFuture 是由 Google Guava工具包提供的 Future 扩展类，随后，JDK 在 1.8 版本中马上也提供了类似这样的类，在 9 中进一步增强，这就是 CompletableFuture。">
+  <meta name="description" content="1234感谢https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;318472639&#x2F;answer&#x2F;652254785https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;344431341https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1ui4y1T7xf  0、准备ListenableFuture 是由 Google Guava工具包提供的 Future 扩展类，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CompletableFuture学习">
 <meta property="og:url" content="https://haining820.github.io/2022/08/14/mynotes/Java/future/CompletableFuture/index.html">
 <meta property="og:site_name" content="haining&#39;s blog">
-<meta property="og:description" content="0、准备ListenableFuture 是由 Google Guava工具包提供的 Future 扩展类，随后，JDK 在 1.8 版本中马上也提供了类似这样的类，在 9 中进一步增强，这就是 CompletableFuture。">
+<meta property="og:description" content="1234感谢https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;318472639&#x2F;answer&#x2F;652254785https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;344431341https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1ui4y1T7xf  0、准备ListenableFuture 是由 Google Guava工具包提供的 Future 扩展类，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-01-12T15:42:53.028Z">
+<meta property="article:modified_time" content="2023-01-12T15:57:27.221Z">
 <meta property="article:author" content="haining">
 <meta property="article:tag" content="异步">
 <meta property="article:tag" content="future">
@@ -180,11 +180,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="0、准备"><a href="#0、准备" class="headerlink" title="0、准备"></a>0、准备</h1><p>ListenableFuture 是由 Google Guava工具包提供的 Future 扩展类，随后，JDK 在 1.8 版本中马上也提供了类似这样的类，在 9 中进一步增强，这就是 CompletableFuture。</p>
-<span id="more"></span>
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">感谢</span><br><span class="line">https:<span class="comment">//www.zhihu.com/question/318472639/answer/652254785</span></span><br><span class="line">https:<span class="comment">//zhuanlan.zhihu.com/p/344431341</span></span><br><span class="line">https:<span class="comment">//www.bilibili.com/video/BV1ui4y1T7xf</span></span><br></pre></td></tr></table></figure>
 
-<p>CompletableFuture 同样实现了 Future 接口，并在此基础上进行了丰富的扩展，弥补了 Future 的局限性，是对 Future 的扩展和增强，同时 CompletableFuture 实现了对任务编排的能力。在进行方法的测试前，首先准备打印当前时间和线程名的工具类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SmallTool</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sleepMillis</span><span class="params">(<span class="type">long</span> millis)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(millis);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printTimeAndThread</span><span class="params">(String tag)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringJoiner</span>(<span class="string">&quot;\t|\t&quot;</span>)</span><br><span class="line">                .add(String.valueOf(System.currentTimeMillis()))</span><br><span class="line">                .add(String.valueOf(Thread.currentThread().getId()))</span><br><span class="line">                .add(Thread.currentThread().getName())</span><br><span class="line">                .add(tag)</span><br><span class="line">                .toString();</span><br><span class="line">        System.out.println(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="0、准备"><a href="#0、准备" class="headerlink" title="0、准备"></a>0、准备</h1><p>ListenableFuture 是由 Google Guava工具包提供的 Future 扩展类，随后，JDK 在 1.8 版本中马上也提供了类似这样的类，在 9 中进一步增强，这就是 CompletableFuture。CompletableFuture 同样实现了 Future 接口，并在此基础上进行了丰富的扩展，弥补了 Future 的局限性，是对 Future 的扩展和增强，同时 CompletableFuture 实现了对任务编排的能力。</p>
+<span id="more"></span>
 
 <h1 id="1、get-join"><a href="#1、get-join" class="headerlink" title="1、get/join"></a>1、get/join</h1><h2 id="1-1、get"><a href="#1-1、get" class="headerlink" title="1.1、get"></a>1.1、get</h2><p>get 有两种类型的重载，继承自父接口 Future 中两种方法，详情可见 Future 接口相关内容。</p>
 <ul>
@@ -231,18 +230,21 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> T <span class="title function_">join</span><span class="params">()</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="2、supplyAsync-runAsync"><a href="#2、supplyAsync-runAsync" class="headerlink" title="2、supplyAsync/runAsync"></a>2、supplyAsync/runAsync</h1><p>执行异步任务</p>
+<h1 id="2、supplyAsync-runAsync"><a href="#2、supplyAsync-runAsync" class="headerlink" title="2、supplyAsync/runAsync"></a>2、supplyAsync/runAsync</h1><p><strong>功能：</strong>执行异步任务，可以初始化 cf；</p>
+<p><strong>区别：</strong>supplyAsync 用于有返回值的任务，runAsync 用于没有返回值的任务，不需要返回值时使用 runAsync 即可。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">supplyAsync</span><span class="params">(Supplier&lt;U&gt; supplier)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> asyncSupplyStage(asyncPool, supplier);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">supplyAsync</span><span class="params">(Supplier&lt;U&gt; supplier, Executor executor)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> asyncSupplyStage(screenExecutor(executor), supplier);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>关于 supplyAsync 的参数 Supplier supplier：</strong></p>
+<p><strong>关于 supplyAsync 的参数 Supplier supplier：</strong>（详见<a href="https://haining820.github.io/2022/10/04/mynotes/Java/functional-interface/">函数式接口</a>）</p>
 <ul>
-<li>供应者，是一个函数式接口；</li>
-<li>supplyAsync 后括号中的 supplier 会去另一个线程中执行。</li>
-<li>Executor 参数可以手动指定线程池，否则默认使用 <code>ForkJoinPool.commonPool()</code> 系统级公共线程池，注意：这些线程都是 Daemon 线程，主线程结束 Daemon 线程不结束，只有 JVM 关闭时，生命周期终止。</li>
+<li><p>供应者 supplier，是一个函数式接口；</p>
+</li>
+<li><p>supplyAsync 后括号中的 supplier 会去另一个线程中执行。</p>
+</li>
+<li><p>Executor 参数可以手动指定线程池，否则默认使用 <code>ForkJoinPool.commonPool()</code> 系统级公共线程池</p>
+<p><font color="red" style="font-weight:bold;">注意：这些线程都是 Daemon 线程，主线程结束 Daemon 线程不结束，只有 JVM 关闭时，生命周期终止。</font></p>
+</li>
 </ul>
-<p><strong>supplyAsync 与 runAsync 的区别？</strong></p>
-<p>supplyAsync 用于有返回值的任务，runAsync 用于没有返回值的任务，不需要返回值时使用 runAsync 即可。</p>
-<p><font size="4" style="font-weight:bold;background:yellow;">Demo</font></p>
+<p><font size="4" style="font-weight:bold;background:yellow;">demo</font></p>
 <div class="spoiler collapsed">
     <div class="spoiler-title">
         展开查看折叠代码
@@ -256,7 +258,10 @@
 <p><strong>supplyAsyncTest 运行结果</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1663554437134	|	1	|	main	|	小白进入餐厅</span><br><span class="line">1663554437134	|	1	|	main	|	小白点了 番茄炒蛋 + 一碗米饭</span><br><span class="line">1663554437172	|	1	|	main	|	小白在打王者</span><br><span class="line">1663554437173	|	20	|	ForkJoinPool.commonPool-worker-9	|	厨师炒菜</span><br><span class="line">1663554437379	|	20	|	ForkJoinPool.commonPool-worker-9	|	厨师打饭</span><br><span class="line">1663554437490	|	1	|	main	|	番茄炒蛋 + 米饭 做好了 ,小白开吃</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-2、thenCompose"><a href="#4-2、thenCompose" class="headerlink" title="4.2、thenCompose"></a>4.2、thenCompose</h2><p><strong>thenCompose：</strong><font color="#0000ff" style="font-weight:bold;">连接，在异步执行线程1的基础上再开一个新的线程，使用 thenCompose 会将之前线程的结果交给下一个的线程，前一个线程运行完了有结果后下一个线程才能触发。</font></p>
+<h2 id="4-2、thenCompose"><a href="#4-2、thenCompose" class="headerlink" title="4.2、thenCompose"></a>4.2、thenCompose</h2><p>在学习异步任务的编排前，首先准备打印当前时间和线程名的工具类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SmallTool</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sleepMillis</span><span class="params">(<span class="type">long</span> millis)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(millis);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printTimeAndThread</span><span class="params">(String tag)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringJoiner</span>(<span class="string">&quot;\t|\t&quot;</span>)</span><br><span class="line">                .add(String.valueOf(System.currentTimeMillis()))</span><br><span class="line">                .add(String.valueOf(Thread.currentThread().getId()))</span><br><span class="line">                .add(Thread.currentThread().getName())</span><br><span class="line">                .add(tag)</span><br><span class="line">                .toString();</span><br><span class="line">        System.out.println(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>thenCompose：</strong><font color="#0000ff" style="font-weight:bold;">连接，在异步执行线程1的基础上再开一个新的线程，使用 thenCompose 会将之前线程的结果交给下一个的线程，前一个线程运行完了有结果后下一个线程才能触发。</font></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;U&gt; CompletableFuture&lt;U&gt; <span class="title function_">thenCompose</span><span class="params">(Function&lt;? <span class="built_in">super</span> T, ? extends CompletionStage&lt;U&gt;&gt; fn)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> uniComposeStage(<span class="literal">null</span>, fn);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -477,8 +482,6 @@
 <td align="center"></td>
 </tr>
 </tbody></table>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/318472639/answer/652254785">https://www.zhihu.com/question/318472639/answer/652254785</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/344431341">https://zhuanlan.zhihu.com/p/344431341</a></p>
 <h1 id="6、CompletableFuture-与-ListenableFuture-之间的转换"><a href="#6、CompletableFuture-与-ListenableFuture-之间的转换" class="headerlink" title="6、CompletableFuture 与 ListenableFuture 之间的转换"></a>6、CompletableFuture 与 ListenableFuture 之间的转换</h1><blockquote>
 <p>更新时间：2022-09-11 18:20</p>
 </blockquote>
@@ -571,18 +574,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/08/14/mynotes/Java/JUC/JUC/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/08/14/mynotes/Java/annotation-reflex/annotation-reflex/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          JUC
+          注解与反射
         
       </div>
     </a>
   
   
-    <a href="/2022/08/14/mynotes/Java/JVM/JVM/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JVM</div>
+    <a href="/2022/08/14/mynotes/Java/future/future/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Future学习</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -742,14 +745,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">生产者消费者</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">函数式接口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -758,7 +753,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">函数式接口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">生产者消费者</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -767,6 +766,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">dubbo异步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -782,10 +785,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
@@ -798,6 +797,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
@@ -806,11 +813,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -822,7 +825,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -830,7 +833,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -838,15 +841,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">异步</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">future</a>
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -858,11 +861,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color3">异步</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color2">future</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -886,19 +889,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HttpServlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DispatcherServlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -911,6 +906,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">aop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HttpServlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">DispatcherServlet</a>
               </li>
             
             <div class="clearfix"></div>

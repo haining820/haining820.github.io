@@ -156,19 +156,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-mynotes/Java/Java-source/Java-source" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mynotes/Java/future/CompletableFuture" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/Java/Java-source/Java-source/">Java集合</a>
+      <a class="article-title" href="/2022/08/14/mynotes/Java/future/CompletableFuture/">CompletableFuture学习</a>
     </h1>
   
 
         
-        <a href="/2022/08/14/mynotes/Java/Java-source/Java-source/" class="archive-article-date">
+        <a href="/2022/08/14/mynotes/Java/future/CompletableFuture/" class="archive-article-date">
   	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
 </a>
         
@@ -176,17 +176,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Java-中的集合容器简介"><a href="#Java-中的集合容器简介" class="headerlink" title="Java 中的集合容器简介"></a>Java 中的集合容器简介</h1><h2 id="1、Java-中常用的容器类介绍"><a href="#1、Java-中常用的容器类介绍" class="headerlink" title="1、Java 中常用的容器类介绍"></a>1、Java 中常用的容器类介绍</h2><ul>
-<li><p>Collection 接口和 Map 接口是所有集合框架的父接口。</p>
-</li>
-<li><p>Collection 集合的子接口有 List、Set、Queue 三种子接口，比较常用的是 List 接口 和 Set 接口。</p>
-<p>List 接口 的实现类主要有：ArrayList（线程不安全）、LinkedList、Stack 以及 Vector（线程安全）等；</p>
-<p>Set 接口 的实现类主要有：HashSet、TreeSet、LinkedHashSet 等。</p>
-<p>Queue 接口：BlockingQueue</p>
-</li>
-<li><p>Map 接口 的实现类主要有：HashMap、TreeMap、Hashtable、LinkedHashMap、ConcurrentHashMap 以及 Properties 等。</p>
-</li>
-</ul>
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">感谢</span><br><span class="line">https:<span class="comment">//www.zhihu.com/question/318472639/answer/652254785</span></span><br><span class="line">https:<span class="comment">//zhuanlan.zhihu.com/p/344431341</span></span><br><span class="line">https:<span class="comment">//www.bilibili.com/video/BV1ui4y1T7xf</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="0、准备"><a href="#0、准备" class="headerlink" title="0、准备"></a>0、准备</h1><p>ListenableFuture 是由 Google Guava工具包提供的 Future 扩展类，随后，JDK 在 1.8 版本中马上也提供了类似这样的类，在 9 中进一步增强，这就是 CompletableFuture。CompletableFuture 同样实现了 Future 接口，并在此基础上进行了丰富的扩展，弥补了 Future 的局限性，是对 Future 的扩展和增强，同时 CompletableFuture 实现了对任务编排的能力。</p>
         
       
 
@@ -207,11 +199,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">异步</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">future</a>
         		</li>
       		
 		</ul>
@@ -221,7 +213,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/Java/Java-source/Java-source/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/08/14/mynotes/Java/future/CompletableFuture/">展开全文 >></a>
         </p>
       
 
@@ -255,19 +247,19 @@
 <!-- 目录内容结束 -->
 
   
-    <article id="post-mynotes/Java/annotation-reflex/annotation-reflex" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mynotes/Java/future/future" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/Java/annotation-reflex/annotation-reflex/">注解与反射</a>
+      <a class="article-title" href="/2022/08/14/mynotes/Java/future/future/">Future学习</a>
     </h1>
   
 
         
-        <a href="/2022/08/14/mynotes/Java/annotation-reflex/annotation-reflex/" class="archive-article-date">
+        <a href="/2022/08/14/mynotes/Java/future/future/" class="archive-article-date">
   	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
 </a>
         
@@ -275,9 +267,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="注解-Annotation"><a href="#注解-Annotation" class="headerlink" title="注解 Annotation"></a>注解 Annotation</h1><h2 id="1、什么是注解"><a href="#1、什么是注解" class="headerlink" title="1、什么是注解"></a>1、什么是注解</h2><ul>
-<li>Annotation 是从 <strong>JDK 5.0</strong>开始引入的新技术。</li>
+        <h1 id="0、同步和异步"><a href="#0、同步和异步" class="headerlink" title="0、同步和异步"></a>0、同步和异步</h1><blockquote>
+<p>Callable 和 Future 在 JDK1.5 之后开始提供</p>
+</blockquote>
+<ul>
+<li>同步：同步是指一个进程在执行某个请求的时候，如果该请求需要一段时间才能返回信息，那么这个进程会一直等待下去，直到收到返回信息才继续执行下去。</li>
+<li>异步：异步是指进程不需要一直等待下去，而是继续执行下面的操作，不管其他进程的状态，当有信息返回的时候会通知进程进行处理，这样可以提高执行效率。</li>
 </ul>
+<p><strong>Future 模式的核心思想是能够让主线程将原来需要同步等待的这段时间用来做其他的事情，因为可以异步获得执行结果，所以不用一直同步等待去获得执行结果。</strong></p>
         
       
 
@@ -298,11 +295,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">注解</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">异步</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">future</a>
         		</li>
       		
 		</ul>
@@ -312,7 +309,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/Java/annotation-reflex/annotation-reflex/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/08/14/mynotes/Java/future/future/">展开全文 >></a>
         </p>
       
 
@@ -435,19 +432,19 @@
 <!-- 目录内容结束 -->
 
   
-    <article id="post-mynotes/algorithm/剑指offer/剑指offer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mynotes/algorithm/leetcode/leetcode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/algorithm/%E5%89%91%E6%8C%87offer/%E5%89%91%E6%8C%87offer/">剑指offer</a>
+      <a class="article-title" href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/">leetcode记录</a>
     </h1>
   
 
         
-        <a href="/2022/08/14/mynotes/algorithm/%E5%89%91%E6%8C%87offer/%E5%89%91%E6%8C%87offer/" class="archive-article-date">
+        <a href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/" class="archive-article-date">
   	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
 </a>
         
@@ -455,7 +452,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="剑指offer"><a href="#剑指offer" class="headerlink" title="剑指offer"></a>剑指offer</h1>
+        <h1 id="字符串类"><a href="#字符串类" class="headerlink" title="字符串类"></a>字符串类</h1>
         
       
 
@@ -486,7 +483,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/algorithm/%E5%89%91%E6%8C%87offer/%E5%89%91%E6%8C%87offer/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/">展开全文 >></a>
         </p>
       
 
@@ -579,188 +576,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/08/14/mynotes/algorithm/sort/sort/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
-    <article id="post-mynotes/algorithm/leetcode/leetcode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/">leetcode记录</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/" class="archive-article-date">
-  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="字符串类"><a href="#字符串类" class="headerlink" title="字符串类"></a>字符串类</h1>
-        
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
-    <article id="post-mynotes/spring/springmvc/springmvc" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/spring/springmvc/springmvc/">springmvc整理</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/14/mynotes/spring/springmvc/springmvc/" class="archive-article-date">
-  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1、MVC"><a href="#1、MVC" class="headerlink" title="1、MVC"></a>1、MVC</h1><h2 id="1-1、什么是MVC"><a href="#1-1、什么是MVC" class="headerlink" title="1.1、什么是MVC"></a>1.1、什么是MVC</h2><ul>
-<li>MVC 是模型（Model）、视图（View）、控制器（Controller）的简写，是一种软件设计规范。 </li>
-<li>MVC 将业务逻辑、数据、显示分离的方法来组织代码。 </li>
-<li>MVC 主要作用是<strong>降低了视图与业务逻辑间的双向耦合</strong>，MVC 不是一种设计模式，<strong>MVC 是一种架构模式</strong>。</li>
-</ul>
-        
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SpringMVC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HttpServlet</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DispatcherServlet</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/spring/springmvc/springmvc/">展开全文 >></a>
         </p>
       
 
@@ -941,6 +756,188 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/08/14/mynotes/spring/spring/Spring/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
+    <article id="post-mynotes/spring/springmvc/springmvc" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/14/mynotes/spring/springmvc/springmvc/">springmvc整理</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/14/mynotes/spring/springmvc/springmvc/" class="archive-article-date">
+  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、MVC"><a href="#1、MVC" class="headerlink" title="1、MVC"></a>1、MVC</h1><h2 id="1-1、什么是MVC"><a href="#1-1、什么是MVC" class="headerlink" title="1.1、什么是MVC"></a>1.1、什么是MVC</h2><ul>
+<li>MVC 是模型（Model）、视图（View）、控制器（Controller）的简写，是一种软件设计规范。 </li>
+<li>MVC 将业务逻辑、数据、显示分离的方法来组织代码。 </li>
+<li>MVC 主要作用是<strong>降低了视图与业务逻辑间的双向耦合</strong>，MVC 不是一种设计模式，<strong>MVC 是一种架构模式</strong>。</li>
+</ul>
+        
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SpringMVC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HttpServlet</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DispatcherServlet</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/14/mynotes/spring/springmvc/springmvc/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
+    <article id="post-mynotes/algorithm/剑指offer/剑指offer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/14/mynotes/algorithm/%E5%89%91%E6%8C%87offer/%E5%89%91%E6%8C%87offer/">剑指offer</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/14/mynotes/algorithm/%E5%89%91%E6%8C%87offer/%E5%89%91%E6%8C%87offer/" class="archive-article-date">
+  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="剑指offer"><a href="#剑指offer" class="headerlink" title="剑指offer"></a>剑指offer</h1>
+        
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/14/mynotes/algorithm/%E5%89%91%E6%8C%87offer/%E5%89%91%E6%8C%87offer/">展开全文 >></a>
         </p>
       
 
@@ -1163,14 +1160,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">生产者消费者</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">函数式接口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -1179,7 +1168,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">函数式接口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">生产者消费者</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1188,6 +1181,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">dubbo异步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1203,10 +1200,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
@@ -1219,6 +1212,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
@@ -1227,11 +1228,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1243,7 +1240,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1251,7 +1248,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1259,15 +1256,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">异步</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">future</a>
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1279,11 +1276,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color3">异步</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color2">future</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1307,19 +1304,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HttpServlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DispatcherServlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1332,6 +1321,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">aop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HttpServlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">DispatcherServlet</a>
               </li>
             
             <div class="clearfix"></div>
