@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://haining820.github.io">
-  <title>java源码 | haining&#39;s blog</title>
+  <title>Java集合 | haining&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Java 中的集合容器简介1、Java 中常用的容器类介绍 Collection 接口和 Map 接口是所有集合框架的父接口。  Collection 集合的子接口有 List、Set、Queue 三种子接口，比较常用的是 List 接口 和 Set 接口。 List 接口 的实现类主要有：ArrayList（线程不安全）、LinkedList、Stack 以及 Vector（线程安全）等； Se">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java源码">
+<meta property="og:title" content="Java集合">
 <meta property="og:url" content="https://haining820.github.io/2022/08/14/mynotes/Java/Java-source/Java-source/index.html">
 <meta property="og:site_name" content="haining&#39;s blog">
 <meta property="og:description" content="Java 中的集合容器简介1、Java 中常用的容器类介绍 Collection 接口和 Map 接口是所有集合框架的父接口。  Collection 集合的子接口有 List、Set、Queue 三种子接口，比较常用的是 List 接口 和 Set 接口。 List 接口 的实现类主要有：ArrayList（线程不安全）、LinkedList、Stack 以及 Vector（线程安全）等； Se">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-26T15:43:06.125Z">
+<meta property="article:modified_time" content="2023-01-12T14:36:57.130Z">
 <meta property="article:author" content="haining">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="源码">
@@ -167,7 +167,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      java源码
+      Java集合
     </h1>
   
 
@@ -351,13 +351,12 @@
 <li><p><code>&gt;&gt;&gt;</code> 是不带符号右移，<strong>无论负数还是正数，高位都用0补齐</strong>。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span>的二进制源码: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0100</span>  <span class="comment">// 4</span></span><br><span class="line"><span class="number">4</span>&gt;&gt;&gt;<span class="number">1</span>:       <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0010</span>  <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 负数补码右移后高位补0,变成正数,原码补码都一样。</span></span><br><span class="line">-<span class="number">4</span>的二进制源码: <span class="number">1000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0100</span>  <span class="comment">// -4</span></span><br><span class="line">-<span class="number">4</span>的补码:      <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1100</span></span><br><span class="line">-<span class="number">4</span>&gt;&gt;&gt;<span class="number">1</span>:       <span class="number">0111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1110</span></span><br><span class="line">再转换成原码:   <span class="number">0111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1110</span>  <span class="comment">// 2147483646</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="4、put-方法"><a href="#4、put-方法" class="headerlink" title="4、put 方法"></a>4、put 方法</h2><ul>
-<li>首先来看 put 函数部分的源码，调用的是 putval 函数。</li>
-</ul>
-<blockquote>
-<p>该部分源码的注释：Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the oldvalue is replaced.（将指定值与此映射中的指定键相关联。如果映射以前包含该键的映射，则会替换旧值。）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Map&lt;String,Object&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">&quot;key1&quot;</span>,<span class="number">111</span>);</span><br><span class="line">        map.put(<span class="string">&quot;key2&quot;</span>,<span class="number">222</span>);</span><br><span class="line">        map.put(<span class="string">&quot;key3&quot;</span>,<span class="number">333</span>);</span><br><span class="line">        System.out.println(map.toString());</span><br><span class="line">        map.put(<span class="string">&quot;key1&quot;</span>,<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">        System.out.println(map.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">运行结果：</span></span><br><span class="line"><span class="comment">	&#123;key1=111, key2=222, key3=333&#125;</span></span><br><span class="line"><span class="comment">	&#123;key1=aaa, key2=222, key3=333&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-</blockquote>
+<h2 id="4、put-方法"><a href="#4、put-方法" class="headerlink" title="4、put 方法"></a>4、put 方法</h2><p><strong>首先来看 put 函数部分的源码，调用的是 putval 函数。</strong></p>
+<p>该部分源码的注释：将指定值与此映射中的指定键相关联。如果映射以前包含该键的映射，则会替换旧值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the oldvalue is replaced.      </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">     Map&lt;String,Object&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">     map.put(<span class="string">&quot;key1&quot;</span>,<span class="number">111</span>);</span><br><span class="line">     map.put(<span class="string">&quot;key2&quot;</span>,<span class="number">222</span>);</span><br><span class="line">     map.put(<span class="string">&quot;key3&quot;</span>,<span class="number">333</span>);</span><br><span class="line">     System.out.println(map.toString());</span><br><span class="line">     map.put(<span class="string">&quot;key1&quot;</span>,<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">     System.out.println(map.toString());</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">运行结果：</span></span><br><span class="line"><span class="comment">	&#123;key1=111, key2=222, key3=333&#125;</span></span><br><span class="line"><span class="comment">	&#123;key1=aaa, key2=222, key3=333&#125;</span></span><br><span class="line"><span class="comment">*/</span> </span><br></pre></td></tr></table></figure>
+
 <p>将这个 key 的 hash 值，这个 key 本身，还有 value 作为参数传入到 putVal 方法中。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> V <span class="title function_">put</span><span class="params">(K key, V value)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> putVal(hash(key), key, value, <span class="literal">false</span>, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -371,12 +370,12 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> V <span class="title function_">putVal</span><span class="params">(<span class="type">int</span> hash, K key, V value, <span class="type">boolean</span> onlyIfAbsent, <span class="type">boolean</span> evict)</span> &#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab; </span><br><span class="line">    Node&lt;K,V&gt; p; </span><br><span class="line">    <span class="type">int</span> n, i;</span><br><span class="line">    <span class="keyword">if</span> ((tab = table) == <span class="literal">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">        n = (tab = resize()).length;</span><br><span class="line">    <span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="literal">null</span>)</span><br><span class="line">        tab[i] = newNode(hash, key, value, <span class="literal">null</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;K,V&gt; e;</span><br><span class="line">        K k;</span><br><span class="line">        <span class="keyword">if</span> (p.hash == hash &amp;&amp;</span><br><span class="line">            ((k = p.key) == key || (key != <span class="literal">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">            e = p;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">            e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(<span class="built_in">this</span>, tab, hash, key, value);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">binCount</span> <span class="operator">=</span> <span class="number">0</span>; ; ++binCount) &#123;</span><br><span class="line">                <span class="keyword">if</span> ((e = p.next) == <span class="literal">null</span>) &#123;</span><br><span class="line">                    p.next = newNode(hash, key, value, <span class="literal">null</span>);</span><br><span class="line">                    <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="number">1</span>) <span class="comment">// -1 for 1st</span></span><br><span class="line">                        treeifyBin(tab, hash);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                    ((k = e.key) == key || (key != <span class="literal">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                p = e;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (e != <span class="literal">null</span>) &#123; <span class="comment">// existing mapping for key</span></span><br><span class="line">            <span class="type">V</span> <span class="variable">oldValue</span> <span class="operator">=</span> e.value;</span><br><span class="line">            <span class="keyword">if</span> (!onlyIfAbsent || oldValue == <span class="literal">null</span>)</span><br><span class="line">                e.value = value;</span><br><span class="line">            afterNodeAccess(e);</span><br><span class="line">            <span class="keyword">return</span> oldValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ++modCount;</span><br><span class="line">    <span class="keyword">if</span> (++size &gt; threshold)</span><br><span class="line">        resize();</span><br><span class="line">    afterNodeInsertion(evict);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
+<h2 id="5、putIfAbsent"><a href="#5、putIfAbsent" class="headerlink" title="5、putIfAbsent"></a>5、putIfAbsent</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-putifabsent.html">https://www.runoob.com/java/java-hashmap-putifabsent.html</a></p>
+</blockquote>
+<p>putIfAbsent 方法会先判断指定的 key 是否存在，不存在则将键/值对插入到 HashMap 中。</p>
+<p>如果所指定的 key 已经在 HashMap 中存在，返回和这个 key 值对应的 value, 如果所指定的 key 不在 HashMap 中存在，则返回 null。</p>
+<p><strong>注意：</strong>如果指定 key 之前已经和一个 null 值相关联了 ，则该方法也返回 null。</p>
 <h1 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h1><h2 id="1、HashMap如何解决哈希冲突"><a href="#1、HashMap如何解决哈希冲突" class="headerlink" title="1、HashMap如何解决哈希冲突"></a>1、HashMap如何解决哈希冲突</h2><ol>
 <li><p>使用链地址法（使用散列表）来链接拥有相同hash值的数据；</p>
 </li>
@@ -440,47 +439,6 @@
 <blockquote>
 <p>另一个区别是HashMap的迭代器(Iterator)是fail-fast迭代器，而Hashtable的enumerator迭代器不是fail-fast的。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException，但迭代器本身的remove()方法移除元素则不会抛出ConcurrentModificationException异常。但这并不是一个一定发生的行为，要看JVM。这条同样也是Enumeration和Iterator的区别。</p>
 </blockquote>
-<h1 id="Guava"><a href="#Guava" class="headerlink" title="Guava"></a>Guava</h1><p>Guava 是谷歌提供的一个核心 Java 类库，其中包括<strong>新的集合类型、不可变集合、图库，以及用于并发、I/O、Hash、缓存、字符串等的实用工具。</strong>它在谷歌中的大多数 Java 项目中被广泛使用，也被许多其他公司广泛使用，熟练掌握这些工具类可以快速解决日常开发中的一些问题。</p>
-<h2 id="1、Guava-不可变类型集合"><a href="#1、Guava-不可变类型集合" class="headerlink" title="1、Guava 不可变类型集合"></a>1、Guava 不可变类型集合</h2><h2 id="2、Guava-中新的集合类型"><a href="#2、Guava-中新的集合类型" class="headerlink" title="2、Guava 中新的集合类型"></a>2、Guava 中新的集合类型</h2><h3 id="2-1、Multiset"><a href="#2-1、Multiset" class="headerlink" title="2.1、Multiset"></a>2.1、Multiset</h3><blockquote>
-<p>问题引入：现在需要统计一个 list 中每个元素出现的次数</p>
-<p>传统方式：定义一个 map，遍历 list，将 list 中元素的出现次数记录在 map 中，但是有了 Guava，特定的集合类可以帮助解决这个问题。</p>
-</blockquote>
-<p>MultiSet：虽然名字中带有 set，但是可以储存重复元素，可以认为是 ArrayList 和 Map 的结合体。</p>
-<p>MultiSet 是一个接口，JDK 中的各种 map 都有对应的实现。</p>
-<table>
-<thead>
-<tr>
-<th align="center">Map</th>
-<th align="center">Multiset</th>
-<th align="center">是否支持 null 元素</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">HashMap</td>
-<td align="center">HashMultiset</td>
-<td align="center">是</td>
-</tr>
-<tr>
-<td align="center">TreeMap</td>
-<td align="center">TreeMultiset</td>
-<td align="center">是</td>
-</tr>
-<tr>
-<td align="center">LinkedHashMap</td>
-<td align="center">LinkedHashMultiset</td>
-<td align="center">是</td>
-</tr>
-<tr>
-<td align="center">ConcurrentHashMap</td>
-<td align="center">ConcurrentMultiset</td>
-<td align="center">否</td>
-</tr>
-<tr>
-<td align="center">ImmutableMap</td>
-<td align="center">ImmutableMultiset</td>
-<td align="center">否</td>
-</tr>
-</tbody></table>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
       
 
@@ -536,18 +494,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/08/14/mynotes/Java/JVM/JVM/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/08/14/mynotes/Java/future/future/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          JVM
+          Future学习
         
       </div>
     </a>
   
   
-    <a href="/2022/08/14/mynotes/Java/Java-network/Java-network/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">网络编程</div>
+    <a href="/2022/08/14/mynotes/Java/annotation-reflex/annotation-reflex/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">注解与反射</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -592,7 +550,7 @@
 	<div id="toc-article" class="toc-article">
 	<span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 	<strong class="toc-title">文章目录</strong>
-	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E5%AE%B9%E5%99%A8%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">Java 中的集合容器简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81Java-%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E7%B1%BB%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">1、Java 中常用的容器类介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81List%EF%BC%8CSet%EF%BC%8CMap%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F%E8%BF%99%E4%B8%89%E4%B8%AA%E6%8E%A5%E5%8F%A3%E5%AD%98%E5%8F%96%E5%85%83%E7%B4%A0%E6%97%B6%EF%BC%8C%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">2、List，Set，Map三者的区别？这三个接口存取元素时，各有什么特点？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">3、集合框架底层数据结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ArrayList"><span class="toc-number">2.</span> <span class="toc-text">ArrayList</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81ArrayList%E7%9A%84%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">1、ArrayList的扩容机制？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81HashMap-%E7%9A%84%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98"><span class="toc-number">2.2.</span> <span class="toc-text">6、HashMap 的死锁问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HashMap"><span class="toc-number">3.</span> <span class="toc-text">HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E9%9D%99%E6%80%81%E5%85%A8%E5%B1%80-final-%E5%8F%98%E9%87%8F"><span class="toc-number">3.1.</span> <span class="toc-text">1、初始化的静态全局 final 变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E4%B8%89%E7%A7%8D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">2、三种构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81tableSizeFor-%E6%96%B9%E6%B3%95"><span class="toc-number">3.3.</span> <span class="toc-text">3、tableSizeFor 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88-cap-%E5%9C%A8%E4%BC%A0%E5%85%A5%E5%90%8E%E8%A6%81%E5%87%8F-1%EF%BC%9F"><span class="toc-number">3.3.1.</span> <span class="toc-text">(1) 为什么 cap 在传入后要减 1？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">3.3.2.</span> <span class="toc-text">(2) 原反补码的计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Java-%E4%B8%AD-gt-gt-%E4%B8%8E-gt-gt-gt-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.3.3.</span> <span class="toc-text">(3) Java 中 &gt;&gt; 与 &gt;&gt;&gt; 的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81put-%E6%96%B9%E6%B3%95"><span class="toc-number">3.4.</span> <span class="toc-text">4、put 方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">常见面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81HashMap%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81"><span class="toc-number">4.1.</span> <span class="toc-text">1、HashMap如何解决哈希冲突</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">4.2.</span> <span class="toc-text">2、HashMap 和 Hashtable 的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Guava"><span class="toc-number">5.</span> <span class="toc-text">Guava</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81Guava-%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B%E9%9B%86%E5%90%88"><span class="toc-number">5.1.</span> <span class="toc-text">1、Guava 不可变类型集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81Guava-%E4%B8%AD%E6%96%B0%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.2.</span> <span class="toc-text">2、Guava 中新的集合类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E3%80%81Multiset"><span class="toc-number">5.2.1.</span> <span class="toc-text">2.1、Multiset</span></a></li></ol></li></ol></li></ol>
+	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E5%AE%B9%E5%99%A8%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">Java 中的集合容器简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81Java-%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E7%B1%BB%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">1、Java 中常用的容器类介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81List%EF%BC%8CSet%EF%BC%8CMap%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F%E8%BF%99%E4%B8%89%E4%B8%AA%E6%8E%A5%E5%8F%A3%E5%AD%98%E5%8F%96%E5%85%83%E7%B4%A0%E6%97%B6%EF%BC%8C%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">2、List，Set，Map三者的区别？这三个接口存取元素时，各有什么特点？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">3、集合框架底层数据结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ArrayList"><span class="toc-number">2.</span> <span class="toc-text">ArrayList</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81ArrayList%E7%9A%84%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">1、ArrayList的扩容机制？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81HashMap-%E7%9A%84%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98"><span class="toc-number">2.2.</span> <span class="toc-text">6、HashMap 的死锁问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HashMap"><span class="toc-number">3.</span> <span class="toc-text">HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E9%9D%99%E6%80%81%E5%85%A8%E5%B1%80-final-%E5%8F%98%E9%87%8F"><span class="toc-number">3.1.</span> <span class="toc-text">1、初始化的静态全局 final 变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E4%B8%89%E7%A7%8D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">2、三种构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81tableSizeFor-%E6%96%B9%E6%B3%95"><span class="toc-number">3.3.</span> <span class="toc-text">3、tableSizeFor 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88-cap-%E5%9C%A8%E4%BC%A0%E5%85%A5%E5%90%8E%E8%A6%81%E5%87%8F-1%EF%BC%9F"><span class="toc-number">3.3.1.</span> <span class="toc-text">(1) 为什么 cap 在传入后要减 1？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">3.3.2.</span> <span class="toc-text">(2) 原反补码的计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Java-%E4%B8%AD-gt-gt-%E4%B8%8E-gt-gt-gt-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.3.3.</span> <span class="toc-text">(3) Java 中 &gt;&gt; 与 &gt;&gt;&gt; 的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81put-%E6%96%B9%E6%B3%95"><span class="toc-number">3.4.</span> <span class="toc-text">4、put 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81putIfAbsent"><span class="toc-number">3.5.</span> <span class="toc-text">5、putIfAbsent</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">常见面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81HashMap%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81"><span class="toc-number">4.1.</span> <span class="toc-text">1、HashMap如何解决哈希冲突</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81HashMap-%E5%92%8C-Hashtable-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">4.2.</span> <span class="toc-text">2、HashMap 和 Hashtable 的区别</span></a></li></ol></li></ol>
    </div>
    <script type="text/javascript">
 	function showToc(){
@@ -618,7 +576,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 haining
+    		&copy; 2023 haining
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -707,11 +665,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">函数式接口</a>
+                <a href="javascript:void(0)" class="js-tag color2">生产者消费者</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">生产者消费者</a>
+                <a href="javascript:void(0)" class="js-tag color1">函数式接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -727,14 +685,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">guava</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">集合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
@@ -743,7 +693,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">guava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">集合</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -759,15 +721,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -783,31 +749,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -815,23 +757,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">注解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -843,15 +773,55 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">注解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HttpServlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">DispatcherServlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -864,14 +834,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">aop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HttpServlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DispatcherServlet</a>
               </li>
             
             <div class="clearfix"></div>

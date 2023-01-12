@@ -25,12 +25,11 @@
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220812003535409.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220812014000178.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220812013437271.png">
-<meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20210415191349238.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220414155739007.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220417144710171.png">
 <meta property="og:image" content="https://haining820.github.io/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220417154305645.png">
 <meta property="article:published_time" content="2022-08-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-26T15:43:06.389Z">
+<meta property="article:modified_time" content="2023-01-12T14:36:57.135Z">
 <meta property="article:author" content="haining">
 <meta property="article:tag" content="SpringMVC">
 <meta property="article:tag" content="HttpServlet">
@@ -562,27 +561,6 @@
 <p>使用 PUT API更新现有资源（如果资源不存在，则 API 可能决定是否创建新资源）。</p>
 <p><font size="4" style="font-weight:bold;background:yellow;">DELETE</font></p>
 <p>DELETE 方法删除指定的资源。DELETE 操作是幂等的。如果您删除一个资源，它会从资源集合中删除。</p>
-<h1 id="7、乱码问题（过滤器）"><a href="#7、乱码问题（过滤器）" class="headerlink" title="7、乱码问题（过滤器）"></a>7、乱码问题（过滤器）</h1><p><font size="4" style="font-weight:bold;background:yellow;">问题导入</font></p>
-<p>添加 form.jsp</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=<span class="string">&quot;/e/t1&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;name&quot;</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;submit&quot;</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>编写对应的处理类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EncodingController</span> &#123;</span><br><span class="line">    <span class="meta">@PostMapping(&quot;/e/t1&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">test1</span><span class="params">(String name, Model model)</span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        model.addAttribute(<span class="string">&quot;msg&quot;</span>,name);  <span class="comment">// 获取表单提交的值</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;test&quot;</span>;  <span class="comment">// 跳转到test页面显示输入的值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行后在表单中输入中文后提交，会出现乱码。</p>
-<p><img src="/2022/08/14/mynotes/spring/springmvc/springmvc/image-20210415191349238.png" alt="image-20210415191349238"></p>
-<p><font size="4" style="font-weight:bold;background:yellow;">解决方法</font></p>
-<p>用 SpringMVC 提供的过滤器，可以解决乱码问题！</p>
-<p>在 web.xml 中进行配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置SpringMVC的乱码过滤--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>utf-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>也可以自己编写过滤器，同样在 web.xml 中进行配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EncodingFilter</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(FilterConfig filterConfig)</span> <span class="keyword">throws</span> ServletException &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">        servletRequest.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">        servletResponse.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">        servletResponse.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">        filterChain.doFilter(servletRequest,servletResponse);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>EncoginFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.haining820.filter.EncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>EncoginFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>运行结果：输入汉字后提交表单，也可以正常显示。</p>
-<p><strong>注意：filter-mapping 设置时的范围必须是 <code>/*</code></strong></p>
 <h1 id="8、JSON"><a href="#8、JSON" class="headerlink" title="8、JSON"></a>8、JSON</h1><p>前后端分离时代</p>
 <img src="/2022/08/14/mynotes/spring/springmvc/springmvc/image-20220414155739007.png" alt="image-20220414155739007" style="zoom:67%;">
 
@@ -854,18 +832,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/08/14/mynotes/spring/spring/Spring/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          spring整理
+          leetcode记录
         
       </div>
     </a>
   
   
-    <a href="/2022/07/28/mynotes/redis/redis/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Redis学习笔记</div>
+    <a href="/2022/08/14/mynotes/spring/springboot/springboot/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">springboot整理</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -910,7 +888,7 @@
 	<div id="toc-article" class="toc-article">
 	<span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 	<strong class="toc-title">文章目录</strong>
-	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81MVC"><span class="toc-number">1.</span> <span class="toc-text">1、MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFMVC"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、什么是MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81MVC%E6%A1%86%E6%9E%B6%E8%A6%81%E5%81%9A%E5%93%AA%E4%BA%9B%E4%BA%8B%E6%83%85"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、MVC框架要做哪些事情</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E4%BC%A0%E7%BB%9F-Servlet"><span class="toc-number">2.</span> <span class="toc-text">2、传统 Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E3%80%81HttpServlet"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、HttpServlet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E3%80%81%E6%B5%8B%E8%AF%95-demo"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、测试 demo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81SpringMVC-%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">3、SpringMVC 执行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E3%80%81DispatcherServlet"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、DispatcherServlet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2%E3%80%81SpringMVC-%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text">3.2、SpringMVC 执行原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81Hello-SpringMVC-%EF%BC%88%E7%BA%AF%E9%85%8D%E7%BD%AE%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">4、Hello, SpringMVC!（纯配置实现）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E3%80%81web-xml-spring-mvc-xml-%E9%85%8D%E7%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、web.xml&#x2F;spring-mvc.xml 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E3%80%81Controller-%E6%8E%A5%E5%8F%A3"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、Controller 接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E3%80%81%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.3.</span> <span class="toc-text">4.3、接口实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4%E3%80%81%E7%BB%93%E6%9E%9C%E8%B7%B3%E8%BD%AC%E6%96%B9%E5%BC%8F"><span class="toc-number">4.4.</span> <span class="toc-text">4.4、结果跳转方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5%E3%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8F%90%E4%BA%A4%E4%B8%8E%E6%98%BE%E7%A4%BA"><span class="toc-number">4.5.</span> <span class="toc-text">4.5、数据的提交与显示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81Hello-SpringMVC%EF%BC%81%EF%BC%88%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">5、Hello, SpringMVC！（注解实现）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81RestFul"><span class="toc-number">6.</span> <span class="toc-text">6、RestFul</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1%E3%80%81%E6%A6%82%E5%BF%B5"><span class="toc-number">6.1.</span> <span class="toc-text">6.1、概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2%E3%80%81%E6%B5%8B%E8%AF%95-demo"><span class="toc-number">6.2.</span> <span class="toc-text">6.2、测试 demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3%E3%80%81%E5%90%8C%E4%B8%80%E8%B7%AF%E5%BE%84%E5%AE%9E%E7%8E%B0%E4%B8%8D%E5%90%8C%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">6.3.</span> <span class="toc-text">6.3、同一路径实现不同请求的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4%E3%80%81GET-POST"><span class="toc-number">6.4.</span> <span class="toc-text">6.4、GET&#x2F;POST</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98%EF%BC%88%E8%BF%87%E6%BB%A4%E5%99%A8%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">7、乱码问题（过滤器）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81JSON"><span class="toc-number">8.</span> <span class="toc-text">8、JSON</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-JSON%EF%BC%9F"><span class="toc-number">8.1.</span> <span class="toc-text">8.1、什么是 JSON？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2%E3%80%81Jackson"><span class="toc-number">8.2.</span> <span class="toc-text">8.2、Jackson</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3%E3%80%81JsonUtils"><span class="toc-number">8.3.</span> <span class="toc-text">8.3、JsonUtils</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4%E3%80%81fastjson"><span class="toc-number">8.4.</span> <span class="toc-text">8.4、fastjson</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E3%80%81Ajax"><span class="toc-number">9.</span> <span class="toc-text">9、Ajax</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-Ajax%EF%BC%9F"><span class="toc-number">9.1.</span> <span class="toc-text">9.1、什么是 Ajax？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2%E3%80%81%E6%A8%A1%E6%8B%9F-Ajax"><span class="toc-number">9.2.</span> <span class="toc-text">9.2、模拟 Ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3%E3%80%81jQuery-ajax"><span class="toc-number">9.3.</span> <span class="toc-text">9.3、jQuery.ajax</span></a></li></ol></li></ol>
+	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81MVC"><span class="toc-number">1.</span> <span class="toc-text">1、MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFMVC"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、什么是MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81MVC%E6%A1%86%E6%9E%B6%E8%A6%81%E5%81%9A%E5%93%AA%E4%BA%9B%E4%BA%8B%E6%83%85"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、MVC框架要做哪些事情</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E4%BC%A0%E7%BB%9F-Servlet"><span class="toc-number">2.</span> <span class="toc-text">2、传统 Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E3%80%81HttpServlet"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、HttpServlet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E3%80%81%E6%B5%8B%E8%AF%95-demo"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、测试 demo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81SpringMVC-%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">3、SpringMVC 执行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E3%80%81DispatcherServlet"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、DispatcherServlet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2%E3%80%81SpringMVC-%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text">3.2、SpringMVC 执行原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81Hello-SpringMVC-%EF%BC%88%E7%BA%AF%E9%85%8D%E7%BD%AE%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">4、Hello, SpringMVC!（纯配置实现）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E3%80%81web-xml-spring-mvc-xml-%E9%85%8D%E7%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、web.xml&#x2F;spring-mvc.xml 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E3%80%81Controller-%E6%8E%A5%E5%8F%A3"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、Controller 接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E3%80%81%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.3.</span> <span class="toc-text">4.3、接口实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4%E3%80%81%E7%BB%93%E6%9E%9C%E8%B7%B3%E8%BD%AC%E6%96%B9%E5%BC%8F"><span class="toc-number">4.4.</span> <span class="toc-text">4.4、结果跳转方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5%E3%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8F%90%E4%BA%A4%E4%B8%8E%E6%98%BE%E7%A4%BA"><span class="toc-number">4.5.</span> <span class="toc-text">4.5、数据的提交与显示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81Hello-SpringMVC%EF%BC%81%EF%BC%88%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">5、Hello, SpringMVC！（注解实现）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81RestFul"><span class="toc-number">6.</span> <span class="toc-text">6、RestFul</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1%E3%80%81%E6%A6%82%E5%BF%B5"><span class="toc-number">6.1.</span> <span class="toc-text">6.1、概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2%E3%80%81%E6%B5%8B%E8%AF%95-demo"><span class="toc-number">6.2.</span> <span class="toc-text">6.2、测试 demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3%E3%80%81%E5%90%8C%E4%B8%80%E8%B7%AF%E5%BE%84%E5%AE%9E%E7%8E%B0%E4%B8%8D%E5%90%8C%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">6.3.</span> <span class="toc-text">6.3、同一路径实现不同请求的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4%E3%80%81GET-POST"><span class="toc-number">6.4.</span> <span class="toc-text">6.4、GET&#x2F;POST</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81JSON"><span class="toc-number">7.</span> <span class="toc-text">8、JSON</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-JSON%EF%BC%9F"><span class="toc-number">7.1.</span> <span class="toc-text">8.1、什么是 JSON？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2%E3%80%81Jackson"><span class="toc-number">7.2.</span> <span class="toc-text">8.2、Jackson</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3%E3%80%81JsonUtils"><span class="toc-number">7.3.</span> <span class="toc-text">8.3、JsonUtils</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4%E3%80%81fastjson"><span class="toc-number">7.4.</span> <span class="toc-text">8.4、fastjson</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E3%80%81Ajax"><span class="toc-number">8.</span> <span class="toc-text">9、Ajax</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-Ajax%EF%BC%9F"><span class="toc-number">8.1.</span> <span class="toc-text">9.1、什么是 Ajax？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2%E3%80%81%E6%A8%A1%E6%8B%9F-Ajax"><span class="toc-number">8.2.</span> <span class="toc-text">9.2、模拟 Ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3%E3%80%81jQuery-ajax"><span class="toc-number">8.3.</span> <span class="toc-text">9.3、jQuery.ajax</span></a></li></ol></li></ol>
    </div>
    <script type="text/javascript">
 	function showToc(){
@@ -936,7 +914,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 haining
+    		&copy; 2023 haining
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1025,11 +1003,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">函数式接口</a>
+                <a href="javascript:void(0)" class="js-tag color2">生产者消费者</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">生产者消费者</a>
+                <a href="javascript:void(0)" class="js-tag color1">函数式接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1045,14 +1023,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">guava</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">集合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
@@ -1061,7 +1031,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">guava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">集合</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1077,15 +1059,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1101,31 +1087,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1133,23 +1095,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">注解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1161,15 +1111,55 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">注解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">MessageConverter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HttpServlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">DispatcherServlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1182,14 +1172,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">aop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HttpServlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DispatcherServlet</a>
               </li>
             
             <div class="clearfix"></div>
