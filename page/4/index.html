@@ -156,19 +156,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-mynotes/Java/future/ListenableFuture" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mynotes/Java/future/CompletableFuture" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/Java/future/ListenableFuture/">ListenableFuture学习</a>
+      <a class="article-title" href="/2022/08/14/mynotes/Java/future/CompletableFuture/">CompletableFuture学习</a>
     </h1>
   
 
         
-        <a href="/2022/08/14/mynotes/Java/future/ListenableFuture/" class="archive-article-date">
+        <a href="/2022/08/14/mynotes/Java/future/CompletableFuture/" class="archive-article-date">
   	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
 </a>
         
@@ -176,50 +176,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ListenableFuture 是 Guava 工具包提供的 Future 扩展类，是可以监听的 Future，是对 Java 原生Future 的扩展增强。</p>
-<p>老版 Future 模式一个最大的问题是需要获取结果做后续处理操作的时候，还是需要阻塞等待。这样的话和同步调用方式就没有多大区别了。而 ListenableFuture 和 CompletableFuture 对于这种情况提供了很多易用的 API。</p>
-<p><strong>如果使用 ListenableFuture，Guava 会帮助检测 Future 是否完成了，如果完成就自动调用回调函数，这样可以减少并发程序的复杂度。</strong></p>
-<p>ListenableFuture 接口扩展了 Future 接口，增加了 addListener 方法，该方法在给定的 excutor 上注册一个监听器，当计算完成时会马上调用该监听器。虽然不能够确保监听器执行的顺序，但可以确保在计算完成时马上被调用。</p>
-<img src="https://haining820-bucket.oss-cn-beijing.aliyuncs.com/typora_img/image-20230109195031470.png" alt="image-20230109195031470" style="zoom:67%;">
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">感谢</span><br><span class="line">https:<span class="comment">//www.zhihu.com/question/318472639/answer/652254785</span></span><br><span class="line">https:<span class="comment">//zhuanlan.zhihu.com/p/344431341</span></span><br><span class="line">https:<span class="comment">//www.bilibili.com/video/BV1ui4y1T7xf</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="1、ListenableFuture-的初始化"><a href="#1、ListenableFuture-的初始化" class="headerlink" title="1、ListenableFuture 的初始化"></a>1、ListenableFuture 的初始化</h1><p><code>addListener()</code>：注册回调函数，在实际使用时可能不会直接使用这个接口，因为这个接口只能传 Runnable 实例，Futures 类提供了另一个 addCallback 方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ListenableFuture</span>&lt;V&gt; <span class="keyword">extends</span> <span class="title class_">Future</span>&lt;V&gt; &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">addListener</span><span class="params">(Runnable listener, Executor executor)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Task</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;String&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line"><span class="comment">//        int a = 1 / 0;	// 异常</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;task done&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">lisFuture</span><span class="params">()</span> <span class="keyword">throws</span> ExecutionException, InterruptedException &#123;</span><br><span class="line">    <span class="type">ListeningExecutorService</span> <span class="variable">pool</span> <span class="operator">=</span> MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(<span class="number">5</span>));</span><br><span class="line">    ListenableFuture&lt;String&gt; lf = pool.submit(<span class="keyword">new</span> <span class="title class_">Task</span>());</span><br><span class="line">    System.out.println(lf.get());</span><br><span class="line">    lf.addListener(() -&gt; &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;finish lf&quot;</span>);</span><br><span class="line">    &#125;, Executors.newFixedThreadPool(<span class="number">5</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><font size="4" style="font-weight:bold;background:yellow;">Demo</font></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">testListenFuture</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;主任务执行完,开始异步执行副任务1.....&quot;</span>);</span><br><span class="line">    <span class="type">ListeningExecutorService</span> <span class="variable">pool</span> <span class="operator">=</span> MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(<span class="number">5</span>));</span><br><span class="line">    ListenableFuture&lt;String&gt; future = pool.submit(<span class="keyword">new</span> <span class="title class_">Task</span>());</span><br><span class="line">    <span class="comment">// 为任务绑定回调接口</span></span><br><span class="line">    Futures.addCallback(future, <span class="keyword">new</span> <span class="title class_">FutureCallback</span>&lt;String&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onSuccess</span><span class="params">(String result)</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;success,result-&gt;:&quot;</span> + result);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onFailure</span><span class="params">(Throwable t)</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;error-&gt;&quot;</span> + t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(<span class="string">&quot;副本任务启动,回归主任务线,主业务正常返回.....&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>MoreExecutors：</strong>该类是 final 类型的工具类，提供了很多静态方法。</p>
-<ul>
-<li>使用 <code>MoreExecutors.listeningDecorator(ExecutorService delegate)</code> 方法初始化 <code>ListeningExecutorService</code>；</li>
-</ul>
-<p><strong>ListeningExecutorService：</strong>该类是对 ExecutorService 的扩展，重写 ExecutorService 类中的 submit 方法，返回 ListenableFuture 对象。</p>
-<ul>
-<li>使用 <code>ListeningExecutorService</code> 的 <code>submit(Callable&lt;T&gt; var1)</code> 方法即可初始化 <code>ListenableFuture</code> 对象。</li>
-</ul>
-<p><strong>Futures：</strong>该类提供和很多实用的静态方法以供使用。(todo: successfulAsList,AllAsList)</p>
-<p><code>addCallback()</code>：在线程结束时，立即调用 <code>FutureCallBack()</code>。</p>
-<div class="spoiler collapsed">
-    <div class="spoiler-title">
-        展开查看折叠代码
-    </div>
-    <div class="spoiler-content">
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// addCallback源码</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;V&gt; <span class="keyword">void</span> <span class="title function_">addCallback</span><span class="params">(ListenableFuture&lt;V&gt; future, </span></span><br><span class="line"><span class="params">                                   FutureCallback&lt;? <span class="built_in">super</span> V&gt; callback)</span> &#123;</span><br><span class="line">    addCallback(future, callback, MoreExecutors.directExecutor());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;V&gt; <span class="keyword">void</span> <span class="title function_">addCallback</span><span class="params">(<span class="keyword">final</span> ListenableFuture&lt;V&gt; future, </span></span><br><span class="line"><span class="params">                                   <span class="keyword">final</span> FutureCallback&lt;? <span class="built_in">super</span> V&gt; callback, Executor executor)</span> &#123;</span><br><span class="line">    Preconditions.checkNotNull(callback);</span><br><span class="line">    <span class="type">Runnable</span> <span class="variable">callbackListener</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">            Object value;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                value = Futures.getDone(future);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (ExecutionException var3) &#123;</span><br><span class="line">                callback.onFailure(var3.getCause());</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (RuntimeException var4) &#123;</span><br><span class="line">                callback.onFailure(var4);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Error var5) &#123;</span><br><span class="line">                callback.onFailure(var5);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            callback.onSuccess(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    future.addListener(callbackListener, executor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-    </div>
-</div>
-
-<p><strong>FutureCallback：</strong>该接口提供了 <code>onSuccess()</code> 和 <code>onFailure()</code>，获取异步计算的结果并回调，ListenableFuture  可以使用以下方式通过重写 <code>onSuccess()</code> 和 <code>onFailure()</code> 增加回调函数：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GwtCompatible</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">FutureCallback</span>&lt;V&gt; &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onSuccess</span><span class="params">(<span class="meta">@Nullable</span> V var1)</span>;	<span class="comment">// 当future执行成功，执行此方法</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onFailure</span><span class="params">(Throwable var1)</span>;		<span class="comment">// 当 future 执行失败，执行此方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+<h1 id="0、准备"><a href="#0、准备" class="headerlink" title="0、准备"></a>0、准备</h1><p>ListenableFuture 是由 Google Guava工具包提供的 Future 扩展类，随后，JDK 在 1.8 版本中马上也提供了类似这样的类，在 9 中进一步增强，这就是 CompletableFuture。CompletableFuture 同样实现了 Future 接口，并在此基础上进行了丰富的扩展，弥补了 Future 的局限性，是对 Future 的扩展和增强，同时 CompletableFuture 实现了对任务编排的能力。</p>
+        
       
 
 	<!- 文件结束 -->
@@ -253,7 +213,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/Java/future/ListenableFuture/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/08/14/mynotes/Java/future/CompletableFuture/">展开全文 >></a>
         </p>
       
 
@@ -472,6 +432,91 @@
 <!-- 目录内容结束 -->
 
   
+    <article id="post-mynotes/algorithm/leetcode/leetcode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/">leetcode记录</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/" class="archive-article-date">
+  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="字符串类"><a href="#字符串类" class="headerlink" title="字符串类"></a>字符串类</h1>
+        
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
     <article id="post-mynotes/algorithm/sort/sort" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -564,91 +609,6 @@
 <!-- 目录内容结束 -->
 
   
-    <article id="post-mynotes/algorithm/leetcode/leetcode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/">leetcode记录</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/" class="archive-article-date">
-  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="字符串类"><a href="#字符串类" class="headerlink" title="字符串类"></a>字符串类</h1>
-        
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/algorithm/leetcode/leetcode/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
     <article id="post-mynotes/algorithm/剑指offer/剑指offer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -701,91 +661,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/08/14/mynotes/algorithm/%E5%89%91%E6%8C%87offer/%E5%89%91%E6%8C%87offer/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
-    <article id="post-mynotes/spring/springboot/springboot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/14/mynotes/spring/springboot/springboot/">springboot整理</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/14/mynotes/spring/springboot/springboot/" class="archive-article-date">
-  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1、SpringBoot-与微服务"><a href="#1、SpringBoot-与微服务" class="headerlink" title="1、SpringBoot 与微服务"></a>1、SpringBoot 与微服务</h1><h2 id="1-1、SpringBoot-简介"><a href="#1-1、SpringBoot-简介" class="headerlink" title="1.1、SpringBoot 简介"></a>1.1、SpringBoot 简介</h2><p>所有的技术框架的发展都遵循了一个规律：从一个复杂应用场景衍生出一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡 “约定大于配置” ，进而衍生出一些一站式的解决方案。 </p>
-        
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/14/mynotes/spring/springboot/springboot/">展开全文 >></a>
         </p>
       
 
@@ -1011,6 +886,91 @@
 <!-- 目录内容结束 -->
 
   
+    <article id="post-mynotes/spring/springboot/springboot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/14/mynotes/spring/springboot/springboot/">springboot整理</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/14/mynotes/spring/springboot/springboot/" class="archive-article-date">
+  	<time datetime="2022-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、SpringBoot-与微服务"><a href="#1、SpringBoot-与微服务" class="headerlink" title="1、SpringBoot 与微服务"></a>1、SpringBoot 与微服务</h1><h2 id="1-1、SpringBoot-简介"><a href="#1-1、SpringBoot-简介" class="headerlink" title="1.1、SpringBoot 简介"></a>1.1、SpringBoot 简介</h2><p>所有的技术框架的发展都遵循了一个规律：从一个复杂应用场景衍生出一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡 “约定大于配置” ，进而衍生出一些一站式的解决方案。 </p>
+        
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/14/mynotes/spring/springboot/springboot/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
     <article id="post-mynotes/redis/redis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1200,7 +1160,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">dubbo异步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">函数式接口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">生产者消费者</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1212,19 +1184,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">生产者消费者</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">dubbo异步</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1240,7 +1204,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1248,15 +1212,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1268,6 +1224,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tips</a>
               </li>
              
@@ -1276,11 +1244,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1288,19 +1252,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">死锁</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1309,6 +1261,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1344,10 +1304,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -1369,6 +1325,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DispatcherServlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
             
             <div class="clearfix"></div>
