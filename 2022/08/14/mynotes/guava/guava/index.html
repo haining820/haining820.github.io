@@ -610,28 +610,28 @@
 <!-- 目录内容 -->
 
 	<p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-	<span class="btn-bg"></span>
-	<span class="btn-text">文章导航</span>
+		<span class="btn-bg"></span>
+		<span class="btn-text">文章导航</span>
 	</p>
 	<div id="toc-article" class="toc-article">
-	<span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-	<strong class="toc-title">文章目录</strong>
-	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81Java"><span class="toc-number">1.</span> <span class="toc-text">1、Java</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">基础数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StringBuilder"><span class="toc-number">1.2.</span> <span class="toc-text">StringBuilder</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81Guava"><span class="toc-number">2.</span> <span class="toc-text">2、Guava</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Strings"><span class="toc-number">2.1.</span> <span class="toc-text">Strings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ints"><span class="toc-number">2.2.</span> <span class="toc-text">Ints</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Splitter"><span class="toc-number">2.3.</span> <span class="toc-text">Splitter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Joiner"><span class="toc-number">2.4.</span> <span class="toc-text">Joiner</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Objects"><span class="toc-number">2.5.</span> <span class="toc-text">Objects</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CharMatcher"><span class="toc-number">2.6.</span> <span class="toc-text">CharMatcher</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optional"><span class="toc-number">2.7.</span> <span class="toc-text">Optional</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Function"><span class="toc-number">2.8.</span> <span class="toc-text">Function</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81Joda-Time"><span class="toc-number">3.</span> <span class="toc-text">3、Joda-Time</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81Java-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">4、Java 异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E3%80%81Java"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、Java</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E3%80%81%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、如何处理异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E3%80%81Guava-%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">4.3.</span> <span class="toc-text">4.3、Guava 中的异常处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E6%97%A5%E5%BF%97%E4%B8%8E%E8%A7%84%E8%8C%83"><span class="toc-number">5.</span> <span class="toc-text">5、日志与规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1%E3%80%81%E6%97%A5%E5%BF%97%E4%B8%8E%E6%A0%87%E5%87%86%E8%BE%93%E5%87%BA-%E9%94%99%E8%AF%AF%E6%B5%81"><span class="toc-number">5.1.</span> <span class="toc-text">5.1、日志与标准输出&#x2F;错误流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2%E3%80%81slf4j-%E4%B8%8E-logback"><span class="toc-number">5.2.</span> <span class="toc-text">5.2、slf4j 与 logback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3%E3%80%81%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97"><span class="toc-number">5.3.</span> <span class="toc-text">5.3、如何查看日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4%E3%80%81Qunar-%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83"><span class="toc-number">5.4.</span> <span class="toc-text">5.4、Qunar 日志规范</span></a></li></ol></li></ol>
-   </div>
-   <script type="text/javascript">
+		<span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81Java"><span class="toc-number">1.</span> <span class="toc-text">1、Java</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">基础数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StringBuilder"><span class="toc-number">1.2.</span> <span class="toc-text">StringBuilder</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81Guava"><span class="toc-number">2.</span> <span class="toc-text">2、Guava</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Strings"><span class="toc-number">2.1.</span> <span class="toc-text">Strings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ints"><span class="toc-number">2.2.</span> <span class="toc-text">Ints</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Splitter"><span class="toc-number">2.3.</span> <span class="toc-text">Splitter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Joiner"><span class="toc-number">2.4.</span> <span class="toc-text">Joiner</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Objects"><span class="toc-number">2.5.</span> <span class="toc-text">Objects</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CharMatcher"><span class="toc-number">2.6.</span> <span class="toc-text">CharMatcher</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optional"><span class="toc-number">2.7.</span> <span class="toc-text">Optional</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Function"><span class="toc-number">2.8.</span> <span class="toc-text">Function</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81Joda-Time"><span class="toc-number">3.</span> <span class="toc-text">3、Joda-Time</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81Java-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">4、Java 异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E3%80%81Java"><span class="toc-number">4.1.</span> <span class="toc-text">4.1、Java</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E3%80%81%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8"><span class="toc-number">4.2.</span> <span class="toc-text">4.2、如何处理异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E3%80%81Guava-%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">4.3.</span> <span class="toc-text">4.3、Guava 中的异常处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E6%97%A5%E5%BF%97%E4%B8%8E%E8%A7%84%E8%8C%83"><span class="toc-number">5.</span> <span class="toc-text">5、日志与规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1%E3%80%81%E6%97%A5%E5%BF%97%E4%B8%8E%E6%A0%87%E5%87%86%E8%BE%93%E5%87%BA-%E9%94%99%E8%AF%AF%E6%B5%81"><span class="toc-number">5.1.</span> <span class="toc-text">5.1、日志与标准输出&#x2F;错误流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2%E3%80%81slf4j-%E4%B8%8E-logback"><span class="toc-number">5.2.</span> <span class="toc-text">5.2、slf4j 与 logback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3%E3%80%81%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97"><span class="toc-number">5.3.</span> <span class="toc-text">5.3、如何查看日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4%E3%80%81Qunar-%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83"><span class="toc-number">5.4.</span> <span class="toc-text">5.4、Qunar 日志规范</span></a></li></ol></li></ol>
+    </div>
+    <script type="text/javascript">
 	function showToc(){
-	var toc_article = document.getElementById("toc-article");
-	var show_toc_btn = document.getElementById("show-toc-btn");
-	toc_article.setAttribute("style","display:block");
-	show_toc_btn.setAttribute("style","display:none");
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
 	};
 	function showBtn(){
-	var toc_article = document.getElementById("toc-article");
-	var show_toc_btn = document.getElementById("show-toc-btn");
-	toc_article.setAttribute("style","display:none");
-	show_toc_btn.setAttribute("style","display:block");
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
 	};
-   </script>
+    </script>
      
 <!-- 目录内容结束 -->
 
@@ -956,6 +956,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           
             <li class="search-li">
               <a style="color: #686868;" href="https://www.bilibili.com/video/BV1ms411275s" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Stefanie</a>
+            </li>
+          
+            <li class="search-li">
+              <a style="color: #686868;" href="https://www.bilibili.com/video/BV18N4y1j72c" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>MayDay</a>
             </li>
           
         </ul>
