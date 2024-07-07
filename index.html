@@ -156,6 +156,76 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mynotes/tips/正则技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>正则表达式使用技巧</strong></p>
+<h2 id="1、驼峰替换"><a href="#1、驼峰替换" class="headerlink" title="1、驼峰替换"></a>1、驼峰替换</h2><p>vscode搜索以下内容，查找 <code>下划线+小写字母</code> 的组合</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_([a-z])</span><br></pre></td></tr></table></figure>
+
+<p>替换为以下内容，将 <code>下划线+小写字母</code> 替换为 <code>大写字母</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\U$1</span><br></pre></td></tr></table></figure>
+
+
+
+<p>csdn（未验证）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">将 _([a-z]) 替换成 \U$1\E , 可以完成下划线转驼峰</span><br><span class="line">将 List&lt;(.*?)&gt; 替换成 $1, 完成去掉外层</span><br><span class="line">将 ([A-Z]) 替换成 \L$1\E 大写 -&gt; 小写</span><br><span class="line">将 ([a-z]) 替换成 \U$1\E 小写 -&gt; 大写</span><br></pre></td></tr></table></figure>
+
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/07/07/mynotes/tips/%E6%AD%A3%E5%88%99%E6%8A%80%E5%B7%A7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
     <article id="post-mynotes/Java/future/Futures" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -300,6 +370,103 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/07/30/mynotes/tips/hexo/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+
+  
+    <article id="post-mynotes/极客时间/高并发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/07/30/mynotes/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/%E9%AB%98%E5%B9%B6%E5%8F%91/">极客时间-高并发</a>
+    </h1>
+  
+
+        
+        <a href="/2023/07/30/mynotes/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/%E9%AB%98%E5%B9%B6%E5%8F%91/" class="archive-article-date">
+  	<time datetime="2023-07-30T08:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、高并发"><a href="#1、高并发" class="headerlink" title="1、高并发"></a>1、高并发</h1><p>应对高并发的三种方法</p>
+<ul>
+<li><p>Scale-out（横向扩展）：分而治之是一种常见的高并发系统设计方法，采用分布式部署的方式把流量分流开，让每个服务器都承担一部分并发和流量。</p>
+</li>
+<li><p>缓存：使用缓存来提高系统的性能，就好比用“拓宽河道”的方式抵抗高并发大流量的冲击。</p>
+</li>
+<li><p>异步：在某些场景下，未处理完成之前我们可以让请求先返回，在数据准备好之后再通知请求方，这样可以在单位时间内处理更多的请求。</p>
+</li>
+</ul>
+        
+      
+
+	<!- 文件结束 -->
+	
+	<div class="essayending" hidden="hidden"></div>
+	
+	<!- 文件结束 配置完成-->
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">极客时间</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">高并发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/07/30/mynotes/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/%E9%AB%98%E5%B9%B6%E5%8F%91/">展开全文 >></a>
         </p>
       
 
@@ -883,181 +1050,6 @@
 <!-- 目录内容结束 -->
 
   
-    <article id="post-essay/essay_220914" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/15/essay/essay_220914/">🎂🎂🎂</a>
-    </h1>
-  
-
-        
-        <a href="/2022/09/15/essay/essay_220914/" class="archive-article-date">
-  	<time datetime="2022-09-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <img src="https://haining820-bucket.oss-cn-beijing.aliyuncs.com/typora_img/cake.png" width="50%" height="50%">
-
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">essay</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/15/essay/essay_220914/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
-    <article id="post-mynotes/Java/provider-consumer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/03/mynotes/Java/provider-consumer/">生产者消费者问题</a>
-    </h1>
-  
-
-        
-        <a href="/2022/09/03/mynotes/Java/provider-consumer/" class="archive-article-date">
-  	<time datetime="2022-09-02T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1、生产者和消费者问题"><a href="#1、生产者和消费者问题" class="headerlink" title="1、生产者和消费者问题"></a>1、生产者和消费者问题</h1><ul>
-<li>假设仓库中只能存放一件产品，生产者将生产出来的产品放入仓库，消费者将仓库中产品取走消费；</li>
-<li>如果仓库中没有产品，生产者将产品放入仓库；如果仓库中有产品，停止生产并等待，直到仓库中的产品被消费者取走为止；</li>
-<li>如果仓库中放有产品，则消费者将产品取走消费，否则停止消费并等待，直到仓库中再次放入产品为止。</li>
-</ul>
-        
-      
-
-	<!- 文件结束 -->
-	
-	<div class="essayending" hidden="hidden"></div>
-	
-	<!- 文件结束 配置完成-->
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">生产者消费者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/03/mynotes/Java/provider-consumer/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
@@ -1072,7 +1064,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 haining
+    		&copy; 2024 haining
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1334,6 +1326,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">极客时间</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">高并发</a>
               </li>
             
             <div class="clearfix"></div>
